@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase';
+import ExpenseList from './components/expenseList';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
@@ -52,7 +53,8 @@ class App extends Component {
 		this.setState({ userInput: '' });
 	};
 	removeStop = stopId => {
-		const dbRef = firebase.database().ref();
+		const userId = firebase.auth().currentUser.uid;
+		const dbRef = firebase.database().ref('/users/' + userId);
 		dbRef.child(stopId).remove();
 	};
 
@@ -97,6 +99,7 @@ class App extends Component {
 						);
 					})}
 				</ul>
+				<ExpenseList />
 
 				<form action="submit">
 					<label htmlFor="newStop">Add a new stop to your trip</label>
