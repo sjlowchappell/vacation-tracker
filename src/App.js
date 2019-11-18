@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase';
 import ExpenseList from './components/expenseList';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
@@ -99,7 +100,10 @@ class App extends Component {
 						);
 					})}
 				</ul>
-				<ExpenseList />
+				<ExpenseList type={'Transportion'} />
+				<ExpenseList type={'Food and Drink'} />
+				<ExpenseList type={'Cultural'} />
+				<ExpenseList type={'Miscellaneous'} />
 
 				<form action="submit">
 					<label htmlFor="newStop">Add a new stop to your trip</label>

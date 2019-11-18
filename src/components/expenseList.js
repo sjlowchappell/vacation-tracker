@@ -13,7 +13,6 @@ class ExpenseList extends Component {
 		e.preventDefault();
 		const newState = this.state.expenses;
 		newState.push({ name: this.state.expenseName, value: this.state.expenseValue });
-		console.log(newState);
 		this.setState({
 			expenses: newState,
 			expenseName: '',
@@ -27,7 +26,7 @@ class ExpenseList extends Component {
 	render() {
 		return (
 			<div>
-				<h2>Expenses:</h2>
+				<h2>{this.props.type} Expenses:</h2>
 				<ul>
 					{this.state.expenses.map(expense => {
 						return (
