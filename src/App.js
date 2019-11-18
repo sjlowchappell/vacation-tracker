@@ -18,23 +18,24 @@ class App extends Component {
 		auth.onAuthStateChanged(user => {
 			if (user) {
 				this.setState({ user });
+				const userId = firebase.auth().currentUser.uid;
+				const dbRef = firebase.database().ref('/users/' + userId);
+				dbRef.on('value', response => {
+					const newState = [];
+					const data = response.val();
+					for (let key in data) {
+						newState.push({ key: key, name: data[key] });
+					}
+					this.setState({
+						stops: newState,
+						userInput: '',
+					});
+				});
+			} else {
+				this.setState({
+					stops: [],
+				});
 			}
-		});
-
-		const dbRef = firebase.database().ref();
-		dbRef.on('value', response => {
-			console.log(response.val());
-			const newState = [];
-			const data = response.val();
-			for (let key in data) {
-				newState.push({ key: key, name: data[key] });
-				console.log(key);
-				console.log(data[key]);
-			}
-			this.setState({
-				stops: newState,
-				userInput: '',
-			});
 		});
 	}
 
@@ -45,7 +46,8 @@ class App extends Component {
 	};
 	handleSubmit = e => {
 		e.preventDefault();
-		const dbRef = firebase.database().ref();
+		const userId = firebase.auth().currentUser.uid;
+		const dbRef = firebase.database().ref('/users/' + userId);
 		dbRef.push(this.state.userInput);
 		this.setState({ userInput: '' });
 	};
