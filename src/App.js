@@ -53,6 +53,8 @@ class App extends Component {
 		const dbRef = firebase.database().ref();
 		dbRef.child(stopId).remove();
 	};
+
+	// Auth Related Methods
 	login = () => {
 		auth.signInWithPopup(provider).then(result => {
 			const user = result.user;
@@ -72,9 +74,15 @@ class App extends Component {
 			<div>
 				<header>
 					{this.state.user ? (
-						<button onClick={this.logout}>Log Out</button>
+						<div>
+							<p>Welcome, {this.state.user.displayName}</p>
+							<button onClick={this.logout}>Log Out</button>
+						</div>
 					) : (
-						<button onClick={this.login}>Log In</button>
+						<div>
+							<p>Please Log In</p>
+							<button onClick={this.login}>Log In</button>
+						</div>
 					)}
 				</header>
 				<ul>
