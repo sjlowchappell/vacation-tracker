@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase';
-import ExpenseList from './components/expenseList';
+// import ExpenseList from './components/expenseList';
+import Stop from './components/stop';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -76,41 +77,45 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
-				<header>
-					{this.state.user ? (
-						<div>
-							<p>Welcome, {this.state.user.displayName}</p>
-							<button onClick={this.logout}>Log Out</button>
-						</div>
-					) : (
-						<div>
-							<p>Please Log In</p>
-							<button onClick={this.login}>Log In</button>
-						</div>
-					)}
-				</header>
-				<ul>
-					{this.state.stops.map(stop => {
-						return (
-							<li>
-								<p>{stop.name}</p>
-								<button onClick={() => this.removeStop(stop.key)}>Remove Stop</button>
-							</li>
-						);
-					})}
-				</ul>
-				<ExpenseList type={'Transportion'} />
-				<ExpenseList type={'Food and Drink'} />
-				<ExpenseList type={'Cultural'} />
-				<ExpenseList type={'Miscellaneous'} />
+			<Router>
+				<div>
+					<header>
+						{this.state.user ? (
+							<div>
+								<p>Welcome, {this.state.user.displayName}</p>
+								<button onClick={this.logout}>Log Out</button>
+							</div>
+						) : (
+							<div>
+								<p>Please Log In</p>
+								<button onClick={this.login}>Log In</button>
+							</div>
+						)}
+					</header>
+					<ul>
+						{this.state.stops.map(stop => {
+							return (
+								<li>
+									<Link to={stop.name}>{stop.name}</Link>
+									<button onClick={() => this.removeStop(stop.key)}>Remove Stop</button>
+									<Route
+										path={`/${stop.name}`}
+										render={() => {
+											return <Stop />;
+										}}
+									/>
+								</li>
+							);
+						})}
+					</ul>
 
-				<form action="submit">
-					<label htmlFor="newStop">Add a new stop to your trip</label>
-					<input type="text" id="newStop" onChange={this.handleChange} value={this.state.userInput} />
-					<button onClick={this.handleSubmit}>Add Stop</button>
-				</form>
-			</div>
+					<form action="submit">
+						<label htmlFor="newStop">Add a new stop to your trip</label>
+						<input type="text" id="newStop" onChange={this.handleChange} value={this.state.userInput} />
+						<button onClick={this.handleSubmit}>Add Stop</button>
+					</form>
+				</div>
+			</Router>
 		);
 	}
 }
