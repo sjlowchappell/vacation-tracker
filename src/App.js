@@ -16,6 +16,7 @@ class App extends Component {
 			stops: [
 				// {
 				// 	name: 'London',
+				//  key: '...',
 				// 	budgets: [
 				// 		{
 				// 			name: 'Food',
@@ -66,8 +67,11 @@ class App extends Component {
 					const newState = [];
 					const data = response.val();
 					for (let key in data) {
-						console.log(key);
-						newState.push({ key: key, name: data[key] });
+						newState.push({
+							key: key,
+							name: data[key],
+							budgets: [{ name: 'Food', items: { name: 'Coffee', value: '$4.00' } }],
+						});
 					}
 					this.setState({
 						stops: newState,
@@ -116,6 +120,9 @@ class App extends Component {
 			this.setState({ user: null });
 		});
 	};
+	checkStops = e => {
+		console.log(this.state.stops);
+	};
 
 	render() {
 		return (
@@ -157,6 +164,7 @@ class App extends Component {
 						<button onClick={this.handleSubmit}>Add Stop</button>
 					</form>
 				</div>
+				<button onClick={this.checkStops}>Check Stops</button>
 			</Router>
 		);
 	}
