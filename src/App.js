@@ -13,7 +13,46 @@ class App extends Component {
 		super();
 		this.state = {
 			user: null,
-			stops: [],
+			stops: [
+				// {
+				// 	name: 'London',
+				// 	budgets: [
+				// 		{
+				// 			name: 'Food',
+				// 			items: [
+				// 				{ name: 'pasta', value: '$4.00' },
+				// 				{ name: 'pastrami', value: '$6.00' },
+				// 			],
+				// 		},
+				// 		{
+				// 			name: 'Travel',
+				// 			items: [
+				// 				{ name: 'flight', value: '$70.00' },
+				// 				{ name: 'public transport', value: '$20.00' },
+				// 			],
+				// 		},
+				// 	],
+				// },
+				// {
+				// 	name: 'Budapest',
+				// 	budgets: [
+				// 		{
+				// 			name: 'Food',
+				// 			items: [
+				// 				{ name: 'pasta', value: '$4.00' },
+				// 				{ name: 'pastrami', value: '$6.00' },
+				// 			],
+				// 		},
+				// 		{
+				// 			name: 'Travel',
+				// 			items: [
+				// 				{ name: 'flight', value: '$70.00' },
+				// 				{ name: 'public transport', value: '$20.00' },
+				// 			],
+				// 		},
+				// 	],
+				// },
+			],
 		};
 	}
 
@@ -22,11 +61,12 @@ class App extends Component {
 			if (user) {
 				this.setState({ user });
 				const userId = firebase.auth().currentUser.uid;
-				const dbRef = firebase.database().ref('/users/' + userId);
+				const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
 				dbRef.on('value', response => {
 					const newState = [];
 					const data = response.val();
 					for (let key in data) {
+						console.log(key);
 						newState.push({ key: key, name: data[key] });
 					}
 					this.setState({
@@ -50,13 +90,15 @@ class App extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase.database().ref('/users/' + userId);
+		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
+		const secondRef = firebase.database().ref('/users/stops/');
+		console.log(secondRef);
 		dbRef.push(this.state.userInput);
 		this.setState({ userInput: '' });
 	};
 	removeStop = stopId => {
 		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase.database().ref('/users/' + userId);
+		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
 		dbRef.child(stopId).remove();
 	};
 
@@ -101,7 +143,7 @@ class App extends Component {
 									<Route
 										path={`/${stop.name}`}
 										render={() => {
-											return <Stop />;
+											return <Stop name={stop.name} />;
 										}}
 									/>
 								</li>
