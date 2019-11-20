@@ -2,14 +2,7 @@ import React from 'react';
 import ExpenseList from './expenseList';
 import uuidv4 from 'uuid/v4';
 
-const Stop = ({ name, budgets, stopId }) => {
-	const totalCost = budgets.reduce((total, budget) => {
-		let accum = 0;
-		for (let key in budget.items) {
-			accum = accum + parseInt(budget.items[key].value);
-		}
-		return total + accum;
-	}, 0);
+const Stop = ({ name, budgets, stopId, stopCost }) => {
 	return (
 		<div>
 			<h1>{name}</h1>
@@ -25,7 +18,7 @@ const Stop = ({ name, budgets, stopId }) => {
 					/>
 				);
 			})}
-			<h2>Trip cost total: {totalCost}</h2>
+			<h2>Stop total cost: {stopCost}</h2>
 		</div>
 	);
 };

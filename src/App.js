@@ -120,6 +120,22 @@ class App extends Component {
 		console.log(this.state.stops);
 	};
 
+	stopCost = budgets => {
+		return budgets.reduce((total, budget) => {
+			let accum = 0;
+			for (let key in budget.items) {
+				accum = accum + parseInt(budget.items[key].value);
+			}
+			return total + accum;
+		}, 0);
+	};
+
+	allStopsCost = () => {
+		return this.state.stops.reduce((total, stop) => {
+			return total + this.stopCost(stop.budgets);
+		}, 0);
+	};
+
 	render() {
 		return (
 			<Router>
@@ -139,14 +155,24 @@ class App extends Component {
 					</header>
 					<ul>
 						{this.state.stops.map(stop => {
+							const currentStopCost = this.stopCost(stop.budgets);
 							return (
 								<li key={stop.key}>
-									<Link to={stop.name}>{stop.name}</Link>
+									<Link to={stop.name}>
+										{stop.name}: {currentStopCost}
+									</Link>
 									<button onClick={() => this.removeStop(stop.key)}>Remove Stop</button>
 									<Route
 										path={`/${stop.name}`}
 										render={() => {
-											return <Stop name={stop.name} budgets={stop.budgets} stopId={stop.key} />;
+											return (
+												<Stop
+													name={stop.name}
+													budgets={stop.budgets}
+													stopId={stop.key}
+													stopCost={currentStopCost}
+												/>
+											);
 										}}
 									/>
 								</li>
@@ -160,6 +186,8 @@ class App extends Component {
 						<button onClick={this.handleSubmit}>Add Stop</button>
 					</form>
 				</div>
+				{this.state.stops.length !== 0 ? <h2>Total Trip Cost: {this.allStopsCost()}</h2> : null}
+				{/* <h2>Total Trip Cost: {this.allStopsCost()}</h2> */}
 				<button onClick={this.checkStops}>Check Stops</button>
 			</Router>
 		);
