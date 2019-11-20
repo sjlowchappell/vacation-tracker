@@ -139,7 +139,7 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<div>
+				<div className="wrapper">
 					<header>
 						{this.state.user ? (
 							<div>
@@ -153,7 +153,7 @@ class App extends Component {
 							</div>
 						)}
 					</header>
-					<ul>
+					<ul className="stopNav">
 						{this.state.stops.map(stop => {
 							const currentStopCost = this.stopCost(stop.budgets);
 							return (
@@ -162,33 +162,41 @@ class App extends Component {
 										{stop.name}: {currentStopCost}
 									</Link>
 									<button onClick={() => this.removeStop(stop.key)}>Remove Stop</button>
-									<Route
-										path={`/${stop.name}`}
-										render={() => {
-											return (
-												<Stop
-													name={stop.name}
-													budgets={stop.budgets}
-													stopId={stop.key}
-													stopCost={currentStopCost}
-												/>
-											);
-										}}
-									/>
 								</li>
 							);
 						})}
 					</ul>
-
 					<form action="submit">
 						<label htmlFor="newStop">Add a new stop to your trip</label>
 						<input type="text" id="newStop" onChange={this.handleChange} />
 						<button onClick={this.handleSubmit}>Add Stop</button>
 					</form>
+					{this.state.stops.map(stop => {
+						const currentStopCost = this.stopCost(stop.budgets);
+						return (
+							<div>
+								<Route
+									path={`/${stop.name}`}
+									render={() => {
+										return (
+											<Stop
+												name={stop.name}
+												budgets={stop.budgets}
+												stopId={stop.key}
+												stopCost={currentStopCost}
+											/>
+										);
+									}}
+								/>
+							</div>
+						);
+					})}
+
+					<footer>
+						{this.state.stops.length !== 0 ? <h2>Total Trip Cost: {this.allStopsCost()}</h2> : null}
+						<button onClick={this.checkStops}>Check Stops</button>
+					</footer>
 				</div>
-				{this.state.stops.length !== 0 ? <h2>Total Trip Cost: {this.allStopsCost()}</h2> : null}
-				{/* <h2>Total Trip Cost: {this.allStopsCost()}</h2> */}
-				<button onClick={this.checkStops}>Check Stops</button>
 			</Router>
 		);
 	}
