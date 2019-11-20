@@ -16,7 +16,7 @@ class App extends Component {
 			stops: [
 				// {
 				// 	name: 'London',
-				//  key: '...',
+				//  key:
 				// 	budgets: [
 				// 		{
 				// 			name: 'Food',
@@ -67,11 +67,7 @@ class App extends Component {
 					const newState = [];
 					const data = response.val();
 					for (let key in data) {
-						newState.push({
-							key: key,
-							name: data[key],
-							budgets: [{ name: 'Food', items: { name: 'Coffee', value: '$4.00' } }],
-						});
+						newState.push({ key: key, name: data[key].name, budgets: data[key].budgets });
 					}
 					this.setState({
 						stops: newState,
@@ -95,9 +91,28 @@ class App extends Component {
 		e.preventDefault();
 		const userId = firebase.auth().currentUser.uid;
 		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
-		const secondRef = firebase.database().ref('/users/stops/');
-		console.log(secondRef);
-		dbRef.push(this.state.userInput);
+		const stop = {
+			name: this.state.userInput,
+			budgets: [
+				{
+					name: 'Food',
+					items: [],
+				},
+				{
+					name: 'Travel',
+					items: [],
+				},
+				{
+					name: 'Culture',
+					items: [],
+				},
+				{
+					name: 'Miscellaneous',
+					items: [],
+				},
+			],
+		};
+		dbRef.push(stop);
 		this.setState({ userInput: '' });
 	};
 	removeStop = stopId => {
@@ -150,7 +165,7 @@ class App extends Component {
 									<Route
 										path={`/${stop.name}`}
 										render={() => {
-											return <Stop name={stop.name} />;
+											return <Stop name={stop.name} budgets={stop.budgets} stopId={stop.key} />;
 										}}
 									/>
 								</li>
