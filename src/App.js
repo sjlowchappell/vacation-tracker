@@ -66,18 +66,22 @@ class App extends Component {
 				{
 					name: 'Food',
 					items: [],
+					expenseTotal: 0,
 				},
 				{
 					name: 'Travel',
 					items: [],
+					expenseTotal: 0,
 				},
 				{
 					name: 'Culture',
 					items: [],
+					expenseTotal: 0,
 				},
 				{
 					name: 'Miscellaneous',
 					items: [],
+					expenseTotal: 0,
 				},
 			],
 		};

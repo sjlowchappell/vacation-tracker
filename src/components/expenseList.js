@@ -17,12 +17,15 @@ class ExpenseList extends Component {
 			.ref('/users/' + userId + '/stops/' + this.props.stopId + '/budgets/' + this.props.budgetNum + '/items/');
 		dbRef.on('value', response => {
 			const newState = [];
+			let newExpenseTotal = 0;
 			const data = response.val();
 			for (let key in data) {
 				newState.push({ key: key, name: data[key].name, value: data[key].value });
+				newExpenseTotal = newExpenseTotal + parseInt(data[key].value);
 			}
 			this.setState({
 				expenses: newState,
+				expenseTotal: this.props.expenseTotal + newExpenseTotal,
 			});
 		});
 	}
@@ -67,6 +70,7 @@ class ExpenseList extends Component {
 						);
 					})}
 				</ul>
+				<p>Expense Total: {this.state.expenseTotal}</p>
 				<form action="">
 					<label htmlFor="expenseName">Expense name:</label>
 					<input onChange={this.handleChange} type="text" id="expenseName" />
