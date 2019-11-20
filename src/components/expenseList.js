@@ -25,7 +25,7 @@ class ExpenseList extends Component {
 			}
 			this.setState({
 				expenses: newState,
-				expenseTotal: this.props.expenseTotal + newExpenseTotal,
+				expenseTotal: newExpenseTotal,
 			});
 		});
 	}

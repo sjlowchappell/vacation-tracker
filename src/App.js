@@ -66,22 +66,18 @@ class App extends Component {
 				{
 					name: 'Food',
 					items: [],
-					expenseTotal: 0,
 				},
 				{
 					name: 'Travel',
 					items: [],
-					expenseTotal: 0,
 				},
 				{
 					name: 'Culture',
 					items: [],
-					expenseTotal: 0,
 				},
 				{
 					name: 'Miscellaneous',
 					items: [],
-					expenseTotal: 0,
 				},
 			],
 		};
@@ -120,18 +116,26 @@ class App extends Component {
 		console.log(this.state.stops);
 	};
 
+	// Method to determine the total cost of a stop including all budgets
 	stopCost = budgets => {
+		// reduce method used to get total for all budgets
 		return budgets.reduce((total, budget) => {
+			// accumulator used for when a budget has multiple expenses
 			let accum = 0;
+			// loop through each item object and add up the value
 			for (let key in budget.items) {
 				accum = accum + parseInt(budget.items[key].value);
 			}
+			// return the total plus the accumulated value of all items in budget
 			return total + accum;
 		}, 0);
 	};
 
+	// Method to determine the total cost of all the stops of a given trip
 	allStopsCost = () => {
+		// Reduce used to get total for all stops
 		return this.state.stops.reduce((total, stop) => {
+			// run stopCost method for each stop in the trip
 			return total + this.stopCost(stop.budgets);
 		}, 0);
 	};
@@ -168,7 +172,7 @@ class App extends Component {
 					</ul>
 					<form action="submit">
 						<label htmlFor="newStop">Add a new stop to your trip</label>
-						<input type="text" id="newStop" onChange={this.handleChange} />
+						<input type="text" id="newStop" onChange={this.handleChange} value={this.state.userInput} />
 						<button onClick={this.handleSubmit}>Add Stop</button>
 					</form>
 					{this.state.stops.map(stop => {

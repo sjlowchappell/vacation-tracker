@@ -12,7 +12,6 @@ const Stop = ({ name, budgets, stopId, stopCost }) => {
 						key={uuidv4()}
 						type={budget.name}
 						items={budget.items}
-						expenseTotal={budget.expenseTotal}
 						stopId={stopId}
 						budgetNum={index}
 					/>
