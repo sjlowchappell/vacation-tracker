@@ -156,7 +156,7 @@ class App extends Component {
 
 					<form action="submit">
 						<label htmlFor="newStop">Add a new stop to your trip</label>
-						<input type="text" id="newStop" onChange={this.handleChange} value={this.state.userInput} />
+						<input type="text" id="newStop" onChange={this.handleChange} />
 						<button onClick={this.handleSubmit}>Add Stop</button>
 					</form>
 				</div>
