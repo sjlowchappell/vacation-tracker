@@ -163,7 +163,7 @@ class App extends Component {
 							return (
 								<li key={stop.key}>
 									<Link to={stop.name}>
-										{stop.name}: {currentStopCost}
+										{stop.name}: ${currentStopCost}
 									</Link>
 									<button onClick={() => this.removeStop(stop.key)}>Remove Stop</button>
 								</li>
@@ -197,7 +197,7 @@ class App extends Component {
 					})}
 
 					<footer>
-						{this.state.stops.length !== 0 ? <h2>Total Trip Cost: {this.allStopsCost()}</h2> : null}
+						{this.state.stops.length !== 0 ? <h2>Total Trip Cost: ${this.allStopsCost()}</h2> : null}
 						<button onClick={this.checkStops}>Check Stops</button>
 					</footer>
 				</div>

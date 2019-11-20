@@ -17,7 +17,7 @@ const Stop = ({ name, budgets, stopId, stopCost }) => {
 					/>
 				);
 			})}
-			<h2>Stop total cost: {stopCost}</h2>
+			<h2>Stop total cost: ${stopCost}</h2>
 		</div>
 	);
 };

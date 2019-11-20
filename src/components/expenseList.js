@@ -63,14 +63,16 @@ class ExpenseList extends Component {
 						return (
 							<li key={expense.key}>
 								<p>
-									{expense.name}: {expense.value}
+									{expense.name}: ${expense.value}
 								</p>
 								<button onClick={() => this.removeItem(expense.key)}>Remove Item</button>
 							</li>
 						);
 					})}
 				</ul>
-				<p>Expense Total: {this.state.expenseTotal}</p>
+				<p>
+					{this.props.type} Budget Total: ${this.state.expenseTotal}
+				</p>
 				<form action="">
 					<label htmlFor="expenseName">Expense name:</label>
 					<input onChange={this.handleChange} type="text" id="expenseName" />
