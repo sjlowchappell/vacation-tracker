@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase';
-// import ExpenseList from './components/expenseList';
 import Stop from './components/stop';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
@@ -13,68 +12,34 @@ class App extends Component {
 		super();
 		this.state = {
 			user: null,
-			stops: [
-				// {
-				// 	name: 'London',
-				//  key:
-				// 	budgets: [
-				// 		{
-				// 			name: 'Food',
-				// 			items: [
-				// 				{ name: 'pasta', value: '$4.00' },
-				// 				{ name: 'pastrami', value: '$6.00' },
-				// 			],
-				// 		},
-				// 		{
-				// 			name: 'Travel',
-				// 			items: [
-				// 				{ name: 'flight', value: '$70.00' },
-				// 				{ name: 'public transport', value: '$20.00' },
-				// 			],
-				// 		},
-				// 	],
-				// },
-				// {
-				// 	name: 'Budapest',
-				// 	budgets: [
-				// 		{
-				// 			name: 'Food',
-				// 			items: [
-				// 				{ name: 'pasta', value: '$4.00' },
-				// 				{ name: 'pastrami', value: '$6.00' },
-				// 			],
-				// 		},
-				// 		{
-				// 			name: 'Travel',
-				// 			items: [
-				// 				{ name: 'flight', value: '$70.00' },
-				// 				{ name: 'public transport', value: '$20.00' },
-				// 			],
-				// 		},
-				// 	],
-				// },
-			],
+			stops: [],
 		};
 	}
 
+	// when component mounts, checks if user is logged in
 	componentDidMount() {
 		auth.onAuthStateChanged(user => {
+			// If user is logged in, set state to said user
 			if (user) {
 				this.setState({ user });
+				// Get a database reference to that user's info
 				const userId = firebase.auth().currentUser.uid;
 				const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
+				// Get all stops from that user's info, along with stop data
 				dbRef.on('value', response => {
 					const newState = [];
 					const data = response.val();
 					for (let key in data) {
 						newState.push({ key: key, name: data[key].name, budgets: data[key].budgets });
 					}
+					// Update state of the application based on user's info
 					this.setState({
 						stops: newState,
 						userInput: '',
 					});
 				});
 			} else {
+				// If no user is logged in, clear the page
 				this.setState({
 					stops: [],
 				});
@@ -82,15 +47,19 @@ class App extends Component {
 		});
 	}
 
+	// Method for handling form input -> sets state based on user input
 	handleChange = e => {
 		this.setState({
 			userInput: e.target.value,
 		});
 	};
+	// Method for handling form submission
 	handleSubmit = e => {
 		e.preventDefault();
+		// Get database reference for user and stops
 		const userId = firebase.auth().currentUser.uid;
 		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
+		// Create a new stop object with it's name and 4 empty budgets
 		const stop = {
 			name: this.state.userInput,
 			budgets: [
@@ -112,17 +81,23 @@ class App extends Component {
 				},
 			],
 		};
+		// Push the new stop to the database
 		dbRef.push(stop);
+		// Update state to clear out the user input
 		this.setState({ userInput: '' });
 	};
+	// Method to remove stop from database
 	removeStop = stopId => {
+		// get reference to users stops
 		const userId = firebase.auth().currentUser.uid;
 		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
+		// use child() and remove() methods to get the stop and remove it
 		dbRef.child(stopId).remove();
 	};
 
 	// Auth Related Methods
 	login = () => {
+		// firebase method to log in using Google Auth Provider
 		auth.signInWithPopup(provider).then(result => {
 			const user = result.user;
 			this.setState({
@@ -135,6 +110,8 @@ class App extends Component {
 			this.setState({ user: null });
 		});
 	};
+
+	// Helper method for checking current stop info
 	checkStops = e => {
 		console.log(this.state.stops);
 	};
@@ -159,7 +136,7 @@ class App extends Component {
 					<ul>
 						{this.state.stops.map(stop => {
 							return (
-								<li>
+								<li key={stop.key}>
 									<Link to={stop.name}>{stop.name}</Link>
 									<button onClick={() => this.removeStop(stop.key)}>Remove Stop</button>
 									<Route

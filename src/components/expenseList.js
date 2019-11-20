@@ -42,6 +42,15 @@ class ExpenseList extends Component {
 		const expense = e.target.id;
 		this.setState({ [expense]: e.target.value });
 	};
+	removeItem = itemId => {
+		// get reference to users stops
+		const userId = firebase.auth().currentUser.uid;
+		const dbRef = firebase
+			.database()
+			.ref('/users/' + userId + '/stops/' + this.props.stopId + '/budgets/' + this.props.budgetNum + '/items/');
+		// use child() and remove() methods to get the stop and remove it
+		dbRef.child(itemId).remove();
+	};
 	render() {
 		return (
 			<div>
@@ -49,8 +58,11 @@ class ExpenseList extends Component {
 				<ul>
 					{this.state.expenses.map(expense => {
 						return (
-							<li>
-								{expense.name}: {expense.value}
+							<li key={expense.key}>
+								<p>
+									{expense.name}: {expense.value}
+								</p>
+								<button onClick={() => this.removeItem(expense.key)}>Remove Item</button>
 							</li>
 						);
 					})}
