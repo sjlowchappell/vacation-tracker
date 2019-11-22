@@ -3,6 +3,8 @@ import './App.css';
 import firebase from './firebase';
 import Stop from './components/stop';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Footer from './components/footer';
+import SideBar from './components/sideBar';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
@@ -86,30 +88,6 @@ class App extends Component {
 		// Update state to clear out the user input
 		this.setState({ userInput: '' });
 	};
-	// Method to remove stop from database
-	removeStop = stopId => {
-		// get reference to users stops
-		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
-		// use child() and remove() methods to get the stop and remove it
-		dbRef.child(stopId).remove();
-	};
-
-	// Auth Related Methods
-	login = () => {
-		// firebase method to log in using Google Auth Provider
-		auth.signInWithPopup(provider).then(result => {
-			const user = result.user;
-			this.setState({
-				user,
-			});
-		});
-	};
-	logout = () => {
-		auth.signOut().then(() => {
-			this.setState({ user: null });
-		});
-	};
 
 	// Helper method for checking current stop info
 	checkStops = e => {
@@ -143,38 +121,14 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
+				<SideBar
+					user={this.state.user}
+					login={this.login}
+					logout={this.logout}
+					stops={this.state.stops}
+					stopCost={this.stopCost}
+				/>
 				<div className="wrapper">
-					<header>
-						{this.state.user ? (
-							<div>
-								<p>Welcome, {this.state.user.displayName}</p>
-								<button onClick={this.logout}>Log Out</button>
-							</div>
-						) : (
-							<div>
-								<p>Please Log In</p>
-								<button onClick={this.login}>Log In</button>
-							</div>
-						)}
-					</header>
-					<ul className="stopNav">
-						{this.state.stops.map(stop => {
-							const currentStopCost = this.stopCost(stop.budgets);
-							return (
-								<li key={stop.key}>
-									<Link to={stop.name}>
-										{stop.name}: ${currentStopCost}
-									</Link>
-									<button onClick={() => this.removeStop(stop.key)}>Remove Stop</button>
-								</li>
-							);
-						})}
-					</ul>
-					<form action="submit">
-						<label htmlFor="newStop">Add a new stop to your trip</label>
-						<input type="text" id="newStop" onChange={this.handleChange} value={this.state.userInput} />
-						<button onClick={this.handleSubmit}>Add Stop</button>
-					</form>
 					{this.state.stops.map(stop => {
 						const currentStopCost = this.stopCost(stop.budgets);
 						return (
@@ -200,6 +154,7 @@ class App extends Component {
 						{this.state.stops.length !== 0 ? <h2>Total Trip Cost: ${this.allStopsCost()}</h2> : null}
 						<button onClick={this.checkStops}>Check Stops</button>
 					</footer>
+					<Footer />
 				</div>
 			</Router>
 		);
