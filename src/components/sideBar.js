@@ -17,7 +17,6 @@ class SideBar extends Component {
 	// Method for handling form submission
 	handleSubmit = e => {
 		e.preventDefault();
-		console.log(this.props.user);
 		// Get database reference for user and stops
 		const userId = firebase.auth().currentUser.uid;
 		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
@@ -67,7 +66,9 @@ class SideBar extends Component {
 							<div className={sideBar.profileImage}>
 								<img src={this.props.user.photoURL} alt="" />
 							</div>
-							<button onClick={this.props.logout}>Log Out</button>
+							<Link to="/" onClick={this.props.logout}>
+								Log Out
+							</Link>
 						</div>
 					) : (
 						<div>

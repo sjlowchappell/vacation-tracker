@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase';
-import Stop from './components/stop';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Footer from './components/footer';
 import SideBar from './components/sideBar';
+import MainContent from './components/mainContent';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
@@ -49,46 +49,6 @@ class App extends Component {
 		});
 	}
 
-	// Method for handling form input -> sets state based on user input
-	handleChange = e => {
-		this.setState({
-			userInput: e.target.value,
-		});
-	};
-	// Method for handling form submission
-	handleSubmit = e => {
-		e.preventDefault();
-		// Get database reference for user and stops
-		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
-		// Create a new stop object with it's name and 4 empty budgets
-		const stop = {
-			name: this.state.userInput,
-			budgets: [
-				{
-					name: 'Food',
-					items: [],
-				},
-				{
-					name: 'Travel',
-					items: [],
-				},
-				{
-					name: 'Culture',
-					items: [],
-				},
-				{
-					name: 'Miscellaneous',
-					items: [],
-				},
-			],
-		};
-		// Push the new stop to the database
-		dbRef.push(stop);
-		// Update state to clear out the user input
-		this.setState({ userInput: '' });
-	};
-
 	// Helper method for checking current stop info
 	checkStops = e => {
 		console.log(this.state.stops);
@@ -118,6 +78,20 @@ class App extends Component {
 		}, 0);
 	};
 
+	login = () => {
+		auth.signInWithPopup(provider).then(result => {
+			const user = result.user;
+			this.setState({
+				user,
+			});
+		});
+	};
+	logout = () => {
+		auth.signOut().then(() => {
+			this.setState({ user: null });
+		});
+	};
+
 	render() {
 		return (
 			<Router>
@@ -128,34 +102,12 @@ class App extends Component {
 					stops={this.state.stops}
 					stopCost={this.stopCost}
 				/>
-				<div className="wrapper">
-					{this.state.stops.map(stop => {
-						const currentStopCost = this.stopCost(stop.budgets);
-						return (
-							<div>
-								<Route
-									path={`/${stop.name}`}
-									render={() => {
-										return (
-											<Stop
-												name={stop.name}
-												budgets={stop.budgets}
-												stopId={stop.key}
-												stopCost={currentStopCost}
-											/>
-										);
-									}}
-								/>
-							</div>
-						);
-					})}
 
-					<footer>
-						{this.state.stops.length !== 0 ? <h2>Total Trip Cost: ${this.allStopsCost()}</h2> : null}
-						<button onClick={this.checkStops}>Check Stops</button>
-					</footer>
-					<Footer />
-				</div>
+				<MainContent stops={this.state.stops} stopCost={this.stopCost} />
+
+				{this.state.stops.length !== 0 ? <h2>Total Trip Cost: ${this.allStopsCost()}</h2> : null}
+				<button onClick={this.checkStops}>Check Stops</button>
+				<Footer />
 			</Router>
 		);
 	}
