@@ -71,7 +71,7 @@ class SideBar extends Component {
 				<nav>
 					<ul>
 						{this.props.stops.map(stop => {
-							const currentStopCost = this.props.stopCost(stop.budgets);
+							// const currentStopCost = this.props.stopCost(stop.budgets);
 							return (
 								<li key={stop.key} className={sideBar.stopItem}>
 									<Link to={stop.name} className="stopLink">

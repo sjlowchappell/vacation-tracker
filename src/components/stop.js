@@ -2,7 +2,7 @@ import React from 'react';
 import ExpenseList from './expenseList';
 import uuidv4 from 'uuid/v4';
 import firebase from '../firebase';
-import stop from './stop.module.css';
+// import stop from './stop.module.css';
 import { Link } from 'react-router-dom';
 
 // Method to remove stop from database
