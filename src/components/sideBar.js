@@ -58,14 +58,13 @@ class SideBar extends Component {
 	render() {
 		return (
 			<div className={sideBar.container}>
-				<p className={sideBar.test}>This is the sidebar</p>
 				<header>
 					{this.props.user ? (
-						<div>
-							<p>Welcome, {this.props.user.displayName}</p>
-							<div className={sideBar.profileImage}>
+						<div className={sideBar.profile}>
+							<div className={sideBar.profileImageContainer}>
 								<img src={this.props.user.photoURL} alt="" />
 							</div>
+							<p>{this.props.user.displayName}</p>
 							<Link to="/">
 								<button onClick={this.props.logout}>Log Out</button>
 							</Link>
