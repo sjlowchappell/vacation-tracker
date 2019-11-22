@@ -5,6 +5,7 @@ import Stop from './stop';
 const MainContent = ({ stops, stopCost }) => {
 	return (
 		<main className="mainContent">
+			<p>Here's The Main Content!</p>
 			{stops.length !== 0 ? (
 				<div>
 					{stops.map(stop => {
@@ -31,7 +32,6 @@ const MainContent = ({ stops, stopCost }) => {
 			) : (
 				<p>Waiting for Content to Load!</p>
 			)}
-			<p>Here's The Main Content!</p>
 		</main>
 	);
 };
