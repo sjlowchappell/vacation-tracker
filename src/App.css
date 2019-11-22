@@ -180,6 +180,31 @@ input::-moz-focus-inner {
 /* End Normalize */
 
 /* Typography */
+
+/* 
+font-family: 'Montserrat', sans-serif;
+font-family: 'Alata', sans-serif;
+*/
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 2rem;
+}
+
+.stopLink {
+	font-family: 'Alata', sans-serif;
+}
+.removeButton {
+	padding: 0;
+	background: none;
+	border: none;
+	font-size: 1.2rem;
+	display: block;
+}
+
 a {
 	text-decoration: none;
 	color: rebeccapurple;
@@ -199,7 +224,8 @@ img {
 
 .wrapper {
 	margin: 0 auto;
-	max-width: 1000px;
+	max-width: 1200px;
+	padding: 0px 15px;
 }
 li,
 nav,

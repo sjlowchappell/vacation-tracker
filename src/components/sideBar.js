@@ -47,14 +47,6 @@ class SideBar extends Component {
 		// Update state to clear out the user input
 		this.setState({ userInput: '' });
 	};
-	// Method to remove stop from database
-	removeStop = stopId => {
-		// get reference to users stops
-		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
-		// use child() and remove() methods to get the stop and remove it
-		dbRef.child(stopId).remove();
-	};
 	render() {
 		return (
 			<div className={sideBar.container}>
@@ -81,11 +73,10 @@ class SideBar extends Component {
 						{this.props.stops.map(stop => {
 							const currentStopCost = this.props.stopCost(stop.budgets);
 							return (
-								<li key={stop.key}>
-									<Link to={stop.name}>
+								<li key={stop.key} className={sideBar.stopItem}>
+									<Link to={stop.name} className="stopLink">
 										{stop.name}: ${currentStopCost}
 									</Link>
-									<button onClick={() => this.removeStop(stop.key)}>Remove Stop</button>
 								</li>
 							);
 						})}
