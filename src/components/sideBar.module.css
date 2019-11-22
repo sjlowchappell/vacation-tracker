@@ -1,3 +1,7 @@
+header {
+	text-align: center;
+}
+
 .container {
 	width: 25%;
 	background: pink;
@@ -8,7 +12,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 40px 0px;
+	margin: 20px 0px 40px 0px;
 }
 
 .userName {
@@ -41,5 +45,21 @@
 }
 
 .stopsList {
-	padding-left: 20px;
+	padding-left: 50px;
+}
+
+.icon {
+	width: 20px;
+	margin-right: 5px;
+	text-align: center;
+}
+
+.navItem {
+	font-family: 'Alata', sans-serif;
+	display: flex;
+	align-items: center;
+}
+
+.nav li {
+	display: inline;
 }
