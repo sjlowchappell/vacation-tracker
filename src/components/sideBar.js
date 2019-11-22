@@ -66,8 +66,8 @@ class SideBar extends Component {
 							<div className={sideBar.profileImage}>
 								<img src={this.props.user.photoURL} alt="" />
 							</div>
-							<Link to="/" onClick={this.props.logout}>
-								Log Out
+							<Link to="/">
+								<button onClick={this.props.logout}>Log Out</button>
 							</Link>
 						</div>
 					) : (
@@ -77,19 +77,21 @@ class SideBar extends Component {
 						</div>
 					)}
 				</header>
-				<ul className="stopNav">
-					{this.props.stops.map(stop => {
-						const currentStopCost = this.props.stopCost(stop.budgets);
-						return (
-							<li key={stop.key}>
-								<Link to={stop.name}>
-									{stop.name}: ${currentStopCost}
-								</Link>
-								<button onClick={() => this.removeStop(stop.key)}>Remove Stop</button>
-							</li>
-						);
-					})}
-				</ul>
+				<nav>
+					<ul>
+						{this.props.stops.map(stop => {
+							const currentStopCost = this.props.stopCost(stop.budgets);
+							return (
+								<li key={stop.key}>
+									<Link to={stop.name}>
+										{stop.name}: ${currentStopCost}
+									</Link>
+									<button onClick={() => this.removeStop(stop.key)}>Remove Stop</button>
+								</li>
+							);
+						})}
+					</ul>
+				</nav>
 				<form action="submit">
 					<label htmlFor="newStop">Add a new stop to your trip</label>
 					<input type="text" id="newStop" onChange={this.handleChange} value={this.state.userInput} />

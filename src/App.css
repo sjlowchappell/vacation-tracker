@@ -1,3 +1,5 @@
+/* Start Normalize */
+
 article,
 aside,
 details,
@@ -175,6 +177,21 @@ input::-moz-focus-inner {
 	overflow: hidden;
 }
 
+/* End Normalize */
+
+/* Typography */
+a {
+	text-decoration: none;
+	color: rebeccapurple;
+}
+a:hover {
+	color: cyan;
+}
+
+/* End Typography */
+
+/* General Styles */
+
 img {
 	max-width: 100%;
 	display: block;
@@ -184,9 +201,14 @@ img {
 	margin: 0 auto;
 	max-width: 1000px;
 }
-li {
+li,
+nav,
+ul {
 	list-style: none;
+	padding: 0;
+	margin: 0;
 }
+/* End General Styles */
 
 .contentContainer {
 	display: flex;
