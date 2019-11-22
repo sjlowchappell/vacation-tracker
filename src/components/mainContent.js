@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Stop from './stop';
+import mainContent from './mainContent.module.css';
 
 const MainContent = ({ stops, stopCost }) => {
 	return (
-		<main className="mainContent">
-			<p>Here's The Main Content!</p>
+		<main className={mainContent.container}>
 			{stops.length !== 0 ? (
 				<div>
 					{stops.map(stop => {

@@ -23,5 +23,11 @@
 }
 
 .stopItem {
-	padding-top: 20px;
+	padding-top: 10px;
+}
+
+.stopCost {
+	color: black;
+	font-size: 1.2rem;
+	padding-left: 20px;
 }

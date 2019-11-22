@@ -75,8 +75,9 @@ class SideBar extends Component {
 							return (
 								<li key={stop.key} className={sideBar.stopItem}>
 									<Link to={stop.name} className="stopLink">
-										{stop.name}: ${currentStopCost}
+										{stop.name}
 									</Link>
+									{/* <p className={sideBar.stopCost}>Spent: ${currentStopCost}</p> */}
 								</li>
 							);
 						})}

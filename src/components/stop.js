@@ -2,6 +2,8 @@ import React from 'react';
 import ExpenseList from './expenseList';
 import uuidv4 from 'uuid/v4';
 import firebase from '../firebase';
+import stop from './stop.module.css';
+import { Link } from 'react-router-dom';
 
 // Method to remove stop from database
 const removeStop = stopId => {
@@ -17,7 +19,7 @@ const Stop = ({ name, budgets, stopId, stopCost }) => {
 		<div>
 			<h1>{name}</h1>
 			<button className="removeButton" onClick={() => removeStop(stopId)}>
-				Remove Stop
+				<Link to="/">Remove Stop</Link>
 			</button>
 			{budgets.map((budget, index) => {
 				return (

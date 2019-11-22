@@ -192,6 +192,15 @@ html {
 
 body {
 	font-size: 2rem;
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+	font-family: 'Alata', sans-serif;
+}
+
+p {
+	margin: 5px 0px;
 }
 
 .stopLink {
@@ -203,6 +212,10 @@ body {
 	border: none;
 	font-size: 1.2rem;
 	display: block;
+	color: rebeccapurple;
+}
+.removeButton:hover {
+	color: cyan;
 }
 
 a {

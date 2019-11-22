@@ -65,7 +65,9 @@ class ExpenseList extends Component {
 								<p>
 									{expense.name}: ${expense.value}
 								</p>
-								<button onClick={() => this.removeItem(expense.key)}>Remove Item</button>
+								<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
+									Remove Item
+								</button>
 							</li>
 						);
 					})}
