@@ -188,6 +188,7 @@ font-family: 'Alata', sans-serif;
 
 html {
 	font-size: 62.5%;
+	line-height: 1.8;
 }
 
 body {
@@ -237,8 +238,8 @@ img {
 
 .wrapper {
 	margin: 0 auto;
-	max-width: 1200px;
-	padding: 0px 15px;
+	/* max-width: 1200px; */
+	/* padding: 0px 15px; */
 }
 li,
 nav,

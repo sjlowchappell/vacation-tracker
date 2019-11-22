@@ -103,11 +103,11 @@ class App extends Component {
 							logout={this.logout}
 							stops={this.state.stops}
 							stopCost={this.stopCost}
+							totalCost={this.allStopsCost()}
 						/>
 
 						<MainContent stops={this.state.stops} stopCost={this.stopCost} />
 					</div>
-					{this.state.stops.length !== 0 ? <h2>Total Trip Cost: ${this.allStopsCost()}</h2> : null}
 					<button onClick={this.checkStops}>Check Stops</button>
 					<Footer />
 				</div>
