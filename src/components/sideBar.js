@@ -57,7 +57,7 @@ class SideBar extends Component {
 	};
 	render() {
 		return (
-			<div className="sideBar">
+			<div className={sideBar.container}>
 				<p className={sideBar.test}>This is the sidebar</p>
 				<header>
 					{this.props.user ? (

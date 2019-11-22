@@ -34,15 +34,6 @@ li {
 	list-style: none;
 }
 
-.stopNav {
+.contentContainer {
 	display: flex;
-}
-
-.stopNav > * {
-	padding-right: 20px;
-}
-
-header,
-footer {
-	background-color: grey;
 }

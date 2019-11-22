@@ -95,15 +95,19 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<SideBar
-					user={this.state.user}
-					login={this.login}
-					logout={this.logout}
-					stops={this.state.stops}
-					stopCost={this.stopCost}
-				/>
+				<div className="wrapper">
+					<div className="contentContainer">
+						<SideBar
+							user={this.state.user}
+							login={this.login}
+							logout={this.logout}
+							stops={this.state.stops}
+							stopCost={this.stopCost}
+						/>
 
-				<MainContent stops={this.state.stops} stopCost={this.stopCost} />
+						<MainContent stops={this.state.stops} stopCost={this.stopCost} />
+					</div>
+				</div>
 
 				{this.state.stops.length !== 0 ? <h2>Total Trip Cost: ${this.allStopsCost()}</h2> : null}
 				<button onClick={this.checkStops}>Check Stops</button>
