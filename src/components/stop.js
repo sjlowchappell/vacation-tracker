@@ -6,13 +6,15 @@ import { Link } from 'react-router-dom';
 
 const Stop = ({ name, budgets, stopId, stopCost, removeStop }) => {
 	return (
-		<div>
-			<h1>{name}</h1>
-			<h2>Stop total cost: ${stopCost}</h2>
-			<button className="removeButton" onClick={() => removeStop(stopId)}>
-				<Link to="/">Remove Stop</Link>
-			</button>
-			<div className={stop.container}>
+		<div className={stop.container}>
+			<div className={stop.header}>
+				<h1>{name}</h1>
+				<h2>Stop total cost: ${stopCost}</h2>
+				<button className="removeButton" onClick={() => removeStop(stopId)}>
+					<Link to="/">Remove Stop</Link>
+				</button>
+			</div>
+			<div className={stop.expenseContainer}>
 				{budgets.map((budget, index) => {
 					return (
 						<ExpenseList

@@ -259,3 +259,10 @@ ul {
 .contentContainer {
 	display: flex;
 }
+
+footer {
+	text-align: center;
+	padding: 20px 0px;
+	background: rebeccapurple;
+	color: white;
+}

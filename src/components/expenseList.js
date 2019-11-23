@@ -58,7 +58,9 @@ class ExpenseList extends Component {
 		dbRef.child(itemId).remove();
 	};
 	sortItems = e => {
-		const sortType = e.target.options[e.target.selectedIndex].value;
+		// const sortType = e.target.options[e.target.selectedIndex].value;
+		const sortType = e.target.value;
+		console.log(sortType);
 		let newState;
 		sortType === 'value'
 			? (newState = this.state.expenses.sort((a, b) => (parseInt(a[sortType]) > parseInt(b[sortType]) ? 1 : -1)))
@@ -70,19 +72,37 @@ class ExpenseList extends Component {
 	render() {
 		return (
 			<div className={expenseList.container}>
-				<h2>
-					{this.props.type} Expenses: ${this.state.expenseTotal}
-				</h2>
+				<div className={expenseList.inputContainer}>
+					<h2>
+						{this.props.type} Expenses: ${this.state.expenseTotal}
+					</h2>
+					{/* <select name="sortBy" id="" onChange={this.sortItems}>
+						<option value="name">Name</option>
+						<option value="value">Value</option>
+						<option value="date">Date</option>
+					</select> */}
+				</div>
+				<div className={expenseList.inputContainer}>
+					<button onClick={this.sortItems} value="date">
+						Date
+					</button>
+					<button onClick={this.sortItems} value="name">
+						Name
+					</button>
+					<button onClick={this.sortItems} value="value">
+						Value
+					</button>
+				</div>
 				<ul>
 					{this.state.expenses.map(expense => {
 						return (
 							<li key={expense.key} className={expenseList.expenseItem}>
 								<div className={expenseList.expenseInfo}>
+									<p className={expenseList.date}>{expense.date}</p>
 									<p>{expense.name}</p>
 									<p>${expense.value}</p>
 								</div>
 								<div className={expenseList.expenseInfo}>
-									<p className={expenseList.date}>{expense.date}</p>
 									<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
 										Remove Item
 									</button>
@@ -91,12 +111,6 @@ class ExpenseList extends Component {
 						);
 					})}
 				</ul>
-				<p>Sort by:</p>
-				<select name="sortBy" id="" onChange={this.sortItems}>
-					<option value="name">Name</option>
-					<option value="value">Value</option>
-					<option value="date">Date</option>
-				</select>
 				<form onSubmit={this.handleSubmit}>
 					<div className={expenseList.inputContainer}>
 						<div className={expenseList.inputItem}>

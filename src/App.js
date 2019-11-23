@@ -49,11 +49,6 @@ class App extends Component {
 		});
 	}
 
-	// Helper method for checking current stop info
-	checkStops = e => {
-		console.log(this.state.stops);
-	};
-
 	// Method to determine the total cost of a stop including all budgets
 	stopCost = budgets => {
 		// reduce method used to get total for all budgets
@@ -108,7 +103,6 @@ class App extends Component {
 
 						<MainContent stops={this.state.stops} stopCost={this.stopCost} />
 					</div>
-					<button onClick={this.checkStops}>Check Stops</button>
 					<Footer />
 				</div>
 			</Router>
