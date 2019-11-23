@@ -23,7 +23,7 @@ header {
 .profileImageContainer {
 	max-width: 130px;
 	height: 130px;
-	margin: 20px 0px;
+	margin: 10px 0px;
 	padding: 2px;
 	background-color: rebeccapurple;
 	border-radius: 100%;
@@ -56,10 +56,6 @@ header {
 
 .navItem {
 	font-family: 'Alata', sans-serif;
-	display: flex;
+	display: inline-flex;
 	align-items: center;
-}
-
-.nav li {
-	display: inline;
 }

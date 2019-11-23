@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../firebase';
+import expenseList from './expenseList.module.css';
 
 class ExpenseList extends Component {
 	constructor() {
@@ -8,6 +9,7 @@ class ExpenseList extends Component {
 			expenses: [],
 			expenseName: '',
 			expenseValue: '',
+			expenseDate: '',
 		};
 	}
 	componentDidMount() {
@@ -20,7 +22,7 @@ class ExpenseList extends Component {
 			let newExpenseTotal = 0;
 			const data = response.val();
 			for (let key in data) {
-				newState.push({ key: key, name: data[key].name, value: data[key].value });
+				newState.push({ key: key, name: data[key].name, value: data[key].value, date: data[key].date });
 				newExpenseTotal = newExpenseTotal + parseInt(data[key].value);
 			}
 			this.setState({
@@ -35,10 +37,11 @@ class ExpenseList extends Component {
 		const dbRef = firebase
 			.database()
 			.ref('/users/' + userId + '/stops/' + this.props.stopId + '/budgets/' + this.props.budgetNum + '/items/');
-		dbRef.push({ name: this.state.expenseName, value: this.state.expenseValue });
+		dbRef.push({ name: this.state.expenseName, value: this.state.expenseValue, date: this.state.expenseDate });
 		this.setState({
 			expenseName: '',
 			expenseValue: '',
+			expenseDate: '',
 		});
 	};
 	handleChange = e => {
@@ -56,15 +59,19 @@ class ExpenseList extends Component {
 	};
 	render() {
 		return (
-			<div>
-				<h2>{this.props.type} Expenses:</h2>
+			<div className={expenseList.container}>
+				<h2>
+					{this.props.type} Expenses: ${this.state.expenseTotal}
+				</h2>
 				<ul>
 					{this.state.expenses.map(expense => {
 						return (
-							<li key={expense.key}>
-								<p>
-									{expense.name}: ${expense.value}
-								</p>
+							<li key={expense.key} className={expenseList.expenseItem}>
+								<div className={expenseList.expenseInfo}>
+									<p>{expense.name}</p>
+									<p>${expense.value}</p>
+								</div>
+								<p className={expenseList.date}>{expense.date}</p>
 								<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
 									Remove Item
 								</button>
@@ -72,15 +79,14 @@ class ExpenseList extends Component {
 						);
 					})}
 				</ul>
-				<p>
-					{this.props.type} Budget Total: ${this.state.expenseTotal}
-				</p>
-				<form action="">
-					<label htmlFor="expenseName">Expense name:</label>
-					<input onChange={this.handleChange} type="text" id="expenseName" />
-					<label htmlFor="expenseValue">Expense value:</label>
-					<input onChange={this.handleChange} type="text" id="expenseValue" />
-					<button onClick={this.handleSubmit}>Submit Expense</button>
+				<form onSubmit={this.handleSubmit}>
+					<label htmlFor="expenseName">Expense name: </label>
+					<input onChange={this.handleChange} type="text" id="expenseName" required />
+					<label htmlFor="expenseValue">Expense value: $</label>
+					<input onChange={this.handleChange} type="number" id="expenseValue" required />
+					<label htmlFor="expenseDate">Expense Date: </label>
+					<input onChange={this.handleChange} type="date" id="expenseDate" required />
+					<button>Submit Expense</button>
 				</form>
 			</div>
 		);

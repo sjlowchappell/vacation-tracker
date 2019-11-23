@@ -1,0 +1,25 @@
+.container {
+	flex: 1 0 40%;
+	border: 1px solid grey;
+	border-radius: 20px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.expenseItem {
+	margin: 10px 0px;
+	padding-bottom: 10px;
+	color: black;
+	border-bottom: 1px solid grey;
+}
+
+.expenseInfo {
+	display: flex;
+	justify-content: space-between;
+}
+
+.date {
+	color: grey;
+	font-size: 1.6rem;
+	margin: 0px;
+}
