@@ -57,6 +57,16 @@ class ExpenseList extends Component {
 		// use child() and remove() methods to get the stop and remove it
 		dbRef.child(itemId).remove();
 	};
+	sortItems = e => {
+		const sortType = e.target.options[e.target.selectedIndex].value;
+		let newState;
+		sortType === 'value'
+			? (newState = this.state.expenses.sort((a, b) => (parseInt(a[sortType]) > parseInt(b[sortType]) ? 1 : -1)))
+			: (newState = this.state.expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1)));
+		this.setState({
+			expenses: newState,
+		});
+	};
 	render() {
 		return (
 			<div className={expenseList.container}>
@@ -71,22 +81,40 @@ class ExpenseList extends Component {
 									<p>{expense.name}</p>
 									<p>${expense.value}</p>
 								</div>
-								<p className={expenseList.date}>{expense.date}</p>
-								<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
-									Remove Item
-								</button>
+								<div className={expenseList.expenseInfo}>
+									<p className={expenseList.date}>{expense.date}</p>
+									<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
+										Remove Item
+									</button>
+								</div>
 							</li>
 						);
 					})}
 				</ul>
+				<p>Sort by:</p>
+				<select name="sortBy" id="" onChange={this.sortItems}>
+					<option value="name">Name</option>
+					<option value="value">Value</option>
+					<option value="date">Date</option>
+				</select>
 				<form onSubmit={this.handleSubmit}>
-					<label htmlFor="expenseName">Expense name: </label>
-					<input onChange={this.handleChange} type="text" id="expenseName" required />
-					<label htmlFor="expenseValue">Expense value: $</label>
-					<input onChange={this.handleChange} type="number" id="expenseValue" required />
-					<label htmlFor="expenseDate">Expense Date: </label>
-					<input onChange={this.handleChange} type="date" id="expenseDate" required />
-					<button>Submit Expense</button>
+					<div className={expenseList.inputContainer}>
+						<div className={expenseList.inputItem}>
+							<label htmlFor="expenseName">Name: </label>
+							<input onChange={this.handleChange} type="text" id="expenseName" required />
+						</div>
+						<div className={expenseList.inputItem}>
+							<label htmlFor="expenseValue">Value:</label>
+							<input onChange={this.handleChange} type="number" id="expenseValue" required min="0" />
+						</div>
+					</div>
+					<div className={expenseList.inputContainer}>
+						<div className={expenseList.inputItem}>
+							<label htmlFor="expenseDate">Date: </label>
+							<input onChange={this.handleChange} type="date" id="expenseDate" required />
+						</div>
+						<button>Submit Expense</button>
+					</div>
 				</form>
 			</div>
 		);
