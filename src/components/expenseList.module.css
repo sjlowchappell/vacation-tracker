@@ -46,6 +46,7 @@ table {
 th {
 	border: 1px solid rgb(190, 190, 190);
 	background: rebeccapurple;
+	color: white;
 }
 th button {
 	background: none;

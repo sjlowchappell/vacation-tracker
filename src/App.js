@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Footer from './components/footer';
 import SideBar from './components/sideBar';
 import MainContent from './components/mainContent';
+import ExpenseList from './components/expenseList';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
@@ -32,7 +33,12 @@ class App extends Component {
 					const newState = [];
 					const data = response.val();
 					for (let key in data) {
-						newState.push({ key: key, name: data[key].name, budgets: data[key].budgets });
+						newState.push({
+							key: key,
+							name: data[key].name,
+							expenses: data[key].expenses,
+							cost: data[key].cost,
+						});
 					}
 					// Update state of the application based on user's info
 					this.setState({
@@ -48,30 +54,25 @@ class App extends Component {
 			}
 		});
 	}
-
-	// Method to determine the total cost of a stop including all budgets
-	stopCost = budgets => {
-		// reduce method used to get total for all budgets
-		return budgets.reduce((total, budget) => {
-			// accumulator used for when a budget has multiple expenses
-			let accum = 0;
-			// loop through each item object and add up the value
-			for (let key in budget.items) {
-				accum = accum + parseInt(budget.items[key].value);
-			}
-			// return the total plus the accumulated value of all items in budget
-			return total + accum;
-		}, 0);
+	stopCost = expenses => {
+		// accumulator used for when a budget has multiple expenses
+		let accum = 0;
+		// loop through each item object and add up the value
+		for (let key in expenses) {
+			accum = accum + parseInt(expenses[key].value);
+		}
+		// return the total plus the accumulated value of all items in budget
+		return accum;
 	};
 
 	// Method to determine the total cost of all the stops of a given trip
-	allStopsCost = () => {
-		// Reduce used to get total for all stops
-		return this.state.stops.reduce((total, stop) => {
-			// run stopCost method for each stop in the trip
-			return total + this.stopCost(stop.budgets);
-		}, 0);
-	};
+	// allStopsCost = () => {
+	// 	// Reduce used to get total for all stops
+	// 	return this.state.stops.reduce((total, stop) => {
+	// 		// run stopCost method for each stop in the trip
+	// 		return total + this.stopCost(stop.budgets);
+	// 	}, 0);
+	// };
 
 	login = () => {
 		auth.signInWithPopup(provider).then(result => {
@@ -98,7 +99,7 @@ class App extends Component {
 							logout={this.logout}
 							stops={this.state.stops}
 							stopCost={this.stopCost}
-							totalCost={this.allStopsCost()}
+							totalCost={0}
 						/>
 
 						<MainContent stops={this.state.stops} stopCost={this.stopCost} />

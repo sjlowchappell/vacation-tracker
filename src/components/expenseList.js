@@ -15,12 +15,9 @@ class ExpenseList extends Component {
 	}
 	componentDidMount() {
 		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase
-			.database()
-			.ref('/users/' + userId + '/stops/' + this.props.stopId + '/budgets/' + this.props.budgetNum + '/items/');
+		const dbRef = firebase.database().ref('/users/' + userId + '/stops/' + this.props.stopId + '/expenses/');
 		dbRef.on('value', response => {
 			const newState = [];
-			let newExpenseTotal = 0;
 			const data = response.val();
 			for (let key in data) {
 				newState.push({
@@ -30,27 +27,33 @@ class ExpenseList extends Component {
 					date: data[key].date,
 					category: data[key].category,
 				});
-				newExpenseTotal = newExpenseTotal + parseInt(data[key].value);
 			}
 			this.setState({
 				expenses: newState,
-				expenseTotal: newExpenseTotal,
 			});
 		});
 	}
+	costUpdate = newVal => {
+		const userId = firebase.auth().currentUser.uid;
+		const dbRef = firebase.database().ref('/users/' + userId + '/stops/' + this.props.stopId);
+		let newCostTotal = parseInt(newVal);
+		dbRef.on('value', response => {
+			const data = response.val();
+			newCostTotal = data.cost + newCostTotal;
+		});
+		dbRef.update({ cost: newCostTotal });
+	};
 	handleSubmit = e => {
 		e.preventDefault();
 		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase
-			.database()
-			.ref('/users/' + userId + '/stops/' + this.props.stopId + '/budgets/' + this.props.budgetNum + '/items/');
-		console.log(this.state);
+		const dbRef = firebase.database().ref('/users/' + userId + '/stops/' + this.props.stopId + '/expenses/');
 		dbRef.push({
 			name: this.state.expenseName,
 			value: this.state.expenseValue,
 			date: this.state.expenseDate,
 			category: this.state.expenseCategory,
 		});
+		this.costUpdate(this.state.expenseValue);
 		this.setState({
 			expenseName: '',
 			expenseValue: '',
@@ -65,9 +68,7 @@ class ExpenseList extends Component {
 	removeItem = itemId => {
 		// get reference to users stops
 		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase
-			.database()
-			.ref('/users/' + userId + '/stops/' + this.props.stopId + '/budgets/' + this.props.budgetNum + '/items/');
+		const dbRef = firebase.database().ref('/users/' + userId + '/stops/' + this.props.stopId + '/expenses/');
 		// use child() and remove() methods to get the stop and remove it
 		dbRef.child(itemId).remove();
 	};
@@ -110,9 +111,7 @@ class ExpenseList extends Component {
 		return (
 			<div className={expenseList.container}>
 				<div className={expenseList.inputContainer}>
-					<h2>
-						{this.props.type} Expenses: ${this.state.expenseTotal}
-					</h2>
+					<h2>Expenses: ${this.props.cost}</h2>
 				</div>
 				<table>
 					<thead>
@@ -137,11 +136,11 @@ class ExpenseList extends Component {
 									Category
 								</button>
 							</th>
+							<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
 						{this.state.expenses.map(expense => {
-							console.log(expense);
 							return (
 								<tr key={expense.key} className={expenseList.expenseItem}>
 									<td className={expenseList.date}>{expense.date}</td>

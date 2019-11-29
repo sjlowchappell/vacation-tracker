@@ -19,27 +19,11 @@ class StopsList extends Component {
 		// Get database reference for user and stops
 		const userId = firebase.auth().currentUser.uid;
 		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
-		// Create a new stop object with it's name and 4 empty budgets
+		// Create a new stop object with it's name, expenses, and cost
 		const stop = {
 			name: this.state.userInput,
-			budgets: [
-				{
-					name: 'Food',
-					items: [],
-				},
-				{
-					name: 'Travel',
-					items: [],
-				},
-				{
-					name: 'Culture',
-					items: [],
-				},
-				{
-					name: 'Miscellaneous',
-					items: [],
-				},
-			],
+			expenses: [],
+			cost: 0,
 		};
 		// Push the new stop to the database
 		dbRef.push(stop);
