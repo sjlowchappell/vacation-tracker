@@ -76,41 +76,42 @@ class ExpenseList extends Component {
 					<h2>
 						{this.props.type} Expenses: ${this.state.expenseTotal}
 					</h2>
-					{/* <select name="sortBy" id="" onChange={this.sortItems}>
-						<option value="name">Name</option>
-						<option value="value">Value</option>
-						<option value="date">Date</option>
-					</select> */}
 				</div>
-				<div className={expenseList.inputContainer}>
-					<button onClick={this.sortItems} value="date">
-						Date
-					</button>
-					<button onClick={this.sortItems} value="name">
-						Name
-					</button>
-					<button onClick={this.sortItems} value="value">
-						Value
-					</button>
-				</div>
-				<ul>
+				<table>
+					<tr>
+						<th>
+							<button onClick={this.sortItems} value="date">
+								Date
+							</button>
+						</th>
+						<th>
+							<button onClick={this.sortItems} value="name">
+								Name
+							</button>
+						</th>
+						<th>
+							<button onClick={this.sortItems} value="value">
+								Value
+							</button>
+						</th>
+					</tr>
 					{this.state.expenses.map(expense => {
 						return (
-							<li key={expense.key} className={expenseList.expenseItem}>
-								<div className={expenseList.expenseInfo}>
-									<p className={expenseList.date}>{expense.date}</p>
-									<p>{expense.name}</p>
-									<p>${expense.value}</p>
-								</div>
-								<div className={expenseList.expenseInfo}>
+							<tr key={expense.key} className={expenseList.expenseItem}>
+								{/* <div className={expenseList.expenseInfo}> */}
+								<td className={expenseList.date}>{expense.date}</td>
+								<td>{expense.name}</td>
+								<td>${expense.value}</td>
+								{/* </div> */}
+								{/* <div className={expenseList.expenseInfo}>
 									<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
 										Remove Item
 									</button>
-								</div>
-							</li>
+								</div> */}
+							</tr>
 						);
 					})}
-				</ul>
+				</table>
 				<form onSubmit={this.handleSubmit}>
 					<div className={expenseList.inputContainer}>
 						<div className={expenseList.inputItem}>
