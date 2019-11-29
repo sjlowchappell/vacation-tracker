@@ -98,16 +98,14 @@ class ExpenseList extends Component {
 					{this.state.expenses.map(expense => {
 						return (
 							<tr key={expense.key} className={expenseList.expenseItem}>
-								{/* <div className={expenseList.expenseInfo}> */}
 								<td className={expenseList.date}>{expense.date}</td>
 								<td>{expense.name}</td>
 								<td>${expense.value}</td>
-								{/* </div> */}
-								{/* <div className={expenseList.expenseInfo}>
+								<td>
 									<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
-										Remove Item
+										Remove
 									</button>
-								</div> */}
+								</td>
 							</tr>
 						);
 					})}
