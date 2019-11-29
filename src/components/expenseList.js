@@ -58,13 +58,36 @@ class ExpenseList extends Component {
 		dbRef.child(itemId).remove();
 	};
 	sortItems = e => {
-		// const sortType = e.target.options[e.target.selectedIndex].value;
+		// get sort type from value (date, name, or value)
 		const sortType = e.target.value;
-		console.log(sortType);
+		// get direction from data set (ascending or descending)
+		const direction = e.target.dataset.dir;
 		let newState;
-		sortType === 'value'
-			? (newState = this.state.expenses.sort((a, b) => (parseInt(a[sortType]) > parseInt(b[sortType]) ? 1 : -1)))
-			: (newState = this.state.expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1)));
+		// if the value is descending:
+		if (direction === 'des') {
+			// check if sort type is value (need to parseint if this is the case)
+			sortType === 'value'
+				? (newState = this.state.expenses.sort((a, b) =>
+						// return an array sorted based on number value in descending order
+						parseInt(a[sortType]) > parseInt(b[sortType]) ? 1 : -1,
+				  ))
+				: //   else return an array sorted by value in descending order
+				  (newState = this.state.expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1)));
+			// toggle the direction attribute to ascending
+			e.target.setAttribute('data-dir', 'asc');
+		} else {
+			// else if value is ascending
+			// check if sort type is value (need to parseint if this is the case)
+			sortType === 'value'
+				? (newState = this.state.expenses.sort((a, b) =>
+						// return an array sorted based on number value in ascending order
+						parseInt(a[sortType]) < parseInt(b[sortType]) ? 1 : -1,
+				  ))
+				: //   else return an array sorted by value in ascending order
+				  (newState = this.state.expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1)));
+			// toggle the direction attribute to descending
+			e.target.setAttribute('data-dir', 'des');
+		}
 		this.setState({
 			expenses: newState,
 		});
@@ -78,37 +101,41 @@ class ExpenseList extends Component {
 					</h2>
 				</div>
 				<table>
-					<tr>
-						<th>
-							<button onClick={this.sortItems} value="date">
-								Date
-							</button>
-						</th>
-						<th>
-							<button onClick={this.sortItems} value="name">
-								Name
-							</button>
-						</th>
-						<th>
-							<button onClick={this.sortItems} value="value">
-								Value
-							</button>
-						</th>
-					</tr>
-					{this.state.expenses.map(expense => {
-						return (
-							<tr key={expense.key} className={expenseList.expenseItem}>
-								<td className={expenseList.date}>{expense.date}</td>
-								<td>{expense.name}</td>
-								<td>${expense.value}</td>
-								<td>
-									<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
-										Remove
-									</button>
-								</td>
-							</tr>
-						);
-					})}
+					<thead>
+						<tr>
+							<th>
+								<button onClick={this.sortItems} value="date" data-dir="des">
+									Date
+								</button>
+							</th>
+							<th>
+								<button onClick={this.sortItems} value="name" data-dir="des">
+									Name
+								</button>
+							</th>
+							<th>
+								<button onClick={this.sortItems} value="value" data-dir="des">
+									Value
+								</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.state.expenses.map(expense => {
+							return (
+								<tr key={expense.key} className={expenseList.expenseItem}>
+									<td className={expenseList.date}>{expense.date}</td>
+									<td>{expense.name}</td>
+									<td>${expense.value}</td>
+									<td>
+										<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
+											Remove
+										</button>
+									</td>
+								</tr>
+							);
+						})}
+					</tbody>
 				</table>
 				<form onSubmit={this.handleSubmit}>
 					<div className={expenseList.inputContainer}>
