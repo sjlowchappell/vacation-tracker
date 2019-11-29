@@ -10,6 +10,7 @@ class ExpenseList extends Component {
 			expenseName: '',
 			expenseValue: '',
 			expenseDate: '',
+			expenseCategory: 'food',
 		};
 	}
 	componentDidMount() {
@@ -22,7 +23,13 @@ class ExpenseList extends Component {
 			let newExpenseTotal = 0;
 			const data = response.val();
 			for (let key in data) {
-				newState.push({ key: key, name: data[key].name, value: data[key].value, date: data[key].date });
+				newState.push({
+					key: key,
+					name: data[key].name,
+					value: data[key].value,
+					date: data[key].date,
+					category: data[key].category,
+				});
 				newExpenseTotal = newExpenseTotal + parseInt(data[key].value);
 			}
 			this.setState({
@@ -37,11 +44,18 @@ class ExpenseList extends Component {
 		const dbRef = firebase
 			.database()
 			.ref('/users/' + userId + '/stops/' + this.props.stopId + '/budgets/' + this.props.budgetNum + '/items/');
-		dbRef.push({ name: this.state.expenseName, value: this.state.expenseValue, date: this.state.expenseDate });
+		console.log(this.state);
+		dbRef.push({
+			name: this.state.expenseName,
+			value: this.state.expenseValue,
+			date: this.state.expenseDate,
+			category: this.state.expenseCategory,
+		});
 		this.setState({
 			expenseName: '',
 			expenseValue: '',
 			expenseDate: '',
+			expenseCategory: 'food',
 		});
 	};
 	handleChange = e => {
@@ -118,15 +132,30 @@ class ExpenseList extends Component {
 									Value
 								</button>
 							</th>
+							<th>
+								<button onClick={this.sortItems} value="category" data-dir="des">
+									Category
+								</button>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
 						{this.state.expenses.map(expense => {
+							console.log(expense);
 							return (
 								<tr key={expense.key} className={expenseList.expenseItem}>
 									<td className={expenseList.date}>{expense.date}</td>
 									<td>{expense.name}</td>
 									<td>${expense.value}</td>
+									<td>
+										{expense.category}
+										{/* <select name="categories" id="">
+											<option value="food">Food</option>
+											<option value="food">Transport</option>
+											<option value="food">Lodging</option>
+											<option value="food">Miscellaneous</option>
+										</select> */}
+									</td>
 									<td>
 										<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
 											Remove
@@ -153,8 +182,16 @@ class ExpenseList extends Component {
 							<label htmlFor="expenseDate">Date: </label>
 							<input onChange={this.handleChange} type="date" id="expenseDate" required />
 						</div>
-						<button>Submit Expense</button>
+						<div className={expenseList.inputItem}>
+							<select onChange={this.handleChange} name="expenseCategory" id="expenseCategory">
+								<option value="food">Food</option>
+								<option value="transport">Transport</option>
+								<option value="lodging">Lodging</option>
+								<option value="miscellaneous">Miscellaneous</option>
+							</select>
+						</div>
 					</div>
+					<button>Submit Expense</button>
 				</form>
 			</div>
 		);
