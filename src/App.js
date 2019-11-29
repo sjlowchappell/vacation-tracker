@@ -55,24 +55,25 @@ class App extends Component {
 		});
 	}
 	stopCost = expenses => {
-		// accumulator used for when a budget has multiple expenses
+		// accumulator used for going through object has multiple expenses
 		let accum = 0;
 		// loop through each item object and add up the value
 		for (let key in expenses) {
 			accum = accum + parseInt(expenses[key].value);
 		}
-		// return the total plus the accumulated value of all items in budget
+		// return the accumulated total
 		return accum;
 	};
 
 	// Method to determine the total cost of all the stops of a given trip
-	// allStopsCost = () => {
-	// 	// Reduce used to get total for all stops
-	// 	return this.state.stops.reduce((total, stop) => {
-	// 		// run stopCost method for each stop in the trip
-	// 		return total + this.stopCost(stop.budgets);
-	// 	}, 0);
-	// };
+	allStopsCost = () => {
+		// Reduce used to get total for all stops
+		console.log(this.state.stops);
+		return this.state.stops.reduce((total, stop) => {
+			return stop.cost !== undefined ? total + stop.cost : total;
+			// run stopCost method for each stop in the trip
+		}, 0);
+	};
 
 	login = () => {
 		auth.signInWithPopup(provider).then(result => {
@@ -99,7 +100,7 @@ class App extends Component {
 							logout={this.logout}
 							stops={this.state.stops}
 							stopCost={this.stopCost}
-							totalCost={0}
+							totalCost={this.allStopsCost()}
 						/>
 
 						<MainContent stops={this.state.stops} stopCost={this.stopCost} />
