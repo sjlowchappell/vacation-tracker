@@ -68,10 +68,8 @@ class App extends Component {
 	// Method to determine the total cost of all the stops of a given trip
 	allStopsCost = () => {
 		// Reduce used to get total for all stops
-		console.log(this.state.stops);
 		return this.state.stops.reduce((total, stop) => {
 			return stop.cost !== undefined ? total + stop.cost : total;
-			// run stopCost method for each stop in the trip
 		}, 0);
 	};
 

@@ -25,7 +25,6 @@ const MainContent = ({ stops, stopCost }) => {
 						}}
 					/>
 					{stops.map(stop => {
-						const currentStopCost = stopCost(stop.expenses);
 						return (
 							<div>
 								<Route
@@ -37,7 +36,6 @@ const MainContent = ({ stops, stopCost }) => {
 												expenses={stop.expenses}
 												stopId={stop.key}
 												cost={stop.cost}
-												stopCost={currentStopCost}
 												removeStop={removeStop}
 											/>
 										);
