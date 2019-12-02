@@ -8,7 +8,7 @@ const Stop = ({ name, budget, expenses, stopId, cost }) => {
 		<div className={stop.container}>
 			<div className={stop.header}>
 				<h1>{name}</h1>
-				<p>Budget: ${budget}</p>
+				<p className={stop.budget}>Budget: ${budget}</p>
 			</div>
 			<div className={stop.expenseContainer}>
 				<ExpenseList key={uuidv4()} items={expenses} stopId={stopId} cost={cost} budget={budget} />

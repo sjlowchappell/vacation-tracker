@@ -33,3 +33,20 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+
+.budget {
+	color: #273e47;
+	font-size: 4rem;
+	font-family: 'Alata', sans-serif;
+	font-weight: bold;
+	position: relative;
+}
+.budget:after {
+	position: absolute;
+	top: 65px;
+	right: 0;
+	content: '';
+	background: #f0a202;
+	width: 60px;
+	height: 5px;
+}
