@@ -17,7 +17,7 @@ const SideBar = ({ user, login, logout, stops, totalCost }) => {
 						</div>
 						<p className={sideBar.userName}>{user.displayName}</p>
 						<Link to="/">
-							<button className="removeButton" onClick={logout}>
+							<button className={sideBar.logout} onClick={logout}>
 								Log Out
 							</button>
 						</Link>

@@ -192,7 +192,7 @@ class ExpenseList extends Component {
 							</select>
 						</div>
 					</div>
-					<button>Submit Expense</button>
+					<button className={expenseList.submit}>Submit Expense</button>
 				</form>
 			</div>
 		);
