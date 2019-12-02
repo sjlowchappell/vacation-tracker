@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from '../firebase';
+import stopsList from './stopsList.module.css';
 
 class StopsList extends Component {
 	constructor() {
@@ -32,17 +33,20 @@ class StopsList extends Component {
 	};
 	render() {
 		return (
-			<div>
+			<div className={stopsList.container}>
 				<h1>Stops on your journey:</h1>
 				<nav>
-					<ul>
+					<ul className={stopsList.allStops}>
 						{this.props.stops.map(stop => {
 							return (
-								<li key={stop.key}>
+								<li key={stop.key} className={stopsList.stop}>
 									<Link to={`/${stop.name}/`} className="stopLink">
 										{stop.name}
 									</Link>
-									<button className="removeButton" onClick={() => this.props.removeStop(stop.key)}>
+									<button
+										className={stopsList.removeButton}
+										onClick={() => this.props.removeStop(stop.key)}
+									>
 										Remove Stop
 									</button>
 								</li>

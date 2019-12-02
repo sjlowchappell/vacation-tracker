@@ -1,0 +1,42 @@
+.container {
+	margin-left: 10px;
+}
+
+.container h1 {
+	position: relative;
+}
+
+.container h1:after {
+	position: absolute;
+	top: 65px;
+	left: 0;
+	content: '';
+	background: #f0a202;
+	width: 60px;
+	height: 5px;
+}
+
+/* .container nav {
+    display: flex;
+    justify-content: center;;
+}*/
+
+.allStops {
+	display: inline-flex;
+	flex-direction: column;
+}
+.stop {
+	display: inline-flex;
+	flex-direction: column;
+}
+
+.removeButton {
+	padding: 0;
+	background: none;
+	border: none;
+	font-size: 1.2rem;
+	color: #a4243b;
+}
+.removeButton:hover {
+	color: #273e47;
+}

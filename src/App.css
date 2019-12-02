@@ -224,17 +224,6 @@ p {
 .stopLink {
 	font-family: 'Alata', sans-serif;
 }
-.removeButton {
-	padding: 0;
-	background: none;
-	border: none;
-	font-size: 1.2rem;
-	display: block;
-	color: #a4243b;
-}
-.removeButton:hover {
-	color: #273e47;
-}
 
 a {
 	text-decoration: none;
