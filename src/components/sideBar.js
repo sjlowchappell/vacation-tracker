@@ -16,7 +16,7 @@ const SideBar = ({ user, login, logout, stops, totalCost }) => {
 							<img src={user.photoURL} alt="" />
 						</div>
 						<p className={sideBar.userName}>{user.displayName}</p>
-						<Link to="/">
+						<Link to="/" className={sideBar.logoutLink}>
 							<button className={sideBar.logout} onClick={logout}>
 								Log Out
 							</button>

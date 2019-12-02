@@ -49,7 +49,6 @@ table {
 
 th {
 	border: 1px solid rgb(190, 190, 190);
-	background: #273e47;
 	background: #a4243b;
 	color: white;
 }
@@ -78,10 +77,18 @@ tr:nth-child(odd) td {
 	background-color: rgb(245, 245, 245);
 } */
 .submit {
-	background: #a4243b;
 	background: #273e47;
 	color: white;
-	padding: 20px 40px;
+	padding: 21px 41px;
 	font-weight: bold;
 	margin-top: 20px;
+	transition: 0.3s all;
+	border-radius: 5px;
+}
+
+.submit:hover {
+	padding: 20px 40px;
+	background: white;
+	color: #273e47;
+	border: 2px solid #273e47;
 }
