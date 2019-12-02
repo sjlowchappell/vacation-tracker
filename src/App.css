@@ -192,6 +192,7 @@ light grey: DAD7CD
 red: A4243B
 cream: D8C99B
 light green: A3B18A
+orange: F0A202
 */
 
 html {
@@ -273,6 +274,6 @@ ul {
 footer {
 	text-align: center;
 	padding: 20px 0px;
-	background: #273e47;
-	color: white;
+	background: #f0a202;
+	color: #273e47;
 }

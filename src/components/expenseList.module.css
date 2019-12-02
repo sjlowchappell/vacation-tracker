@@ -2,13 +2,14 @@
 	flex: 1 0 40%;
 	min-width: 40%;
 	border-radius: 10px;
-	padding: 10px 20px 35px 20px;
+	padding: 10px 20px;
 	margin: 10px;
 	background: white;
 	box-shadow: 0px 0px 4px #273e47;
 }
 .container form {
 	text-align: center;
+	margin: 20px 0px;
 }
 
 .expenseItem {
@@ -48,14 +49,18 @@ table {
 }
 
 th {
-	border: 1px solid rgb(190, 190, 190);
-	background: #a4243b;
-	color: white;
+	border: 1px solid white;
+	background: #f0a202;
+	color: #273e47;
+	font-weight: bold;
+	font-size: 1.8rem;
+	letter-spacing: 1px;
 }
 th button {
+	letter-spacing: 1px;
 	background: none;
 	border: none;
-	color: white;
+	color: #273e47;
 	font-weight: bold;
 	font-size: 1.8rem;
 }

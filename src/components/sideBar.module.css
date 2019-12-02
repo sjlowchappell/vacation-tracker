@@ -26,7 +26,7 @@ header {
 	height: 130px;
 	margin: 10px 0px;
 	padding: 2px;
-	background-color: #a3b18a;
+	background-color: #f0a202;
 	border-radius: 100%;
 }
 .profileImageContainer img {
@@ -70,7 +70,7 @@ a.navItem {
 a.navItem:hover {
 	color: #a3b18a;
 	padding-bottom: 0px;
-	border-bottom: 3px solid #a3b18a;
+	border-bottom: 3px solid #f0a202;
 }
 
 .logout {
@@ -102,7 +102,7 @@ a.navItem:hover {
 	top: 55px;
 	left: 0;
 	content: '';
-	background: #a4243b;
+	background: #f0a202;
 	width: 60px;
 	height: 5px;
 }

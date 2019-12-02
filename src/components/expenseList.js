@@ -37,12 +37,13 @@ class ExpenseList extends Component {
 		const userId = firebase.auth().currentUser.uid;
 		const dbRef = firebase.database().ref('/users/' + userId + '/stops/' + this.props.stopId);
 		let newCostTotal = parseInt(newVal);
-		dbRef.on('value', response => {
+		dbRef.once('value', response => {
 			const data = response.val();
 			newCostTotal = data.cost + newCostTotal;
 		});
 		dbRef.update({ cost: newCostTotal });
 	};
+
 	handleSubmit = e => {
 		e.preventDefault();
 		const userId = firebase.auth().currentUser.uid;
@@ -65,11 +66,43 @@ class ExpenseList extends Component {
 		const expense = e.target.id;
 		this.setState({ [expense]: e.target.value });
 	};
+
+	costUpdateLower = itemId => {
+		// get reference to users stops
+		const userId = firebase.auth().currentUser.uid;
+		let itemCost;
+		let newCostTotal;
+
+		// Get a reference to the cost of the individual item
+		const itemCostRef = firebase
+			.database()
+			.ref('/users/' + userId + '/stops/' + this.props.stopId + '/expenses/' + itemId);
+		// On reference value, save reference in a variable
+		itemCostRef.once('value', response => {
+			itemCost = parseInt(response.val().value);
+		});
+
+		// Get a reference to the total cost of the stop
+		const stopTotalRef = firebase.database().ref('/users/' + userId + '/stops/' + this.props.stopId);
+		// Once the reference has been made, calculate the new cost total based on the previously found item value
+		stopTotalRef.once('value', response => {
+			const data = response.val();
+			newCostTotal = data.cost - itemCost;
+		});
+
+		// Update the stop total cost based on the new cost value
+		stopTotalRef.update({ cost: newCostTotal });
+	};
+
 	removeItem = itemId => {
 		// get reference to users stops
 		const userId = firebase.auth().currentUser.uid;
+		this.costUpdateLower(itemId);
+
+		// Get a database reference to the expenses list
 		const dbRef = firebase.database().ref('/users/' + userId + '/stops/' + this.props.stopId + '/expenses/');
-		// use child() and remove() methods to get the stop and remove it
+
+		// use child() and remove() methods to get the item and remove it
 		dbRef.child(itemId).remove();
 	};
 	sortItems = e => {
@@ -111,7 +144,7 @@ class ExpenseList extends Component {
 		return (
 			<div className={expenseList.container}>
 				<div className={expenseList.inputContainer}>
-					<h2>Expenses: ${this.props.cost}</h2>
+					<h2>Stop total: ${this.props.cost}</h2>
 				</div>
 				<table>
 					<thead>
@@ -156,8 +189,8 @@ class ExpenseList extends Component {
 										</select> */}
 									</td>
 									<td>
-										<button className="removeButton" onClick={() => this.removeItem(expense.key)}>
-											Remove
+										<button className="" onClick={() => this.removeItem(expense.key)}>
+											Delete
 										</button>
 									</td>
 								</tr>
