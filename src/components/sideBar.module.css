@@ -4,8 +4,20 @@ header {
 
 .container {
 	width: 25%;
-	background: pink;
+	background: #273e47;
 	padding: 20px;
+	color: #dad7cd;
+}
+
+.container a {
+	color: #dad7cd;
+	padding-bottom: 3px;
+	transition: 0.3s all;
+}
+.container a:hover {
+	color: #a3b18a;
+	padding-bottom: 0px;
+	border-bottom: 3px solid #a3b18a;
 }
 
 .profile {
@@ -25,7 +37,7 @@ header {
 	height: 130px;
 	margin: 10px 0px;
 	padding: 2px;
-	background-color: rebeccapurple;
+	background-color: #a3b18a;
 	border-radius: 100%;
 }
 .profileImageContainer img {
@@ -52,6 +64,7 @@ header {
 	width: 20px;
 	margin-right: 5px;
 	text-align: center;
+	filter: invert(77%) sepia(6%) saturate(1214%) hue-rotate(40deg) brightness(90%) contrast(85%);
 }
 
 .navItem {

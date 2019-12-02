@@ -10,7 +10,7 @@ class ExpenseList extends Component {
 			expenseName: '',
 			expenseValue: '',
 			expenseDate: '',
-			expenseCategory: 'food',
+			expenseCategory: 'Food',
 		};
 	}
 	componentDidMount() {
@@ -58,7 +58,7 @@ class ExpenseList extends Component {
 			expenseName: '',
 			expenseValue: '',
 			expenseDate: '',
-			expenseCategory: 'food',
+			expenseCategory: 'Food',
 		});
 	};
 	handleChange = e => {
@@ -183,10 +183,12 @@ class ExpenseList extends Component {
 						</div>
 						<div className={expenseList.inputItem}>
 							<select onChange={this.handleChange} name="expenseCategory" id="expenseCategory">
-								<option value="food">Food</option>
-								<option value="transport">Transport</option>
-								<option value="lodging">Lodging</option>
-								<option value="miscellaneous">Miscellaneous</option>
+								<option value="Food">Food</option>
+								<option value="Transport">Transport</option>
+								<option value="Lodging">Lodging</option>
+								<option value="Entertainment">Entertainment</option>
+								<option value="Shopping">Shopping</option>
+								<option value="Miscellaneous">Miscellaneous</option>
 							</select>
 						</div>
 					</div>

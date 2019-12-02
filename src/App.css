@@ -186,6 +186,15 @@ font-family: 'Montserrat', sans-serif;
 font-family: 'Alata', sans-serif;
 */
 
+/* 
+blue: 273E47
+light grey: DAD7CD
+red: A4243B
+cream: D8C99B
+light green: A3B18A
+
+*/
+
 html {
 	font-size: 62.5%;
 	line-height: 1.8;
@@ -200,10 +209,12 @@ header h1 {
 	font-size: 2.5rem;
 	padding: 0;
 	margin: 0;
+	color: #dad7cd;
 }
 
 h1 {
 	font-family: 'Alata', sans-serif;
+	color: #273e47;
 }
 
 p {
@@ -263,6 +274,6 @@ ul {
 footer {
 	text-align: center;
 	padding: 20px 0px;
-	background: rebeccapurple;
+	background: #273e47;
 	color: white;
 }
