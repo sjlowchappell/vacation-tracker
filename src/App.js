@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Footer from './components/footer';
 import SideBar from './components/sideBar';
 import MainContent from './components/mainContent';
-import ExpenseList from './components/expenseList';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();

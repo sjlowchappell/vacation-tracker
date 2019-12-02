@@ -4,6 +4,7 @@ import Stop from './stop';
 import mainContent from './mainContent.module.css';
 import StopsList from './stopsList';
 import firebase from '../firebase';
+import uuidv4 from 'uuid/v4';
 
 const MainContent = ({ stops, stopCost }) => {
 	// Method to remove stop from database

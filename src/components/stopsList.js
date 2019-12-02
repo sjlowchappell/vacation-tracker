@@ -8,16 +8,13 @@ class StopsList extends Component {
 		super();
 		this.state = {};
 	}
+
+	// Method for handling form input -> sets state based on user input
 	handleChange = e => {
 		const inputType = e.target.id;
 		this.setState({ [inputType]: e.target.value });
 	};
-	// Method for handling form input -> sets state based on user input
-	// handleChange = e => {
-	// 	this.setState({
-	// 		userInput: e.target.value,
-	// 	});
-	// };
+
 	// Method for handling form submission
 	handleSubmit = e => {
 		e.preventDefault();
@@ -33,7 +30,6 @@ class StopsList extends Component {
 			expenses: [],
 			cost: 0,
 		};
-		console.log(stop);
 		// Push the new stop to the database
 		dbRef.push(stop);
 		// Update state to clear out the user input
@@ -46,7 +42,6 @@ class StopsList extends Component {
 				<nav>
 					<ul className={stopsList.allStops}>
 						{this.props.stops.map(stop => {
-							console.log(stop);
 							return (
 								<li key={stop.key} className={stopsList.stop}>
 									<Link to={`/${stop.name}/`} className={stopsList.stopLink}>
