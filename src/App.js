@@ -38,6 +38,9 @@ class App extends Component {
 							name: data[key].name,
 							expenses: data[key].expenses,
 							cost: data[key].cost,
+							budget: data[key].budget,
+							arrival: data[key].arrival,
+							departure: data[key].departure,
 						});
 					}
 					// Update state of the application based on user's info

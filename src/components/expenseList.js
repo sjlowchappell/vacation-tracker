@@ -144,7 +144,12 @@ class ExpenseList extends Component {
 		return (
 			<div className={expenseList.container}>
 				<div className={expenseList.inputContainer}>
-					<h2>Stop total: ${this.props.cost}</h2>
+					<h2>
+						Total Spent:{' '}
+						<span className={this.props.cost > this.props.budget ? expenseList.red : expenseList.green}>
+							${this.props.cost}
+						</span>
+					</h2>
 				</div>
 				<table>
 					<thead>

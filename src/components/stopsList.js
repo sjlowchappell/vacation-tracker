@@ -8,12 +8,16 @@ class StopsList extends Component {
 		super();
 		this.state = {};
 	}
-	// Method for handling form input -> sets state based on user input
 	handleChange = e => {
-		this.setState({
-			userInput: e.target.value,
-		});
+		const inputType = e.target.id;
+		this.setState({ [inputType]: e.target.value });
 	};
+	// Method for handling form input -> sets state based on user input
+	// handleChange = e => {
+	// 	this.setState({
+	// 		userInput: e.target.value,
+	// 	});
+	// };
 	// Method for handling form submission
 	handleSubmit = e => {
 		e.preventDefault();
@@ -22,14 +26,18 @@ class StopsList extends Component {
 		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
 		// Create a new stop object with it's name, expenses, and cost
 		const stop = {
-			name: this.state.userInput,
+			name: this.state.location,
+			budget: this.state.budget,
+			arrival: this.state.arrival,
+			departure: this.state.departure,
 			expenses: [],
 			cost: 0,
 		};
+		console.log(stop);
 		// Push the new stop to the database
 		dbRef.push(stop);
 		// Update state to clear out the user input
-		this.setState({ userInput: '' });
+		this.setState({ name: '', budget: 0, arrival: '', departure: '' });
 	};
 	render() {
 		return (
@@ -38,11 +46,22 @@ class StopsList extends Component {
 				<nav>
 					<ul className={stopsList.allStops}>
 						{this.props.stops.map(stop => {
+							console.log(stop);
 							return (
 								<li key={stop.key} className={stopsList.stop}>
-									<Link to={`/${stop.name}/`} className="stopLink">
+									<Link to={`/${stop.name}/`} className={stopsList.stopLink}>
 										{stop.name}
 									</Link>
+									<p className={stopsList.date}>
+										{stop.arrival} - {stop.departure}
+									</p>
+									<p>Budgeted: ${stop.budget}</p>
+									<p>
+										Spent:{' '}
+										<span className={stop.cost > stop.budget ? stopsList.red : stopsList.green}>
+											${stop.cost}
+										</span>
+									</p>
 									<button
 										className={stopsList.removeButton}
 										onClick={() => this.props.removeStop(stop.key)}
@@ -54,10 +73,29 @@ class StopsList extends Component {
 						})}
 					</ul>
 				</nav>
-				<form action="submit">
-					<label htmlFor="newStop">Add a new stop to your trip</label>
-					<input type="text" id="newStop" onChange={this.handleChange} value={this.state.userInput} />
-					<button onClick={this.handleSubmit}>Add Stop</button>
+				<form onSubmit={this.handleSubmit}>
+					<p>Add a new stop to your trip:</p>
+					<div className={stopsList.inputContainer}>
+						<div className={stopsList.inputItem}>
+							<label htmlFor="location">Location: </label>
+							<input type="text" id="location" onChange={this.handleChange} />
+						</div>
+						<div className={stopsList.inputItem}>
+							<label htmlFor="budget">Budget Total: </label>
+							<input type="number" id="budget" onChange={this.handleChange} />
+						</div>
+					</div>
+					<div className={stopsList.inputContainer}>
+						<div className={stopsList.inputItem}>
+							<label htmlFor="arrival">Arrival Date: </label>
+							<input type="date" id="arrival" onChange={this.handleChange} />
+						</div>
+						<div className={stopsList.inputItem}>
+							<label htmlFor="departure">Departure Date: </label>
+							<input type="date" id="departure" onChange={this.handleChange} />
+						</div>
+					</div>
+					<button className={stopsList.submit}>Add Stop</button>
 				</form>
 			</div>
 		);

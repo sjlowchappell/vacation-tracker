@@ -33,6 +33,7 @@ const MainContent = ({ stops, stopCost }) => {
 										return (
 											<Stop
 												name={stop.name}
+												budget={stop.budget}
 												expenses={stop.expenses}
 												stopId={stop.key}
 												cost={stop.cost}

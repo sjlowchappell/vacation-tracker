@@ -24,12 +24,6 @@
 	justify-content: space-between;
 }
 
-.date {
-	color: grey;
-	font-size: 1.6rem;
-	margin: 0px;
-}
-
 .inputItem {
 	display: flex;
 	flex-direction: column;
@@ -109,4 +103,12 @@ tr:nth-child(odd) td {
 	background: white;
 	color: #273e47;
 	border: 2px solid #273e47;
+}
+
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
 }
