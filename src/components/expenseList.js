@@ -215,6 +215,7 @@ class ExpenseList extends Component {
 							<input onChange={this.handleChange} type="date" id="expenseDate" required />
 						</div>
 						<div className={expenseList.inputItem}>
+							<label htmlFor="expenseCategory">Category:</label>
 							<select onChange={this.handleChange} name="expenseCategory" id="expenseCategory">
 								<option value="Food">Food</option>
 								<option value="Transport">Transport</option>

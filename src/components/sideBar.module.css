@@ -53,7 +53,7 @@ header {
 	width: 20px;
 	margin-right: 5px;
 	text-align: center;
-	filter: invert(77%) sepia(6%) saturate(1214%) hue-rotate(40deg) brightness(90%) contrast(85%);
+	filter: invert(70%) sepia(24%) saturate(7235%) hue-rotate(8deg) brightness(104%) contrast(98%);
 }
 
 .navItem {
@@ -68,7 +68,7 @@ a.navItem {
 	transition: 0.3s all;
 }
 a.navItem:hover {
-	color: #a3b18a;
+	color: #f0a202;
 	padding-bottom: 0px;
 	border-bottom: 3px solid #f0a202;
 }
@@ -79,7 +79,7 @@ a.navItem:hover {
 	border: none;
 	font-size: 1.2rem;
 	display: block;
-	color: #dad7cd;
+	color: #f0a202;
 }
 
 .logout:hover {
