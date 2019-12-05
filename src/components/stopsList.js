@@ -69,7 +69,7 @@ class StopsList extends Component {
 										className={stopsList.removeButton}
 										onClick={() => this.props.removeStop(stop.key)}
 									>
-										Remove Stop
+										Delete
 									</button>
 								</li>
 							);

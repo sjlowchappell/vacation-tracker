@@ -202,7 +202,10 @@ class ExpenseList extends Component {
 										</select> */}
 									</td>
 									<td>
-										<button className="" onClick={() => this.removeItem(expense.key)}>
+										<button
+											className={expenseList.remove}
+											onClick={() => this.removeItem(expense.key)}
+										>
 											Delete
 										</button>
 									</td>
