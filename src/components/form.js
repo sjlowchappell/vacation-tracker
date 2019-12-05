@@ -26,7 +26,7 @@ const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 							return (
 								<div className={form.inputItem}>
 									<label htmlFor={input.id}>{input.text}: </label>
-									<input type={input.type} id={input.id} onChange={handleChange} required />
+									<input type={input.type} id={input.id} onChange={handleChange} min="0" required />
 								</div>
 							);
 						}
