@@ -27,7 +27,7 @@ const MainContent = ({ stops, stopCost }) => {
 					/>
 					{stops.map(stop => {
 						return (
-							<div>
+							<div key={uuidv4()}>
 								<Route
 									path={`/${stop.name}/`}
 									render={() => {

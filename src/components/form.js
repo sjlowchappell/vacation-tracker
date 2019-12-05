@@ -1,5 +1,6 @@
 import React from 'react';
 import form from './form.module.css';
+import uuidv4 from 'uuid/v4';
 
 const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 	return (
@@ -10,7 +11,7 @@ const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 					{inputs.map(input => {
 						if (input.type === 'select') {
 							return (
-								<div className={form.inputItem}>
+								<div key={uuidv4()} className={form.inputItem}>
 									<label htmlFor="expenseCategory">Category:</label>
 									<select onChange={handleChange} name="expenseCategory" id="expenseCategory">
 										<option value="Food">Food</option>
@@ -24,7 +25,7 @@ const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 							);
 						} else {
 							return (
-								<div className={form.inputItem}>
+								<div key={uuidv4()} className={form.inputItem}>
 									<label htmlFor={input.id}>{input.text}: </label>
 									<input type={input.type} id={input.id} onChange={handleChange} min="0" required />
 								</div>
