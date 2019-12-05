@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from '../firebase';
 import stopsList from './stopsList.module.css';
+import Form from './form';
+
+const inputList = [
+	{ id: 'location', type: 'text', text: 'Location' },
+	{ id: 'budget', type: 'number', text: 'Budget' },
+	{ id: 'arrival', type: 'date', text: 'Arrival Date' },
+	{ id: 'departure', type: 'date', text: 'Departure Date' },
+];
 
 class StopsList extends Component {
 	constructor() {
@@ -68,30 +76,13 @@ class StopsList extends Component {
 						})}
 					</ul>
 				</nav>
-				<form onSubmit={this.handleSubmit}>
-					<p>Add a new stop to your trip:</p>
-					<div className={stopsList.inputContainer}>
-						<div className={stopsList.inputItem}>
-							<label htmlFor="location">Location: </label>
-							<input type="text" id="location" onChange={this.handleChange} />
-						</div>
-						<div className={stopsList.inputItem}>
-							<label htmlFor="budget">Budget Total: </label>
-							<input type="number" id="budget" onChange={this.handleChange} />
-						</div>
-					</div>
-					<div className={stopsList.inputContainer}>
-						<div className={stopsList.inputItem}>
-							<label htmlFor="arrival">Arrival Date: </label>
-							<input type="date" id="arrival" onChange={this.handleChange} />
-						</div>
-						<div className={stopsList.inputItem}>
-							<label htmlFor="departure">Departure Date: </label>
-							<input type="date" id="departure" onChange={this.handleChange} />
-						</div>
-					</div>
-					<button className={stopsList.submit}>Add Stop</button>
-				</form>
+				<Form
+					formText="Add a new stop to your trip:"
+					inputs={inputList}
+					handleChange={this.handleChange}
+					handleSubmit={this.handleSubmit}
+					submitText={'Add Stop'}
+				/>
 			</div>
 		);
 	}

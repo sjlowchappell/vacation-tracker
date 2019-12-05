@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import firebase from '../firebase';
 import expenseList from './expenseList.module.css';
+import Form from './form';
+
+const inputList = [
+	{ id: 'expenseName', type: 'text', text: 'Name' },
+	{ id: 'expenseValue', type: 'number', text: 'Value' },
+	{ id: 'expenseDate', type: 'date', text: 'Date' },
+	{ id: 'expenseCategory', type: 'select', text: 'Category' },
+];
 
 class ExpenseList extends Component {
 	constructor() {
@@ -203,36 +211,13 @@ class ExpenseList extends Component {
 						})}
 					</tbody>
 				</table>
-				<form onSubmit={this.handleSubmit}>
-					<div className={expenseList.inputContainer}>
-						<div className={expenseList.inputItem}>
-							<label htmlFor="expenseName">Name: </label>
-							<input onChange={this.handleChange} type="text" id="expenseName" required />
-						</div>
-						<div className={expenseList.inputItem}>
-							<label htmlFor="expenseValue">Value:</label>
-							<input onChange={this.handleChange} type="number" id="expenseValue" required min="0" />
-						</div>
-					</div>
-					<div className={expenseList.inputContainer}>
-						<div className={expenseList.inputItem}>
-							<label htmlFor="expenseDate">Date: </label>
-							<input onChange={this.handleChange} type="date" id="expenseDate" required />
-						</div>
-						<div className={expenseList.inputItem}>
-							<label htmlFor="expenseCategory">Category:</label>
-							<select onChange={this.handleChange} name="expenseCategory" id="expenseCategory">
-								<option value="Food">Food</option>
-								<option value="Transport">Transport</option>
-								<option value="Lodging">Lodging</option>
-								<option value="Entertainment">Entertainment</option>
-								<option value="Shopping">Shopping</option>
-								<option value="Miscellaneous">Miscellaneous</option>
-							</select>
-						</div>
-					</div>
-					<button className={expenseList.submit}>Submit Expense</button>
-				</form>
+				<Form
+					formText="Add a new Expense to your trip:"
+					inputs={inputList}
+					handleChange={this.handleChange}
+					handleSubmit={this.handleSubmit}
+					submitText={'Submit Expense'}
+				/>
 			</div>
 		);
 	}
