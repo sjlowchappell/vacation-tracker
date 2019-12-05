@@ -1,26 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import form from './form.module.css';
-import firebase from '../firebase';
 
 const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 	return (
-		<div className="container">
-			{/* Form skeleton: */}
-			{/* Form with handle submit function (either add a stop or add an expense) */}
-			{/* Input 1 -> Either Location or Expense Name
-                    id/htmlFor, input type, input text
-                    input1 = {id: ..., type: ..., text: ...}
-                */}
-			{/* Input 2 -> Either Budget Total or Expense Value*/}
-			{/* Input 3 -> Either Arrival Date or Expense Date*/}
-			{/* Input 4 -> Either Departure Date or Category*/}
-			{/* Submit Button */}
-			{/* If form Type  */}
-			{/* <Form
-					formText="Add a new expense to your stop:"
-					inputs={this.props.inputList}
-					handleSubmit={this.handleSubmit}
-				/> */}
+		<div className={form.container}>
 			<form onSubmit={handleSubmit}>
 				<p>{formText}</p>
 				<div className={form.inputContainer}>
