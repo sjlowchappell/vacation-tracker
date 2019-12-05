@@ -22,12 +22,23 @@
 }*/
 
 .allStops {
-	display: inline-flex;
-	flex-direction: column;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 .stop {
-	display: inline-flex;
-	flex-direction: column;
+	box-shadow: 0px 0px 4px #273e47;
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
+	margin: 15px;
+	flex: 1 0 30%;
+	max-width: 30%;
+	transition: 0.3s all;
+}
+
+.stop:hover {
+	transform: scale(1.1);
 }
 
 .removeButton {
