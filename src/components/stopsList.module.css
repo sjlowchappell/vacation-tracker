@@ -16,11 +16,6 @@
 	height: 5px;
 }
 
-/* .container nav {
-    display: flex;
-    justify-content: center;;
-}*/
-
 .allStops {
 	display: flex;
 	flex-wrap: wrap;
@@ -35,6 +30,7 @@
 	flex: 1 0 30%;
 	max-width: 30%;
 	transition: 0.3s all;
+	background: white;
 }
 
 .stop:hover {
@@ -65,10 +61,8 @@
 }
 
 .date {
-	color: grey;
 	font-size: 1.6rem;
 	margin: 0px;
-	margin-left: 20px;
 }
 
 .green {
