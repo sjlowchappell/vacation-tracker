@@ -10,6 +10,10 @@
 	background: white;
 }
 
+.stop:hover {
+	transform: scale(1.1);
+}
+
 .stopLink {
 	font-family: 'Alata', sans-serif;
 	font-size: 3rem;

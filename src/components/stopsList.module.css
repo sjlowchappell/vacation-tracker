@@ -21,7 +21,3 @@
 	flex-wrap: wrap;
 	justify-content: center;
 }
-
-.stop:hover {
-	transform: scale(1.1);
-}

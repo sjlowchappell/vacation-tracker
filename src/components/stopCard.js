@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import stopCard from './stopCard.module.css';
 
-const StopCard = ({ stop }) => {
+const StopCard = ({ stop, removeStop }) => {
 	return (
 		<li className={stopCard.stop}>
 			<Link to={`/${stop.name}/`} className={stopCard.stopLink}>
@@ -15,7 +15,7 @@ const StopCard = ({ stop }) => {
 			<p>
 				Spent: <span className={stop.cost > stop.budget ? stopCard.red : stopCard.green}>${stop.cost}</span>
 			</p>
-			<button className={stopCard.removeButton} onClick={() => this.props.removeStop(stop.key)}>
+			<button className={stopCard.removeButton} onClick={() => removeStop(stop.key)}>
 				Delete
 			</button>
 		</li>

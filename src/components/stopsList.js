@@ -20,8 +20,9 @@ class StopsList extends Component {
 
 	// Method for handling form input -> sets state based on user input
 	handleChange = e => {
-		const inputType = e.target.id;
-		this.setState({ [inputType]: e.target.value });
+		this.setState({
+			[e.target.id]: e.target.value,
+		});
 	};
 
 	// Method for handling form submission
@@ -51,7 +52,7 @@ class StopsList extends Component {
 				<nav>
 					<ul className={stopsList.allStops}>
 						{this.props.stops.map(stop => {
-							return <StopCard key={stop.key} stop={stop} />;
+							return <StopCard key={stop.key} stop={stop} removeStop={this.props.removeStop} />;
 						})}
 					</ul>
 				</nav>
