@@ -22,8 +22,7 @@ class MainContent extends Component {
 	// Method to remove stop from database
 	removeStop = stopId => {
 		// get reference to users stops
-		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
+		const dbRef = firebase.database().ref('/users/' + this.props.uid + '/stops/');
 		// use child() and remove() methods to get the stop and remove it
 		dbRef.child(stopId).remove();
 	};
@@ -37,8 +36,7 @@ class MainContent extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		// Get database reference for user and stops
-		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
+		const dbRef = firebase.database().ref('/users/' + this.props.uid + '/stops/');
 		// Create a new stop object with it's name, expenses, and cost
 		const stop = {
 			name: this.state.location,
@@ -88,6 +86,7 @@ class MainContent extends Component {
 													expenses={stop.expenses}
 													stopId={stop.key}
 													cost={stop.cost}
+													uid={this.props.uid}
 												/>
 											);
 										}}

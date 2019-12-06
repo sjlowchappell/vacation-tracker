@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import sideBar from './sideBar.module.css';
-import dashboardIcon from '../assets/dashboard.svg';
 import locationIcon from '../assets/maps-and-flags.svg';
 import worldWideIcon from '../assets/worldwide.svg';
+// import dashboardIcon from '../assets/dashboard.svg';
 
 const SideBar = ({ user, login, logout, stops, totalCost }) => {
 	return (
@@ -31,14 +31,15 @@ const SideBar = ({ user, login, logout, stops, totalCost }) => {
 			</header>
 			<nav className={sideBar.nav}>
 				<ul className={sideBar.nav}>
-					<li>
+					{/* Eventually would like to build out a dashboard with reporting data */}
+					{/* <li>
 						<Link to="/" className={sideBar.navItem}>
 							<div className={sideBar.icon}>
 								<img src={dashboardIcon} alt="" />
 							</div>
 							Dashboard
 						</Link>
-					</li>
+					</li> */}
 					<li>
 						<Link to="/stops/" className={sideBar.navItem}>
 							<div className={sideBar.icon}>

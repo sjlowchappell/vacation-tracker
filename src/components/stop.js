@@ -3,7 +3,7 @@ import ExpenseList from './expenseList';
 import uuidv4 from 'uuid/v4';
 import stop from './stop.module.css';
 
-const Stop = ({ name, budget, expenses, stopId, cost }) => {
+const Stop = ({ name, budget, expenses, stopId, cost, uid }) => {
 	return (
 		<div className={stop.container}>
 			<div className={stop.header}>
@@ -11,7 +11,7 @@ const Stop = ({ name, budget, expenses, stopId, cost }) => {
 				<p className={stop.budget}>Budget: ${budget}</p>
 			</div>
 			<div className={stop.expenseContainer}>
-				<ExpenseList key={uuidv4()} items={expenses} stopId={stopId} cost={cost} budget={budget} />
+				<ExpenseList key={uuidv4()} items={expenses} stopId={stopId} cost={cost} budget={budget} uid={uid} />
 			</div>
 		</div>
 	);

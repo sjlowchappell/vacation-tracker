@@ -23,10 +23,9 @@ class App extends Component {
 		auth.onAuthStateChanged(user => {
 			// If user is logged in, set state to said user
 			if (user) {
-				this.setState({ user });
+				this.setState({ user, uid: user.uid });
 				// Get a database reference to that user's info
-				const userId = firebase.auth().currentUser.uid;
-				const dbRef = firebase.database().ref('/users/' + userId + '/stops/');
+				const dbRef = firebase.database().ref('/users/' + this.state.uid + '/stops/');
 				// Get all stops from that user's info, along with stop data
 				dbRef.on('value', response => {
 					const newState = [];
@@ -103,7 +102,7 @@ class App extends Component {
 							totalCost={this.allStopsCost()}
 						/>
 
-						<MainContent stops={this.state.stops} stopCost={this.stopCost} />
+						<MainContent stops={this.state.stops} stopCost={this.stopCost} uid={this.state.uid} />
 					</div>
 					<Footer />
 				</div>

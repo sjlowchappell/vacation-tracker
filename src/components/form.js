@@ -28,7 +28,7 @@ const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 								// Tried using uuidv4 for creating unique keys but it broke the handleChange function
 								<div key={`${input.id}Container`} className={form.inputItem}>
 									<label htmlFor={input.id}>{input.text}: </label>
-									<input type={input.type} id={input.id} onChange={handleChange} required />
+									<input type={input.type} id={input.id} onChange={handleChange} min="0" required />
 								</div>
 							);
 						}
