@@ -1,0 +1,53 @@
+.expenseItem {
+	margin: 10px 0px;
+	padding-bottom: 10px;
+	color: black;
+}
+
+table {
+	letter-spacing: 1px;
+	font-size: 1.6rem;
+	width: 100%;
+}
+
+th {
+	border: 1px solid white;
+	background: #f0a202;
+	color: #273e47;
+	font-weight: bold;
+	font-size: 1.8rem;
+	letter-spacing: 1px;
+}
+th button {
+	letter-spacing: 1px;
+	background: none;
+	border: none;
+	color: #273e47;
+	font-weight: bold;
+	font-size: 1.8rem;
+}
+
+td,
+th {
+	padding: 10px 0px;
+}
+
+td {
+	text-align: center;
+}
+
+.remove {
+	background: #a4243b;
+	color: white;
+	padding: 11px 21px;
+	font-weight: bold;
+	transition: 0.3s all;
+	border-radius: 5px;
+}
+
+.remove:hover {
+	padding: 10px 20px;
+	background: white;
+	color: #a4243b;
+	border: 2px solid #a4243b;
+}

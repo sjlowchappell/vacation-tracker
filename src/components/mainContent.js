@@ -56,6 +56,7 @@ class MainContent extends Component {
 	render() {
 		return (
 			<main className={mainContent.container}>
+				{/* Set up all routes. Need to check if the Router should go here instead of on the App component */}
 				{this.props.stops.length !== 0 ? (
 					<div>
 						{/* Route for StopsList */}

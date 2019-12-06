@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../firebase';
 import expenseList from './expenseList.module.css';
 import Form from './form';
+import Table from './table';
 
 const inputList = [
 	{ id: 'expenseName', type: 'text', text: 'Name' },
@@ -51,30 +52,6 @@ class ExpenseList extends Component {
 		});
 		dbRef.update({ cost: newCostTotal });
 	};
-
-	handleSubmit = e => {
-		e.preventDefault();
-		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase.database().ref('/users/' + userId + '/stops/' + this.props.stopId + '/expenses/');
-		dbRef.push({
-			name: this.state.expenseName,
-			value: this.state.expenseValue,
-			date: this.state.expenseDate,
-			category: this.state.expenseCategory,
-		});
-		this.costUpdate(this.state.expenseValue);
-		this.setState({
-			expenseName: '',
-			expenseValue: '',
-			expenseDate: '',
-			expenseCategory: 'Food',
-		});
-	};
-	handleChange = e => {
-		const expense = e.target.id;
-		this.setState({ [expense]: e.target.value });
-	};
-
 	costUpdateLower = itemId => {
 		// get reference to users stops
 		const userId = firebase.auth().currentUser.uid;
@@ -101,7 +78,28 @@ class ExpenseList extends Component {
 		// Update the stop total cost based on the new cost value
 		stopTotalRef.update({ cost: newCostTotal });
 	};
-
+	handleSubmit = e => {
+		e.preventDefault();
+		const userId = firebase.auth().currentUser.uid;
+		const dbRef = firebase.database().ref('/users/' + userId + '/stops/' + this.props.stopId + '/expenses/');
+		dbRef.push({
+			name: this.state.expenseName,
+			value: this.state.expenseValue,
+			date: this.state.expenseDate,
+			category: this.state.expenseCategory,
+		});
+		this.costUpdate(this.state.expenseValue);
+		this.setState({
+			expenseName: '',
+			expenseValue: '',
+			expenseDate: '',
+			expenseCategory: 'Food',
+		});
+	};
+	handleChange = e => {
+		const expense = e.target.id;
+		this.setState({ [expense]: e.target.value });
+	};
 	removeItem = itemId => {
 		// get reference to users stops
 		const userId = firebase.auth().currentUser.uid;
@@ -159,61 +157,7 @@ class ExpenseList extends Component {
 						</span>
 					</h2>
 				</div>
-				<table>
-					<thead>
-						<tr>
-							<th>
-								<button onClick={this.sortItems} value="date" data-dir="des">
-									Date
-								</button>
-							</th>
-							<th>
-								<button onClick={this.sortItems} value="name" data-dir="des">
-									Name
-								</button>
-							</th>
-							<th>
-								<button onClick={this.sortItems} value="value" data-dir="des">
-									Value
-								</button>
-							</th>
-							<th>
-								<button onClick={this.sortItems} value="category" data-dir="des">
-									Category
-								</button>
-							</th>
-							<th>Delete</th>
-						</tr>
-					</thead>
-					<tbody>
-						{this.state.expenses.map(expense => {
-							return (
-								<tr key={expense.key} className={expenseList.expenseItem}>
-									<td className={expenseList.date}>{expense.date}</td>
-									<td>{expense.name}</td>
-									<td>${expense.value}</td>
-									<td>
-										{expense.category}
-										{/* <select name="categories" id="">
-											<option value="food">Food</option>
-											<option value="food">Transport</option>
-											<option value="food">Lodging</option>
-											<option value="food">Miscellaneous</option>
-										</select> */}
-									</td>
-									<td>
-										<button
-											className={expenseList.remove}
-											onClick={() => this.removeItem(expense.key)}
-										>
-											Delete
-										</button>
-									</td>
-								</tr>
-							);
-						})}
-					</tbody>
-				</table>
+				<Table sortItems={this.sortItems} expenses={this.state.expenses} removeItem={this.removeItem} />
 				<Form
 					formText="Add a new Expense to your trip:"
 					inputs={inputList}
