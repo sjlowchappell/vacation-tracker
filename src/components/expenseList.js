@@ -23,9 +23,8 @@ class ExpenseList extends Component {
 		};
 	}
 	componentDidMount() {
-		const dbRef = firebase
-			.database()
-			.ref('/users/' + this.props.uid + '/stops/' + this.props.stopId + '/expenses/');
+		const { uid, stopId } = this.props;
+		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
 		dbRef.on('value', response => {
 			const newState = [];
 			const data = response.val();
@@ -44,7 +43,8 @@ class ExpenseList extends Component {
 		});
 	}
 	costUpdate = newVal => {
-		const dbRef = firebase.database().ref('/users/' + this.props.uid + '/stops/' + this.props.stopId);
+		const { uid, stopId } = this.props;
+		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId);
 		let newCostTotal = parseInt(newVal);
 		dbRef.once('value', response => {
 			const data = response.val();
@@ -56,18 +56,17 @@ class ExpenseList extends Component {
 		// get reference to users stops
 		let itemCost;
 		let newCostTotal;
+		const { uid, stopId } = this.props;
 
 		// Get a reference to the cost of the individual item
-		const itemCostRef = firebase
-			.database()
-			.ref('/users/' + this.props.uid + '/stops/' + this.props.stopId + '/expenses/' + itemId);
+		const itemCostRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/' + itemId);
 		// On reference value, save reference in a variable
 		itemCostRef.once('value', response => {
 			itemCost = parseInt(response.val().value);
 		});
 
 		// Get a reference to the total cost of the stop
-		const stopTotalRef = firebase.database().ref('/users/' + this.props.uid + '/stops/' + this.props.stopId);
+		const stopTotalRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId);
 		// Once the reference has been made, calculate the new cost total based on the previously found item value
 		stopTotalRef.once('value', response => {
 			const data = response.val();
@@ -79,9 +78,8 @@ class ExpenseList extends Component {
 	};
 	handleSubmit = e => {
 		e.preventDefault();
-		const dbRef = firebase
-			.database()
-			.ref('/users/' + this.props.uid + '/stops/' + this.props.stopId + '/expenses/');
+		const { uid, stopId } = this.props;
+		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
 		dbRef.push({
 			name: this.state.expenseName,
 			value: this.state.expenseValue,
@@ -102,11 +100,10 @@ class ExpenseList extends Component {
 	removeItem = itemId => {
 		// get reference to users stops
 		this.costUpdateLower(itemId);
+		const { uid, stopId } = this.props;
 
 		// Get a database reference to the expenses list
-		const dbRef = firebase
-			.database()
-			.ref('/users/' + this.props.uid + '/stops/' + this.props.stopId + '/expenses/');
+		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
 
 		// use child() and remove() methods to get the item and remove it
 		dbRef.child(itemId).remove();
@@ -147,14 +144,13 @@ class ExpenseList extends Component {
 		});
 	};
 	render() {
+		const { cost, budget } = this.props;
 		return (
 			<div className={expenseList.container}>
 				<div className={expenseList.inputContainer}>
 					<h2>
 						Total Spent:{' '}
-						<span className={this.props.cost > this.props.budget ? expenseList.red : expenseList.green}>
-							${this.props.cost}
-						</span>
+						<span className={cost > budget ? expenseList.red : expenseList.green}>${cost}</span>
 					</h2>
 				</div>
 				<Table sortItems={this.sortItems} expenses={this.state.expenses} removeItem={this.removeItem} />
