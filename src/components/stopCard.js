@@ -4,7 +4,7 @@ import stopCard from './stopCard.module.css';
 
 const StopCard = ({ stop, removeStop }) => {
 	return (
-		<li className={stopCard.stop}>
+		<div className={stopCard.stop}>
 			<Link to={`/${stop.name}/`} className={stopCard.stopLink}>
 				{stop.name}
 			</Link>
@@ -18,7 +18,7 @@ const StopCard = ({ stop, removeStop }) => {
 			<button className={stopCard.removeButton} onClick={() => removeStop(stop.key)}>
 				Delete
 			</button>
-		</li>
+		</div>
 	);
 };
 
