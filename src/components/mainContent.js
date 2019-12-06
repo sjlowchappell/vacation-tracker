@@ -6,7 +6,7 @@ import StopsList from './stopsList';
 import firebase from '../firebase';
 import uuidv4 from 'uuid/v4';
 
-const MainContent = ({ stops, stopCost }) => {
+const MainContent = ({ stops }) => {
 	// Method to remove stop from database
 	const removeStop = stopId => {
 		// get reference to users stops
@@ -19,12 +19,14 @@ const MainContent = ({ stops, stopCost }) => {
 		<main className={mainContent.container}>
 			{stops.length !== 0 ? (
 				<div>
+					{/* Route for StopsList */}
 					<Route
 						path={'/stops/'}
 						render={() => {
 							return <StopsList stops={stops} removeStop={removeStop} />;
 						}}
 					/>
+					{/* Routes for all the individual Stops */}
 					{stops.map(stop => {
 						return (
 							<div key={uuidv4()}>
@@ -38,7 +40,6 @@ const MainContent = ({ stops, stopCost }) => {
 												expenses={stop.expenses}
 												stopId={stop.key}
 												cost={stop.cost}
-												removeStop={removeStop}
 											/>
 										);
 									}}

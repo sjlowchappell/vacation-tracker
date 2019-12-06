@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import firebase from '../firebase';
 import stopsList from './stopsList.module.css';
 import Form from './form';
+import StopCard from './stopCard';
 
 const inputList = [
 	{ id: 'location', type: 'text', text: 'Location' },
@@ -50,29 +51,7 @@ class StopsList extends Component {
 				<nav>
 					<ul className={stopsList.allStops}>
 						{this.props.stops.map(stop => {
-							return (
-								<li key={stop.key} className={stopsList.stop}>
-									<Link to={`/${stop.name}/`} className={stopsList.stopLink}>
-										{stop.name}
-									</Link>
-									<p className={stopsList.date}>
-										{stop.arrival} - {stop.departure}
-									</p>
-									<p>Budgeted: ${stop.budget}</p>
-									<p>
-										Spent:{' '}
-										<span className={stop.cost > stop.budget ? stopsList.red : stopsList.green}>
-											${stop.cost}
-										</span>
-									</p>
-									<button
-										className={stopsList.removeButton}
-										onClick={() => this.props.removeStop(stop.key)}
-									>
-										Delete
-									</button>
-								</li>
-							);
+							return <StopCard key={stop.key} stop={stop} />;
 						})}
 					</ul>
 				</nav>

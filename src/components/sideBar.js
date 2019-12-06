@@ -49,7 +49,6 @@ const SideBar = ({ user, login, logout, stops, totalCost }) => {
 					</li>
 					<ul className={sideBar.stopsList}>
 						{stops.map(stop => {
-							// const currentStopCost = stopCost(stop.budgets);
 							return (
 								<li key={stop.key} className={sideBar.stopItem}>
 									<Link to={`/${stop.name}/`} className={sideBar.navItem}>
@@ -58,7 +57,6 @@ const SideBar = ({ user, login, logout, stops, totalCost }) => {
 										</div>
 										{stop.name}
 									</Link>
-									{/* <p className={sideBar.stopCost}>Spent: ${currentStopCost}</p> */}
 								</li>
 							);
 						})}
