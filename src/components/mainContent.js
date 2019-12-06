@@ -52,10 +52,11 @@ class MainContent extends Component {
 		this.setState({ name: '', budget: 0, arrival: '', departure: '' });
 	};
 	render() {
+		const { stops, uid } = this.props;
 		return (
 			<main className={mainContent.container}>
 				{/* Set up all routes. Need to check if the Router should go here instead of on the App component */}
-				{this.props.stops.length !== 0 ? (
+				{stops.length !== 0 ? (
 					<div>
 						{/* Route for StopsList */}
 						<Route
@@ -63,7 +64,7 @@ class MainContent extends Component {
 							render={() => {
 								return (
 									<StopsList
-										stops={this.props.stops}
+										stops={stops}
 										removeStop={this.removeStop}
 										handleChange={this.handleChange}
 										handleSubmit={this.handleSubmit}
@@ -73,7 +74,7 @@ class MainContent extends Component {
 							}}
 						/>
 						{/* Routes for all the individual Stops */}
-						{this.props.stops.map(stop => {
+						{stops.map(stop => {
 							return (
 								<div key={uuidv4()}>
 									<Route
@@ -86,7 +87,7 @@ class MainContent extends Component {
 													expenses={stop.expenses}
 													stopId={stop.key}
 													cost={stop.cost}
-													uid={this.props.uid}
+													uid={uid}
 												/>
 											);
 										}}
