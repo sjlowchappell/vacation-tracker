@@ -119,6 +119,7 @@ a.navItem:hover {
 		left: -320px;
 		z-index: 1;
 		transition: 0.5s all;
+		background: linear-gradient(180deg, rgba(39, 62, 71, 1), rgba(39, 62, 71, 0.9));
 	}
 	/*
 	* Just a quick hamburger
