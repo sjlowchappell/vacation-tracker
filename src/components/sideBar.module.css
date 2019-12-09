@@ -2,8 +2,9 @@ header {
 	text-align: center;
 }
 
-.container {
-	width: 25%;
+.content {
+	width: 300px;
+	/* flex: 1 0 25%; */
 	background: #273e47;
 	padding: 20px;
 	color: #dad7cd;
@@ -105,4 +106,85 @@ a.navItem:hover {
 	background: #f0a202;
 	width: 60px;
 	height: 5px;
+}
+
+@media (max-width: 1050px) {
+	.content {
+		position: absolute;
+		top: 0;
+		left: -320px;
+		z-index: 1;
+		transition: 1s all;
+	}
+	/*
+	* Just a quick hamburger
+	*/
+	.container span {
+		display: block;
+		width: 33px;
+		height: 4px;
+		margin-bottom: 5px;
+		position: relative;
+		top: 20px;
+		left: 20px;
+		background: #273e47;
+		border-radius: 3px;
+		z-index: 1000;
+		transform-origin: 4px 0px;
+		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+			opacity 0.55s ease;
+	}
+
+	.container span:first-child {
+		transform-origin: 0% 0%;
+	}
+
+	.container span:nth-last-child(2) {
+		transform-origin: 0% 100%;
+	}
+
+	/*
+	* Transform all the slices of hamburger
+	* into a crossmark.
+	*/
+	.container input:checked ~ span {
+		opacity: 1;
+		transform: rotate(45deg) translate(-2px, -1px);
+		background: #232323;
+	}
+
+	/*
+	* But let's hide the middle one.
+	*/
+	.container input:checked ~ span:nth-last-child(3) {
+		opacity: 0;
+		transform: rotate(0deg) scale(0.2, 0.2);
+	}
+
+	/*
+	* Ohyeah and the last one should go the other direction
+	*/
+	.container input:checked ~ span:nth-last-child(2) {
+		opacity: 1;
+		transform: rotate(-45deg) translate(0, -1px);
+	}
+
+	.hamburger {
+		z-index: 10000;
+		position: absolute;
+		top: 0;
+		display: block;
+		width: 40px;
+		height: 32px;
+		top: 20px;
+		left: 20px;
+		cursor: pointer;
+		opacity: 0;
+	}
+	.container input:checked ~ .content {
+		left: 0px;
+	}
+	.container input:checked ~ span {
+		background: #dad7cd;
+	}
 }

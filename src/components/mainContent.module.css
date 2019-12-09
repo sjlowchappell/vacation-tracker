@@ -3,3 +3,9 @@
 	flex: 1 0 70%;
 	background: #fffdf6;
 }
+
+@media (max-width: 1050px) {
+	.container {
+		flex-basis: 100%;
+	}
+}
