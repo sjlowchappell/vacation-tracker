@@ -1,3 +1,7 @@
+.container {
+	overflow-x: auto;
+}
+
 .expenseItem {
 	margin: 10px 0px;
 	padding-bottom: 10px;
