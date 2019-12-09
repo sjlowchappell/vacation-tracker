@@ -47,3 +47,20 @@
 	color: #273e47;
 	border: 2px solid #273e47;
 }
+
+@media (max-width: 700px) {
+	.container {
+		width: 100%;
+	}
+}
+
+@media (max-width: 550px) {
+	.inputContainer {
+		flex-direction: column;
+	}
+	.inputItem {
+		flex: 1 0 80%;
+		width: 80%;
+		max-width: 80%;
+	}
+}
