@@ -14,7 +14,9 @@ const SideBar = ({ user, login, logout, stops, totalCost }) => {
 			<span></span>
 			<div className={sideBar.content}>
 				<header>
-					<h1>Vacay Tracker!</h1>
+					<Link to="/">
+						<h1>Vacay Tracker!</h1>
+					</Link>
 					{user ? (
 						<div className={sideBar.profile}>
 							<div className={sideBar.profileImageContainer}>

@@ -92,18 +92,26 @@ class App extends Component {
 		return (
 			<Router>
 				<div className="wrapper">
-					<div className="contentContainer">
-						<SideBar
-							user={this.state.user}
-							login={this.login}
-							logout={this.logout}
-							stops={this.state.stops}
-							stopCost={this.stopCost}
-							totalCost={this.allStopsCost()}
-						/>
+					{this.state.user ? (
+						<div className="contentContainer">
+							<SideBar
+								user={this.state.user}
+								login={this.login}
+								logout={this.logout}
+								stops={this.state.stops}
+								stopCost={this.stopCost}
+								totalCost={this.allStopsCost()}
+							/>
 
-						<MainContent stops={this.state.stops} stopCost={this.stopCost} uid={this.state.uid} />
-					</div>
+							<MainContent stops={this.state.stops} stopCost={this.stopCost} uid={this.state.uid} />
+						</div>
+					) : (
+						<div>
+							<h1>Welcome to Vacay Tracker!</h1>
+							<button>Log In</button>
+							<button>Sign Up</button>
+						</div>
+					)}
 					<Footer />
 				</div>
 			</Router>
