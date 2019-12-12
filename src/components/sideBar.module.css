@@ -4,7 +4,7 @@ header {
 
 .content {
 	width: 300px;
-	/* flex: 1 0 25%; */
+	height: 100%;
 	background: #273e47;
 	padding: 20px;
 	color: #dad7cd;
@@ -115,6 +115,7 @@ a.navItem:hover {
 @media (max-width: 1050px) {
 	.content {
 		position: absolute;
+		height: auto;
 		top: 0;
 		left: -320px;
 		z-index: 1;

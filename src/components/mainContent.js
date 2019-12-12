@@ -6,6 +6,7 @@ import StopsList from './stopsList';
 import firebase from '../firebase';
 import uuidv4 from 'uuid/v4';
 import Form from './form';
+import HomePage from './homePage';
 
 const inputList = [
 	{ id: 'location', type: 'text', text: 'Location' },
@@ -56,23 +57,24 @@ class MainContent extends Component {
 		return (
 			<main className={mainContent.container}>
 				{/* Set up all routes. Need to check if the Router should go here instead of on the App component */}
+				<Route path="/" component={HomePage} />
+				{/* Route for StopsList */}
+				<Route
+					path={'/stops/'}
+					render={() => {
+						return (
+							<StopsList
+								stops={stops}
+								removeStop={this.removeStop}
+								handleChange={this.handleChange}
+								handleSubmit={this.handleSubmit}
+								inputList={inputList}
+							/>
+						);
+					}}
+				/>
 				{stops.length !== 0 ? (
 					<div>
-						{/* Route for StopsList */}
-						<Route
-							path={'/stops/'}
-							render={() => {
-								return (
-									<StopsList
-										stops={stops}
-										removeStop={this.removeStop}
-										handleChange={this.handleChange}
-										handleSubmit={this.handleSubmit}
-										inputList={inputList}
-									/>
-								);
-							}}
-						/>
 						{/* Routes for all the individual Stops */}
 						{stops.map(stop => {
 							return (
@@ -96,17 +98,7 @@ class MainContent extends Component {
 							);
 						})}
 					</div>
-				) : (
-					<div>
-						<Form
-							formText="Add a new stop to your trip:"
-							inputs={inputList}
-							handleChange={this.handleChange}
-							handleSubmit={this.handleSubmit}
-							submitText={'Add Stop'}
-						/>
-					</div>
-				)}
+				) : null}
 			</main>
 		);
 	}
