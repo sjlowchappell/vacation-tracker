@@ -5,7 +5,6 @@ import mainContent from './mainContent.module.css';
 import StopsList from './stopsList';
 import firebase from '../firebase';
 import uuidv4 from 'uuid/v4';
-import Form from './form';
 import HomePage from './homePage';
 
 const inputList = [
@@ -57,6 +56,7 @@ class MainContent extends Component {
 		return (
 			<main className={mainContent.container}>
 				{/* Set up all routes. Need to check if the Router should go here instead of on the App component */}
+				{/* Route for home page */}
 				<Route path="/" component={HomePage} />
 				{/* Route for StopsList */}
 				<Route
@@ -74,30 +74,29 @@ class MainContent extends Component {
 					}}
 				/>
 				{stops.length !== 0 ? (
-					<div>
+					<>
 						{/* Routes for all the individual Stops */}
 						{stops.map(stop => {
 							return (
-								<div key={uuidv4()}>
-									<Route
-										path={`/${stop.name}/`}
-										render={() => {
-											return (
-												<Stop
-													name={stop.name}
-													budget={stop.budget}
-													expenses={stop.expenses}
-													stopId={stop.key}
-													cost={stop.cost}
-													uid={uid}
-												/>
-											);
-										}}
-									/>
-								</div>
+								<Route
+									key={uuidv4()}
+									path={`/${stop.name}/`}
+									render={() => {
+										return (
+											<Stop
+												name={stop.name}
+												budget={stop.budget}
+												expenses={stop.expenses}
+												stopId={stop.key}
+												cost={stop.cost}
+												uid={uid}
+											/>
+										);
+									}}
+								/>
 							);
 						})}
-					</div>
+					</>
 				) : null}
 			</main>
 		);

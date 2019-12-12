@@ -257,7 +257,8 @@ ul {
 
 footer {
 	text-align: center;
-	padding: 20px 0px;
+	padding: 10px 0px;
 	background: #f0a202;
 	color: #273e47;
+	height: 10vh;
 }

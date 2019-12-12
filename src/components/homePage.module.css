@@ -1,0 +1,25 @@
+.container {
+	padding: 0px 10%;
+	text-align: center;
+}
+
+.container p {
+	text-align: left;
+}
+
+.submit {
+	background: #273e47;
+	color: white;
+	padding: 21px 41px;
+	font-weight: bold;
+	margin-top: 20px;
+	transition: 0.3s all;
+	border-radius: 5px;
+}
+
+.submit:hover {
+	padding: 20px 40px;
+	background: white;
+	color: #273e47;
+	border: 2px solid #273e47;
+}
