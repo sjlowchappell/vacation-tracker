@@ -2,9 +2,9 @@ import React from 'react';
 import homePage from './homePage.module.css';
 import airplane from '../assets/airplane.svg';
 import cocktail from '../assets/cocktail.svg';
-import compass from '../assets/compass.svg';
 import hotel from '../assets/hotel.svg';
 import passport from '../assets/passport.svg';
+import moneybag from '../assets/money-bag.svg';
 
 const HomePage = ({ login }) => {
 	return (
@@ -18,7 +18,7 @@ const HomePage = ({ login }) => {
 					<img src={cocktail} alt="SVG of an cocktail" />
 				</div>
 				<div className={homePage.iconContainer}>
-					<img src={compass} alt="SVG of an compass" />
+					<img src={moneybag} alt="SVG of an money bag" />
 				</div>
 				<div className={homePage.iconContainer}>
 					<img src={hotel} alt="SVG of an hotel" />
