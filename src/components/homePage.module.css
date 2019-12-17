@@ -45,7 +45,7 @@
 	border: 2px solid #273e47;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 800px) {
 	.container {
 		padding-bottom: 50px;
 	}
