@@ -22,6 +22,9 @@ class ExpenseList extends Component {
 			expenseCategory: 'Food',
 		};
 	}
+	decimalPlace = num => {
+		return (Math.round(num * 100) / 100).toFixed(2);
+	};
 	componentDidMount() {
 		const { uid, stopId } = this.props;
 		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
@@ -48,7 +51,7 @@ class ExpenseList extends Component {
 		let newCostTotal = parseFloat(newVal);
 		dbRef.once('value', response => {
 			const data = response.val();
-			newCostTotal = data.cost + newCostTotal;
+			newCostTotal = this.decimalPlace(parseFloat(data.cost) + newCostTotal);
 		});
 		dbRef.update({ cost: newCostTotal });
 	};
@@ -70,7 +73,7 @@ class ExpenseList extends Component {
 		// Once the reference has been made, calculate the new cost total based on the previously found item value
 		stopTotalRef.once('value', response => {
 			const data = response.val();
-			newCostTotal = data.cost - itemCost;
+			newCostTotal = this.decimalPlace(data.cost - itemCost);
 		});
 
 		// Update the stop total cost based on the new cost value
@@ -82,7 +85,7 @@ class ExpenseList extends Component {
 		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
 		dbRef.push({
 			name: this.state.expenseName,
-			value: this.state.expenseValue,
+			value: this.decimalPlace(this.state.expenseValue),
 			date: this.state.expenseDate,
 			category: this.state.expenseCategory,
 		});
@@ -150,7 +153,7 @@ class ExpenseList extends Component {
 				<div className={expenseList.inputContainer}>
 					<h2>
 						Total Spent:{' '}
-						<span className={cost > budget ? expenseList.red : expenseList.green}>${cost}</span>
+						<span className={parseFloat(cost) > budget ? expenseList.red : expenseList.green}>${cost}</span>
 					</h2>
 				</div>
 				<Table sortItems={this.sortItems} expenses={this.state.expenses} removeItem={this.removeItem} />
