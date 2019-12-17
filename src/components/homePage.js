@@ -5,7 +5,6 @@ import cocktail from '../assets/cocktail.svg';
 import compass from '../assets/compass.svg';
 import hotel from '../assets/hotel.svg';
 import passport from '../assets/passport.svg';
-import { Link } from 'react-router-dom';
 
 const HomePage = ({ login }) => {
 	return (
@@ -37,11 +36,9 @@ const HomePage = ({ login }) => {
 				Once stops have been added, add your expenses to each stop to make sure you're staying on track. Safe
 				travels!
 			</p>
-			<Link to="/stops">
-				<button className={homePage.submit} onClick={login}>
-					Log in With Google
-				</button>
-			</Link>
+			<button className={homePage.submit} onClick={login}>
+				Log in With Google
+			</button>
 		</div>
 	);
 };
