@@ -57,7 +57,8 @@ class MainContent extends Component {
 				{/* Set up all routes. Need to check if the Router should go here instead of on the App component */}
 				{/* Route for StopsList */}
 				<Route
-					path={'/stops/'}
+					exact
+					path={'/'}
 					render={() => {
 						return (
 							<StopsList

@@ -48,7 +48,7 @@ const SideBar = ({ user, login, logout, stops, totalCost }) => {
 						</Link>
 					</li> */}
 						<li>
-							<Link to="/stops/" className={sideBar.navItem}>
+							<Link to="/" className={sideBar.navItem}>
 								<div className={sideBar.icon}>
 									<img src={worldWideIcon} alt="" />
 								</div>
