@@ -45,7 +45,7 @@ class ExpenseList extends Component {
 	costUpdate = newVal => {
 		const { uid, stopId } = this.props;
 		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId);
-		let newCostTotal = parseInt(newVal);
+		let newCostTotal = parseFloat(newVal);
 		dbRef.once('value', response => {
 			const data = response.val();
 			newCostTotal = data.cost + newCostTotal;
@@ -62,7 +62,7 @@ class ExpenseList extends Component {
 		const itemCostRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/' + itemId);
 		// On reference value, save reference in a variable
 		itemCostRef.once('value', response => {
-			itemCost = parseInt(response.val().value);
+			itemCost = parseFloat(response.val().value);
 		});
 
 		// Get a reference to the total cost of the stop
@@ -116,11 +116,11 @@ class ExpenseList extends Component {
 		let newState;
 		// if the value is descending:
 		if (direction === 'des') {
-			// check if sort type is value (need to parseint if this is the case)
+			// check if sort type is value (need to parseFloat if this is the case)
 			sortType === 'value'
 				? (newState = this.state.expenses.sort((a, b) =>
 						// return an array sorted based on number value in descending order
-						parseInt(a[sortType]) > parseInt(b[sortType]) ? 1 : -1,
+						parseFloat(a[sortType]) > parseFloat(b[sortType]) ? 1 : -1,
 				  ))
 				: //   else return an array sorted by value in descending order
 				  (newState = this.state.expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1)));
@@ -128,11 +128,11 @@ class ExpenseList extends Component {
 			e.target.setAttribute('data-dir', 'asc');
 		} else {
 			// else if value is ascending
-			// check if sort type is value (need to parseint if this is the case)
+			// check if sort type is value (need to parseFloat if this is the case)
 			sortType === 'value'
 				? (newState = this.state.expenses.sort((a, b) =>
 						// return an array sorted based on number value in ascending order
-						parseInt(a[sortType]) < parseInt(b[sortType]) ? 1 : -1,
+						parseFloat(a[sortType]) < parseFloat(b[sortType]) ? 1 : -1,
 				  ))
 				: //   else return an array sorted by value in ascending order
 				  (newState = this.state.expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1)));

@@ -61,7 +61,7 @@ class App extends Component {
 		let accum = 0;
 		// loop through each item object and add up the value
 		for (let key in expenses) {
-			accum = accum + parseInt(expenses[key].value);
+			accum = accum + parseFloat(expenses[key].value);
 		}
 		// return the accumulated total
 		return accum;
