@@ -13,7 +13,10 @@ const StopCard = ({ stop, removeStop }) => {
 			</p>
 			<p>Budgeted: ${stop.budget}</p>
 			<p>
-				Spent: <span className={stop.cost > stop.budget ? stopCard.red : stopCard.green}>${stop.cost}</span>
+				Spent:{' '}
+				<span className={parseFloat(stop.cost) > stop.budget ? stopCard.red : stopCard.green}>
+					${stop.cost}
+				</span>
 			</p>
 			<button className={stopCard.removeButton} onClick={() => removeStop(stop.key)}>
 				Delete
