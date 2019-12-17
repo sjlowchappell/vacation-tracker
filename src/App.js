@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import HomePage from './components/homePage';
 import Footer from './components/footer';
 import SideBar from './components/sideBar';
 import MainContent from './components/mainContent';
@@ -107,20 +108,7 @@ class App extends Component {
 						</div>
 					) : (
 						<div>
-							<h1>Welcome to Vacay Tracker!</h1>
-							<button>Log in With Google</button>
-							<button>Log in With Facebook</button>
-							{/* Use the Form component here after determening what you want in the form */}
-							<form action="">
-								<p>Log in with Username:</p>
-								<label htmlFor="name">Username</label>
-								<input id="name" type="text" />
-								<label htmlFor="password">Password</label>
-								<input id="password" type="password" />
-							</form>
-							<button>Log In</button>
-							{/* Link to a registration page */}
-							<button>Sign Up</button>
+							<Route path="/" render={() => <HomePage login={this.login} />} />
 						</div>
 					)}
 					<Footer />

@@ -1,10 +1,31 @@
 .container {
-	padding: 0px 10%;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 0px 15px;
 	text-align: center;
+	min-height: 90vh;
+}
+
+.container h1 {
+	margin-top: 0px;
+	padding-top: 40px;
+	font-size: 6rem;
 }
 
 .container p {
 	text-align: left;
+	margin: 10px 0px;
+}
+
+.iconContainer {
+	width: 50px;
+	filter: invert(70%) sepia(24%) saturate(7235%) hue-rotate(8deg) brightness(104%) contrast(98%);
+}
+.iconBox {
+	display: flex;
+	width: 70%;
+	margin: 40px auto;
+	justify-content: space-between;
 }
 
 .submit {
@@ -22,4 +43,19 @@
 	background: white;
 	color: #273e47;
 	border: 2px solid #273e47;
+}
+
+@media (max-width: 600px) {
+	.container {
+		padding-bottom: 50px;
+	}
+}
+
+@media (max-width: 500px) {
+	.iconBox {
+		width: 100%;
+	}
+	.iconContainer {
+		width: 40px;
+	}
 }

@@ -203,6 +203,7 @@ html {
 body {
 	font-size: 2rem;
 	font-family: 'Montserrat', sans-serif;
+	background: #fffdf6;
 }
 
 header h1 {
@@ -239,8 +240,6 @@ img {
 
 .wrapper {
 	margin: 0 auto;
-	/* max-width: 1200px; */
-	/* padding: 0px 15px; */
 }
 li,
 nav,

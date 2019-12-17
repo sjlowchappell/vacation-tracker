@@ -5,7 +5,6 @@ import mainContent from './mainContent.module.css';
 import StopsList from './stopsList';
 import firebase from '../firebase';
 import uuidv4 from 'uuid/v4';
-import HomePage from './homePage';
 
 const inputList = [
 	{ id: 'location', type: 'text', text: 'Location' },
@@ -56,8 +55,6 @@ class MainContent extends Component {
 		return (
 			<main className={mainContent.container}>
 				{/* Set up all routes. Need to check if the Router should go here instead of on the App component */}
-				{/* Route for home page */}
-				<Route path="/" component={HomePage} />
 				{/* Route for StopsList */}
 				<Route
 					path={'/stops/'}
