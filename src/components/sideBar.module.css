@@ -2,6 +2,12 @@ header {
 	text-align: center;
 }
 
+/* Hamburger (hidden at full width) */
+.hamburger {
+	display: none;
+}
+
+/* Styling of sidebar content container */
 .content {
 	width: 300px;
 	height: 100%;
@@ -10,9 +16,21 @@ header {
 	color: #dad7cd;
 }
 
-.hamburger {
-	display: none;
+.container h2 {
+	position: relative;
 }
+
+.container h2:after {
+	position: absolute;
+	top: 55px;
+	left: 0;
+	content: '';
+	background: #f0a202;
+	width: 60px;
+	height: 5px;
+}
+
+/* Profile styling */
 
 .profile {
 	display: flex;
@@ -40,17 +58,10 @@ header {
 	object-fit: cover;
 }
 
+/* Nav Styling */
+
 .stopItem {
 	padding-top: 10px;
-}
-
-.stopCost {
-	color: black;
-	font-size: 1.2rem;
-	padding-left: 20px;
-}
-
-.stopsList {
 	padding-left: 50px;
 }
 
@@ -61,38 +72,25 @@ header {
 	filter: invert(70%) sepia(24%) saturate(7235%) hue-rotate(8deg) brightness(104%) contrast(98%);
 }
 
-.navItem {
+.navLink {
 	font-family: 'Alata', sans-serif;
 	display: inline-flex;
 	align-items: center;
 }
 
-a.navItem {
+a.navLink {
 	color: #dad7cd;
 	padding-bottom: 3px;
 	transition: 0.3s all;
 }
-a.navItem:hover {
+a.navLink:hover {
 	color: #f0a202;
 	padding-bottom: 0px;
 	border-bottom: 3px solid #f0a202;
 }
 
-.container h2 {
-	position: relative;
-}
-
-.container h2:after {
-	position: absolute;
-	top: 55px;
-	left: 0;
-	content: '';
-	background: #f0a202;
-	width: 60px;
-	height: 5px;
-}
-
 @media (max-width: 1050px) {
+	/* Styling all related to hamburger menu when screen size becomes small enough. Taken from https://codepen.io/Joanc/pen/XYYZdE and modified to fit this project */
 	.content {
 		position: absolute;
 		height: auto;
@@ -102,9 +100,7 @@ a.navItem:hover {
 		transition: 0.5s all;
 		background: linear-gradient(180deg, rgba(39, 62, 71, 1), rgba(39, 62, 71, 0.9));
 	}
-	/*
-	* Just a quick hamburger
-	*/
+
 	.container span {
 		display: block;
 		width: 33px;
@@ -129,27 +125,17 @@ a.navItem:hover {
 		transform-origin: 0% 100%;
 	}
 
-	/*
-	* Transform all the slices of hamburger
-	* into a crossmark.
-	*/
 	.container input:checked ~ span {
 		opacity: 1;
 		transform: rotate(45deg) translate(-2px, -1px);
 		background: #232323;
 	}
 
-	/*
-	* But let's hide the middle one.
-	*/
 	.container input:checked ~ span:nth-last-child(3) {
 		opacity: 0;
 		transform: rotate(0deg) scale(0.2, 0.2);
 	}
 
-	/*
-	* Ohyeah and the last one should go the other direction
-	*/
 	.container input:checked ~ span:nth-last-child(2) {
 		opacity: 1;
 		transform: rotate(-45deg) translate(0, -1px);

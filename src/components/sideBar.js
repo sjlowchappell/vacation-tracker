@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import sideBar from './sideBar.module.css';
 import locationIcon from '../assets/maps-and-flags.svg';
 import worldWideIcon from '../assets/worldwide.svg';
-// import dashboardIcon from '../assets/dashboard.svg';
 import Button from './button';
 
 const SideBar = ({ user, login, logout, stops, totalCost }) => {
@@ -18,58 +17,38 @@ const SideBar = ({ user, login, logout, stops, totalCost }) => {
 					<Link to="/">
 						<h1>Vacay Tracker!</h1>
 					</Link>
-					{user ? (
-						<div className={sideBar.profile}>
-							<div className={sideBar.profileImageContainer}>
-								<img src={user.photoURL} alt="" />
-							</div>
-							<p className={sideBar.userName}>{user.displayName}</p>
-							<Link to="/">
-								<Button styleType="yellow" listener={logout}>
-									Log Out
-								</Button>
-							</Link>
+					<div className={sideBar.profile}>
+						<div className={sideBar.profileImageContainer}>
+							<img src={user.photoURL} alt={`Profile pic for ${user.displayName}`} />
 						</div>
-					) : (
-						<div>
-							<p>Please Log In</p>
-							<button onClick={login}>Log In</button>
-						</div>
-					)}
+						<p className={sideBar.userName}>{user.displayName}</p>
+						<Button styleType="yellow" listener={logout}>
+							Log Out
+						</Button>
+					</div>
 				</header>
-				<nav className={sideBar.nav}>
-					<ul className={sideBar.nav}>
-						{/* Eventually would like to build out a dashboard with reporting data */}
-						{/* <li>
-						<Link to="/" className={sideBar.navItem}>
-							<div className={sideBar.icon}>
-								<img src={dashboardIcon} alt="" />
-							</div>
-							Dashboard
-						</Link>
-					</li> */}
+				<nav>
+					<ul>
 						<li>
-							<Link to="/" className={sideBar.navItem}>
+							<Link to="/" className={sideBar.navLink}>
 								<div className={sideBar.icon}>
 									<img src={worldWideIcon} alt="" />
 								</div>
 								Stops
 							</Link>
 						</li>
-						<ul className={sideBar.stopsList}>
-							{stops.map(stop => {
-								return (
-									<li key={stop.key} className={sideBar.stopItem}>
-										<Link to={`/${stop.name}/`} className={sideBar.navItem}>
-											<div className={sideBar.icon}>
-												<img src={locationIcon} alt="" />
-											</div>
-											{stop.name}
-										</Link>
-									</li>
-								);
-							})}
-						</ul>
+						{stops.map(stop => {
+							return (
+								<li key={stop.key} className={sideBar.stopItem}>
+									<Link to={`/${stop.name}/`} className={sideBar.navLink}>
+										<div className={sideBar.icon}>
+											<img src={locationIcon} alt="" />
+										</div>
+										{stop.name}
+									</Link>
+								</li>
+							);
+						})}
 					</ul>
 				</nav>
 				{stops.length !== 0 ? <h2>Total Trip Cost: ${totalCost}</h2> : null}
