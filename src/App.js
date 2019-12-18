@@ -59,17 +59,6 @@ class App extends Component {
 		});
 	}
 
-	// Cost related methods
-	stopCost = expenses => {
-		// accumulator used for going through object has multiple expenses
-		let accum = 0;
-		// loop through each item object and add up the value
-		for (let key in expenses) {
-			accum = accum + parseFloat(expenses[key].value);
-		}
-		// return the accumulated total
-		return accum;
-	};
 	// Method to determine the total cost of all the stops of a given trip
 	allStopsCost = () => {
 		return (
@@ -121,7 +110,7 @@ class App extends Component {
 								totalCost={this.allStopsCost()}
 							/>
 
-							<MainContent stops={this.state.stops} stopCost={this.stopCost} uid={this.state.uid} />
+							<MainContent stops={this.state.stops} uid={this.state.uid} />
 						</div>
 					) : (
 						<div>
