@@ -3,7 +3,7 @@ import stopsList from './stopsList.module.css';
 import Form from './form';
 import StopCard from './stopCard';
 
-const StopsList = ({ inputList, stops, removeStop, handleChange, handleSubmit }) => {
+const StopsList = ({ inputList, stops, handleChange, handleSubmit, uid }) => {
 	return (
 		<div className={stopsList.container}>
 			<h1>Stops on your journey:</h1>
@@ -11,7 +11,7 @@ const StopsList = ({ inputList, stops, removeStop, handleChange, handleSubmit })
 				<>
 					<div className={stopsList.allStops}>
 						{stops.map(stop => {
-							return <StopCard key={stop.key} stop={stop} removeStop={removeStop} />;
+							return <StopCard stop={stop} uid={uid} />;
 						})}
 					</div>
 					<Form

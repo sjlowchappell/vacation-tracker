@@ -12,13 +12,6 @@ class MainContent extends Component {
 		super();
 		this.state = {};
 	}
-	// Method to remove stop from database
-	removeStop = stopId => {
-		// get reference to users stops
-		const dbRef = firebase.database().ref('/users/' + this.props.uid + '/stops/');
-		// use child() and remove() methods to get the stop and remove it
-		dbRef.child(stopId).remove();
-	};
 	// Method for handling form input -> sets state based on user input
 	handleChange = e => {
 		this.setState({
@@ -57,7 +50,8 @@ class MainContent extends Component {
 						return (
 							<StopsList
 								stops={stops}
-								removeStop={this.removeStop}
+								uid={uid}
+								// removeStop={this.removeStop}
 								handleChange={this.handleChange}
 								handleSubmit={this.handleSubmit}
 								inputList={inputList}

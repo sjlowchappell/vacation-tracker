@@ -1,4 +1,4 @@
-.stop {
+.container {
 	box-shadow: 0px 0px 4px #273e47;
 	padding: 20px;
 	border-radius: 5px;
@@ -10,7 +10,7 @@
 	background: white;
 }
 
-.stop:hover {
+.container:hover {
 	transform: scale(1.1);
 }
 

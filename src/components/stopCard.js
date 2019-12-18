@@ -2,10 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import stopCard from './stopCard.module.css';
 import Button from './button';
+import firebase from '../firebase';
 
-const StopCard = ({ stop, removeStop }) => {
+const StopCard = ({ stop, uid }) => {
+	// Method to remove stop from database
+	const removeStop = stopId => {
+		// get reference to users stops
+		const dbRef = firebase.database().ref('/users/' + uid + '/stops/');
+		// use child() and remove() methods to get the stop and remove it
+		dbRef.child(stopId).remove();
+	};
 	return (
-		<div className={stopCard.stop}>
+		<div className={stopCard.container}>
 			<Link to={`/${stop.name}/`} className={stopCard.stopLink}>
 				{stop.name}
 			</Link>
