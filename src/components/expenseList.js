@@ -122,27 +122,17 @@ class ExpenseList extends Component {
 		const sortType = e.target.value;
 		const { sortDirection, expenses } = this.state;
 		let newState;
-		// check if sort direction is descending or ascending and sort accordingly
+
+		// check if sort direction is ascending or descending
+		// Sort expenses based on sortType
 		if (sortDirection === 'des') {
-			// check if sort type is value (need to parseFloat if this is the case)
-			sortType === 'value'
-				? (newState = expenses.sort((a, b) =>
-						// return an array sorted based on number value in descending order
-						parseFloat(a[sortType]) > parseFloat(b[sortType]) ? 1 : -1,
-				  ))
-				: //   else return an array sorted by value in descending order
-				  (newState = expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1)));
+			newState = expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1));
 			this.setState({ sortDirection: 'asc' });
 		} else {
-			sortType === 'value'
-				? (newState = expenses.sort((a, b) =>
-						// return an array sorted based on number value in ascending order
-						parseFloat(a[sortType]) < parseFloat(b[sortType]) ? 1 : -1,
-				  ))
-				: //   else return an array sorted by value in ascending order
-				  (newState = expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1)));
+			newState = expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1));
 			this.setState({ sortDirection: 'des' });
 		}
+		// Update expenses after they've been sorted
 		this.setState({
 			expenses: newState,
 		});
