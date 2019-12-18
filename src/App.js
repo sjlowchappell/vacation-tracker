@@ -16,6 +16,7 @@ class App extends Component {
 		this.state = {
 			user: null,
 			stops: [],
+			loading: true,
 		};
 	}
 
@@ -24,7 +25,7 @@ class App extends Component {
 		auth.onAuthStateChanged(user => {
 			// If user is logged in, set state to said user
 			if (user) {
-				this.setState({ user, uid: user.uid });
+				this.setState({ user, uid: user.uid, loading: false });
 				// Get a database reference to that user's info
 				const dbRef = firebase.database().ref('/users/' + this.state.uid + '/stops/');
 				// Get all stops from that user's info, along with stop data
@@ -52,6 +53,7 @@ class App extends Component {
 				// If no user is logged in, clear the page
 				this.setState({
 					stops: [],
+					loading: false,
 				});
 			}
 		});
@@ -99,7 +101,14 @@ class App extends Component {
 		return (
 			<Router>
 				<div className="wrapper">
-					{this.state.user ? (
+					{this.state.loading ? (
+						<div className="lds-ring">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+					) : this.state.user ? (
 						<div className="contentContainer">
 							<SideBar
 								user={this.state.user}
@@ -117,6 +126,7 @@ class App extends Component {
 							<Route path="/" render={() => <HomePage login={this.login} />} />
 						</div>
 					)}
+
 					<Footer />
 				</div>
 			</Router>
