@@ -58,6 +58,8 @@ class App extends Component {
 			}
 		});
 	}
+
+	// Cost related methods
 	stopCost = expenses => {
 		// accumulator used for going through object has multiple expenses
 		let accum = 0;
@@ -68,18 +70,22 @@ class App extends Component {
 		// return the accumulated total
 		return accum;
 	};
-
 	// Method to determine the total cost of all the stops of a given trip
 	allStopsCost = () => {
 		return (
-			Math.round(
-				this.state.stops.reduce((total, stop) => {
-					return stop.cost !== undefined ? total + parseFloat(stop.cost) : total;
-				}, 0) * 100,
-			) / 100
-		).toFixed(2);
+			// rounds the returned number to 2 decimal places
+			(
+				Math.round(
+					// reduce function used to total up all of the stop costs
+					this.state.stops.reduce((total, stop) => {
+						return stop.cost !== undefined ? total + parseFloat(stop.cost) : total;
+					}, 0) * 100,
+				) / 100
+			).toFixed(2)
+		);
 	};
 
+	//Login and logout related methods
 	login = () => {
 		auth.signInWithPopup(provider).then(result => {
 			const user = result.user;
