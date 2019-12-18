@@ -14,6 +14,7 @@ class ExpenseList extends Component {
 			expenseValue: '',
 			expenseDate: '',
 			expenseCategory: 'Food',
+			sortDirection: 'des',
 		};
 	}
 
@@ -119,33 +120,28 @@ class ExpenseList extends Component {
 	sortItems = e => {
 		// get sort type from value (date, name, or value)
 		const sortType = e.target.value;
-		// get direction from data set (ascending or descending)
-		const direction = e.target.dataset.dir;
+		const { sortDirection, expenses } = this.state;
 		let newState;
-		// if the value is descending:
-		if (direction === 'des') {
+		// check if sort direction is descending or ascending and sort accordingly
+		if (sortDirection === 'des') {
 			// check if sort type is value (need to parseFloat if this is the case)
 			sortType === 'value'
-				? (newState = this.state.expenses.sort((a, b) =>
+				? (newState = expenses.sort((a, b) =>
 						// return an array sorted based on number value in descending order
 						parseFloat(a[sortType]) > parseFloat(b[sortType]) ? 1 : -1,
 				  ))
 				: //   else return an array sorted by value in descending order
-				  (newState = this.state.expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1)));
-			// toggle the direction attribute to ascending
-			e.target.setAttribute('data-dir', 'asc');
+				  (newState = expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1)));
+			this.setState({ sortDirection: 'asc' });
 		} else {
-			// else if value is ascending
-			// check if sort type is value (need to parseFloat if this is the case)
 			sortType === 'value'
-				? (newState = this.state.expenses.sort((a, b) =>
+				? (newState = expenses.sort((a, b) =>
 						// return an array sorted based on number value in ascending order
 						parseFloat(a[sortType]) < parseFloat(b[sortType]) ? 1 : -1,
 				  ))
 				: //   else return an array sorted by value in ascending order
-				  (newState = this.state.expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1)));
-			// toggle the direction attribute to descending
-			e.target.setAttribute('data-dir', 'des');
+				  (newState = expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1)));
+			this.setState({ sortDirection: 'des' });
 		}
 		this.setState({
 			expenses: newState,
