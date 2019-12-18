@@ -1,35 +1,17 @@
 .container {
 	padding-bottom: 50px;
 }
+
 .header {
 	margin: 0px 10px 0px 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
+
 .header h1 {
 	padding-bottom: 0;
 	position: relative;
-}
-
-.header h1:after {
-	position: absolute;
-	top: 65px;
-	left: 0;
-	content: '';
-	background: #f0a202;
-	width: 60px;
-	height: 5px;
-}
-
-.header h2 {
-	padding: 0;
-	margin: 15px 0px;
-}
-
-.expenseContainer {
-	display: flex;
-	flex-wrap: wrap;
 }
 
 .budget {
@@ -39,12 +21,24 @@
 	font-weight: bold;
 	position: relative;
 }
+
+.header h1:after,
 .budget:after {
 	position: absolute;
 	top: 65px;
-	right: 0;
+	left: 0;
 	content: '';
 	background: #f0a202;
 	width: 60px;
 	height: 5px;
+}
+
+.budget:after {
+	left: auto;
+	right: 0;
+}
+
+.expenseContainer {
+	display: flex;
+	flex-wrap: wrap;
 }

@@ -1,17 +1,18 @@
 import React from 'react';
 import ExpenseList from './expenseList';
 import uuidv4 from 'uuid/v4';
-import stop from './stop.module.css';
+import stopStyles from './stop.module.css';
 
-const Stop = ({ name, budget, expenses, stopId, cost, uid }) => {
+const Stop = ({ stop, uid }) => {
+	const { name, budget, expenses, key, cost } = stop;
 	return (
-		<div className={stop.container}>
-			<div className={stop.header}>
+		<div className={stopStyles.container}>
+			<div className={stopStyles.header}>
 				<h1>{name}</h1>
-				<p className={stop.budget}>Budget: ${budget}</p>
+				<p className={stopStyles.budget}>Budget: ${budget}</p>
 			</div>
-			<div className={stop.expenseContainer}>
-				<ExpenseList key={uuidv4()} items={expenses} stopId={stopId} cost={cost} budget={budget} uid={uid} />
+			<div className={stopStyles.expenseContainer}>
+				<ExpenseList key={uuidv4()} items={expenses} stopId={key} cost={cost} budget={budget} uid={uid} />
 			</div>
 		</div>
 	);

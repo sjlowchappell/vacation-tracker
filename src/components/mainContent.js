@@ -27,16 +27,7 @@ const MainContent = ({ stops, uid }) => {
 								key={uuidv4()}
 								path={`/${stop.name}/`}
 								render={() => {
-									return (
-										<Stop
-											name={stop.name}
-											budget={stop.budget}
-											expenses={stop.expenses}
-											stopId={stop.key}
-											cost={stop.cost}
-											uid={uid}
-										/>
-									);
+									return <Stop stop={stop} uid={uid} />;
 								}}
 							/>
 						);
