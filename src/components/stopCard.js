@@ -19,7 +19,7 @@ const StopCard = ({ stop, removeStop }) => {
 					${stop.cost}
 				</span>
 			</p>
-			<Button styleType="removeButton" listener={() => removeStop(stop.key)}>
+			<Button styleType="red" listener={() => removeStop(stop.key)}>
 				Delete
 			</Button>
 		</div>

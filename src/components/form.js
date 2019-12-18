@@ -42,7 +42,7 @@ const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 						}
 					})}
 				</div>
-				<Button styleType="bigBlue">{submitText}</Button>
+				<Button styleType="blue">{submitText}</Button>
 			</form>
 		</div>
 	);

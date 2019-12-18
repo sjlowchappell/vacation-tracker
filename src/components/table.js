@@ -1,5 +1,6 @@
 import React from 'react';
 import table from './table.module.css';
+import Button from './button';
 
 const Table = ({ sortItems, expenses, removeItem }) => {
 	return (
@@ -37,19 +38,11 @@ const Table = ({ sortItems, expenses, removeItem }) => {
 								<td>{expense.date}</td>
 								<td>{expense.name}</td>
 								<td>${expense.value}</td>
+								<td>{expense.category}</td>
 								<td>
-									{expense.category}
-									{/* <select name="categories" id="">
-                                <option value="food">Food</option>
-                                <option value="food">Transport</option>
-                                <option value="food">Lodging</option>
-                                <option value="food">Miscellaneous</option>
-                            </select> */}
-								</td>
-								<td>
-									<button className={table.remove} onClick={() => removeItem(expense.key)}>
+									<Button styleType="red" listener={() => removeItem(expense.key)}>
 										Delete
-									</button>
+									</Button>
 								</td>
 							</tr>
 						);

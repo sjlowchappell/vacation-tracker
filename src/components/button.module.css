@@ -1,5 +1,3 @@
-/* FOR LOGIN AND FORM COMPONENTS */
-
 button {
 	color: white;
 	font-weight: bold;
@@ -7,52 +5,47 @@ button {
 	transition: 0.3s all;
 }
 
-.bigBlue {
+/* BLUE BUTTON FOR LOGIN AND FORM COMPONENTS */
+.blue {
 	background: #273e47;
 	padding: 21px 41px;
 	margin-top: 20px;
 }
 
-.bigBlue:hover {
+.blue:hover {
 	padding: 20px 40px;
 	background: white;
 	color: #273e47;
 	border: 2px solid #273e47;
 }
 
-/* FOR SIDEBAR COMPONENT */
+/* RED BUTTON FOR STOPCARD AND TABLE COMPONENTS */
 
-.logout {
-	padding: 0;
-	background: none;
-	border: none;
-	font-size: 1.2rem;
-	display: block;
-	color: #f0a202;
-}
-
-.logout:hover {
-	color: #a3b18a;
-}
-
-.logoutLink {
-	padding-bottom: 0px;
-}
-.logoutLink {
-	border-bottom: none;
-}
-
-/* FOR STOPCARD COMPONENT */
-
-.removeButton {
+.red {
 	background: #a4243b;
-	padding: 7px 22px;
+	padding: 6px 21px;
 	font-size: 1.6rem;
 }
 
-.removeButton:hover {
+.red:hover {
 	padding: 5px 20px;
 	background: white;
 	color: #a4243b;
 	border: 2px solid #a4243b;
+}
+
+/* YELLOW BUTTON FOR SIDEBAR COMPONENT */
+
+.yellow {
+	padding: 7px 12px;
+	font-size: 1.2rem;
+	background: #f0a202;
+	border: none;
+}
+
+.yellow:hover {
+	padding: 5px 10px;
+	color: #f0a202;
+	background: #273e47;
+	border: 2px solid #f0a202;
 }
