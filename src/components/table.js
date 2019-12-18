@@ -9,22 +9,22 @@ const Table = ({ sortItems, expenses, removeItem }) => {
 				<thead>
 					<tr>
 						<th>
-							<button onClick={sortItems} value="date" data-dir="des">
+							<button className={table.sort} onClick={sortItems} value="date" data-dir="des">
 								Date
 							</button>
 						</th>
 						<th>
-							<button onClick={sortItems} value="name" data-dir="des">
+							<button className={table.sort} onClick={sortItems} value="name" data-dir="des">
 								Name
 							</button>
 						</th>
 						<th>
-							<button onClick={sortItems} value="value" data-dir="des">
+							<button className={table.sort} onClick={sortItems} value="value" data-dir="des">
 								Value
 							</button>
 						</th>
 						<th>
-							<button onClick={sortItems} value="category" data-dir="des">
+							<button className={table.sort} onClick={sortItems} value="category" data-dir="des">
 								Category
 							</button>
 						</th>

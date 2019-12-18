@@ -12,22 +12,13 @@ table {
 	letter-spacing: 1px;
 	font-size: 1.6rem;
 	width: 100%;
+	text-align: center;
 }
 
 th {
 	border: 1px solid white;
 	background: #f0a202;
 	color: #273e47;
-	font-weight: bold;
-	font-size: 1.8rem;
-	letter-spacing: 1px;
-}
-th button {
-	letter-spacing: 1px;
-	background: none;
-	border: none;
-	color: #273e47;
-	font-weight: bold;
 	font-size: 1.8rem;
 }
 
@@ -36,6 +27,8 @@ th {
 	padding: 10px 0px;
 }
 
-td {
-	text-align: center;
+.sort {
+	background: none;
+	border: none;
+	color: #273e47;
 }
