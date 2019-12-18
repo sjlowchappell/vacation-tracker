@@ -1,5 +1,6 @@
 import React from 'react';
 import form from './form.module.css';
+import Button from './button';
 
 const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 	return (
@@ -41,7 +42,7 @@ const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 						}
 					})}
 				</div>
-				<button className={form.submit}>{submitText}</button>
+				<Button styleType="bigBlue">{submitText}</Button>
 			</form>
 		</div>
 	);

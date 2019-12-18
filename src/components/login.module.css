@@ -28,23 +28,6 @@
 	justify-content: space-between;
 }
 
-.submit {
-	background: #273e47;
-	color: white;
-	padding: 21px 41px;
-	font-weight: bold;
-	margin-top: 20px;
-	transition: 0.3s all;
-	border-radius: 5px;
-}
-
-.submit:hover {
-	padding: 20px 40px;
-	background: white;
-	color: #273e47;
-	border: 2px solid #273e47;
-}
-
 @media (max-width: 800px) {
 	.container {
 		padding-bottom: 50px;

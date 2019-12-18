@@ -1,4 +1,6 @@
-.login {
+/* FOR LOGIN COMPONENT */
+
+.bigBlue {
 	background: #273e47;
 	color: white;
 	padding: 21px 41px;
@@ -8,9 +10,71 @@
 	border-radius: 5px;
 }
 
-.login:hover {
+.bigBlue:hover {
 	padding: 20px 40px;
 	background: white;
 	color: #273e47;
 	border: 2px solid #273e47;
+}
+
+/* FOR FORM COMPONENT */
+
+.submit {
+	background: #273e47;
+	color: white;
+	padding: 21px 41px;
+	font-weight: bold;
+	margin-top: 20px;
+	transition: 0.3s all;
+	border-radius: 5px;
+}
+
+.submit:hover {
+	padding: 20px 40px;
+	background: white;
+	color: #273e47;
+	border: 2px solid #273e47;
+}
+
+/* login and submit are the same styles, pick one name and use it throughout */
+
+/* FOR SIDEBAR COMPONENT */
+
+.logout {
+	padding: 0;
+	background: none;
+	border: none;
+	font-size: 1.2rem;
+	display: block;
+	color: #f0a202;
+}
+
+.logout:hover {
+	color: #a3b18a;
+}
+
+.logoutLink {
+	padding-bottom: 0px;
+}
+.logoutLink {
+	border-bottom: none;
+}
+
+/* FOR STOPCARD COMPONENT */
+
+.removeButton {
+	background: #a4243b;
+	color: white;
+	padding: 7px 22px;
+	font-weight: bold;
+	transition: 0.3s all;
+	border-radius: 5px;
+	font-size: 1.6rem;
+}
+
+.removeButton:hover {
+	padding: 5px 20px;
+	background: white;
+	color: #a4243b;
+	border: 2px solid #a4243b;
 }
