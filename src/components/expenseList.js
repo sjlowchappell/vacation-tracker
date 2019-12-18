@@ -26,7 +26,7 @@ class ExpenseList extends Component {
 		dbRef.on('value', response => {
 			const newState = [];
 			const data = response.val();
-			// iterate through the data response and create new state based on provided values
+			// iterate through the data response and create new state based on values from database
 			for (let key in data) {
 				newState.push({
 					key: key,
@@ -47,14 +47,18 @@ class ExpenseList extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		const { uid, stopId } = this.props;
+		// get dbRef to expenses for particular stop
 		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
+		// add a new expense with name, value, date, and category taken from user input
 		dbRef.push({
 			name: this.state.expenseName,
 			value: this.decimalPlace(this.state.expenseValue),
 			date: this.state.expenseDate,
 			category: this.state.expenseCategory,
 		});
+		// call the costUpdate function to add the new expense value
 		this.costUpdate(this.state.expenseValue, 'add');
+		// update state to clear out the form
 		this.setState({
 			expenseName: '',
 			expenseValue: '',
@@ -72,29 +76,29 @@ class ExpenseList extends Component {
 	decimalPlace = num => {
 		return (Math.round(num * 100) / 100).toFixed(2);
 	};
-
+	// Cost update for when an item is added or removed
 	costUpdate = (num, operator) => {
 		const floatNum = parseFloat(num);
 		let newCost;
-		// User adds or removes an item
 		const { uid, stopId } = this.props;
-		// Cost update is called with the value of the item and whether to add or subtract item
-		// Gets a dbref to the current cost of the given stop
+		// Gets a dbref to the current cost of the stop
 		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId);
 		dbRef.once('value', response => {
 			const data = response.val();
 			const currentCost = parseFloat(data.cost);
-			// Adds or subtracts num based on whether operator is add or not
+			// Adds or subtracts the number passed into the function from cost based on whether operator is add or subtract
 			operator === 'add' ? (newCost = currentCost + floatNum) : (newCost = currentCost - floatNum);
 		});
 
-		// Updates the dbRef
+		// Updates the dbRef with the new value, set to 2 decimal places
 		dbRef.update({ cost: this.decimalPlace(newCost) });
 	};
 
 	// ITEM MANIPULATION FUNCTIONS:
 	removeItem = itemId => {
 		const { uid, stopId } = this.props;
+
+		// First, need to update the cost of the stop with the removed item's value
 		let itemCost;
 		// Get a reference to the cost of the individual item
 		const itemCostRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/' + itemId);
@@ -102,9 +106,10 @@ class ExpenseList extends Component {
 		itemCostRef.once('value', response => {
 			itemCost = parseFloat(response.val().value);
 		});
-
+		// Call costUpdate in order to update the total cost of the given stop
 		this.costUpdate(itemCost, 'subtract');
 
+		// Second, need to remove the item from the database
 		// Get a database reference to the expenses list
 		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
 
