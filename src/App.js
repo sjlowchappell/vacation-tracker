@@ -110,10 +110,8 @@ class App extends Component {
 						<div className="contentContainer">
 							<SideBar
 								user={this.state.user}
-								login={this.login}
 								logout={this.logout}
 								stops={this.state.stops}
-								stopCost={this.stopCost}
 								totalCost={this.allStopsCost()}
 							/>
 

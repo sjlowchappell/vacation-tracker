@@ -5,7 +5,7 @@ import locationIcon from '../assets/maps-and-flags.svg';
 import worldWideIcon from '../assets/worldwide.svg';
 import Button from './button';
 
-const SideBar = ({ user, login, logout, stops, totalCost }) => {
+const SideBar = ({ user, logout, stops, totalCost }) => {
 	return (
 		<div className={sideBar.container}>
 			<input type="checkbox" id="hamburger" className={sideBar.hamburger} />
