@@ -18,7 +18,6 @@ class ExpenseList extends Component {
 		};
 	}
 
-	// Lifecycle method on mount:
 	componentDidMount() {
 		// Get userid and stopid from props
 		const { uid, stopId } = this.props;
@@ -105,7 +104,7 @@ class ExpenseList extends Component {
 		const itemCostRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/' + itemId);
 		// On reference value, save reference in a variable
 		itemCostRef.once('value', response => {
-			itemCost = parseFloat(response.val().value);
+			itemCost = response.val().value;
 		});
 		// Call costUpdate in order to update the total cost of the given stop
 		this.costUpdate(itemCost, 'subtract');
@@ -121,20 +120,20 @@ class ExpenseList extends Component {
 		// get sort type from value (date, name, or value)
 		const sortType = e.target.value;
 		const { sortDirection, expenses } = this.state;
-		let newState;
+		let newExpenses;
 		let newDirection;
 		// check if sort direction is ascending or descending
 		// Sort expenses based on sortType
 		if (sortDirection === 'des') {
-			newState = expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1));
+			newExpenses = expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1));
 			newDirection = 'asc';
 		} else {
-			newState = expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1));
+			newExpenses = expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1));
 			newDirection = 'des';
 		}
 		// Update expenses after they've been sorted
 		this.setState({
-			expenses: newState,
+			expenses: newExpenses,
 			sortDirection: newDirection,
 		});
 	};
