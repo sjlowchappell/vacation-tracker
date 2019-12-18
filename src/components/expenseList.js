@@ -19,27 +19,19 @@ class ExpenseList extends Component {
 	}
 
 	componentDidMount() {
-		// Get userid and stopid from props
-		const { uid, stopId } = this.props;
-		// Get db reference to expenses for the particular stop
-		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
-		dbRef.on('value', response => {
-			const newState = [];
-			const data = response.val();
-			// iterate through the data response and create new state based on values from database
-			for (let key in data) {
-				newState.push({
-					key: key,
-					name: data[key].name,
-					value: data[key].value,
-					date: data[key].date,
-					category: data[key].category,
-				});
-			}
-			// Update state with new expense list
-			this.setState({
-				expenses: newState,
+		const { items } = this.props;
+		const newState = [];
+		for (let key in items) {
+			newState.push({
+				key: key,
+				name: items[key].name,
+				value: items[key].value,
+				date: items[key].date,
+				category: items[key].category,
 			});
+		}
+		this.setState({
+			expenses: newState,
 		});
 	}
 
@@ -123,12 +115,16 @@ class ExpenseList extends Component {
 		let newExpenses;
 		let newDirection;
 		// check if sort direction is ascending or descending
-		// Sort expenses based on sortType
+		// Sort expenses based on sortType and whether or not they are of type 'value' (need to be parsed as floats)
 		if (sortDirection === 'des') {
-			newExpenses = expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1));
+			sortType === 'value'
+				? (newExpenses = expenses.sort((a, b) => (parseFloat(a[sortType]) > parseFloat(b[sortType]) ? 1 : -1)))
+				: (newExpenses = expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1)));
 			newDirection = 'asc';
 		} else {
-			newExpenses = expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1));
+			sortType === 'value'
+				? (newExpenses = expenses.sort((a, b) => (parseFloat(a[sortType]) < parseFloat(b[sortType]) ? 1 : -1)))
+				: (newExpenses = expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1)));
 			newDirection = 'des';
 		}
 		// Update expenses after they've been sorted
