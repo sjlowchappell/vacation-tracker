@@ -3,13 +3,7 @@ import firebase from '../firebase';
 import expenseList from './expenseList.module.css';
 import Form from './form';
 import Table from './table';
-
-const inputList = [
-	{ id: 'expenseName', type: 'text', text: 'Name' },
-	{ id: 'expenseValue', type: 'number', text: 'Value' },
-	{ id: 'expenseDate', type: 'date', text: 'Date' },
-	{ id: 'expenseCategory', type: 'select', text: 'Category' },
-];
+import inputList from '../utils/expenseInputs';
 
 class ExpenseList extends Component {
 	constructor() {
@@ -22,15 +16,17 @@ class ExpenseList extends Component {
 			expenseCategory: 'Food',
 		};
 	}
-	decimalPlace = num => {
-		return (Math.round(num * 100) / 100).toFixed(2);
-	};
+
+	// Lifecycle method on mount:
 	componentDidMount() {
+		// Get userid and stopid from props
 		const { uid, stopId } = this.props;
+		// Get db reference to expenses for the particular stop
 		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
 		dbRef.on('value', response => {
 			const newState = [];
 			const data = response.val();
+			// iterate through the data response and create new state based on provided values
 			for (let key in data) {
 				newState.push({
 					key: key,
@@ -40,45 +36,14 @@ class ExpenseList extends Component {
 					category: data[key].category,
 				});
 			}
+			// Update state with new expense list
 			this.setState({
 				expenses: newState,
 			});
 		});
 	}
-	costUpdate = newVal => {
-		const { uid, stopId } = this.props;
-		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId);
-		let newCostTotal = parseFloat(newVal);
-		dbRef.once('value', response => {
-			const data = response.val();
-			newCostTotal = this.decimalPlace(parseFloat(data.cost) + newCostTotal);
-		});
-		dbRef.update({ cost: newCostTotal });
-	};
-	costUpdateLower = itemId => {
-		// get reference to users stops
-		let itemCost;
-		let newCostTotal;
-		const { uid, stopId } = this.props;
 
-		// Get a reference to the cost of the individual item
-		const itemCostRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/' + itemId);
-		// On reference value, save reference in a variable
-		itemCostRef.once('value', response => {
-			itemCost = parseFloat(response.val().value);
-		});
-
-		// Get a reference to the total cost of the stop
-		const stopTotalRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId);
-		// Once the reference has been made, calculate the new cost total based on the previously found item value
-		stopTotalRef.once('value', response => {
-			const data = response.val();
-			newCostTotal = this.decimalPlace(data.cost - itemCost);
-		});
-
-		// Update the stop total cost based on the new cost value
-		stopTotalRef.update({ cost: newCostTotal });
-	};
+	// FORM RELATED FUNCTIONS:
 	handleSubmit = e => {
 		e.preventDefault();
 		const { uid, stopId } = this.props;
@@ -89,7 +54,7 @@ class ExpenseList extends Component {
 			date: this.state.expenseDate,
 			category: this.state.expenseCategory,
 		});
-		this.costUpdate(this.state.expenseValue);
+		this.costUpdate(this.state.expenseValue, 'add');
 		this.setState({
 			expenseName: '',
 			expenseValue: '',
@@ -97,13 +62,48 @@ class ExpenseList extends Component {
 			expenseCategory: 'Food',
 		});
 	};
+	// set state based on user input
 	handleChange = e => {
 		this.setState({ [e.target.id]: e.target.value });
 	};
-	removeItem = itemId => {
-		// get reference to users stops
-		this.costUpdateLower(itemId);
+
+	// HELPER FUNCTIONS:
+	// Helper function to set all expense values to two decimal places
+	decimalPlace = num => {
+		return (Math.round(num * 100) / 100).toFixed(2);
+	};
+
+	costUpdate = (num, operator) => {
+		const floatNum = parseFloat(num);
+		let newCost;
+		// User adds or removes an item
 		const { uid, stopId } = this.props;
+		// Cost update is called with the value of the item and whether to add or subtract item
+		// Gets a dbref to the current cost of the given stop
+		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId);
+		dbRef.once('value', response => {
+			const data = response.val();
+			const currentCost = parseFloat(data.cost);
+			// Adds or subtracts num based on whether operator is add or not
+			operator === 'add' ? (newCost = currentCost + floatNum) : (newCost = currentCost - floatNum);
+		});
+
+		// Updates the dbRef
+		dbRef.update({ cost: this.decimalPlace(newCost) });
+	};
+
+	// ITEM MANIPULATION FUNCTIONS:
+	removeItem = itemId => {
+		const { uid, stopId } = this.props;
+		let itemCost;
+		// Get a reference to the cost of the individual item
+		const itemCostRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/' + itemId);
+		// On reference value, save reference in a variable
+		itemCostRef.once('value', response => {
+			itemCost = parseFloat(response.val().value);
+		});
+
+		this.costUpdate(itemCost, 'subtract');
 
 		// Get a database reference to the expenses list
 		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
@@ -146,6 +146,7 @@ class ExpenseList extends Component {
 			expenses: newState,
 		});
 	};
+
 	render() {
 		const { cost, budget } = this.props;
 		return (
