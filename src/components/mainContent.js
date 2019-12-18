@@ -5,13 +5,7 @@ import mainContent from './mainContent.module.css';
 import StopsList from './stopsList';
 import firebase from '../firebase';
 import uuidv4 from 'uuid/v4';
-
-const inputList = [
-	{ id: 'location', type: 'text', text: 'Location' },
-	{ id: 'budget', type: 'number', text: 'Budget' },
-	{ id: 'arrival', type: 'date', text: 'Arrival Date' },
-	{ id: 'departure', type: 'date', text: 'Departure Date' },
-];
+import inputList from '../utils/stopInputs';
 
 class MainContent extends Component {
 	constructor() {
@@ -36,7 +30,7 @@ class MainContent extends Component {
 		e.preventDefault();
 		// Get database reference for user and stops
 		const dbRef = firebase.database().ref('/users/' + this.props.uid + '/stops/');
-		// Create a new stop object with it's name, expenses, and cost
+		// Create a new stop object with it's name, budget, arrival, departure, expenses, and cost
 		const stop = {
 			name: this.state.location,
 			budget: this.state.budget,
@@ -48,7 +42,7 @@ class MainContent extends Component {
 		// Push the new stop to the database
 		dbRef.push(stop);
 		// Update state to clear out the user input
-		this.setState({ name: '', budget: 0, arrival: '', departure: '' });
+		this.setState({ location: '', budget: 0, arrival: '', departure: '' });
 	};
 	render() {
 		const { stops, uid } = this.props;

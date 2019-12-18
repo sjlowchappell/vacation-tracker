@@ -2,9 +2,8 @@ import React from 'react';
 import stopsList from './stopsList.module.css';
 import Form from './form';
 import StopCard from './stopCard';
-import { Link } from 'react-router-dom';
 
-const StopsList = ({ inputList, stops, removeStop, handleChange, handleSubmit, match }) => {
+const StopsList = ({ inputList, stops, removeStop, handleChange, handleSubmit }) => {
 	return (
 		<div className={stopsList.container}>
 			<h1>Stops on your journey:</h1>
