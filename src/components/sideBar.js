@@ -4,6 +4,7 @@ import sideBar from './sideBar.module.css';
 import locationIcon from '../assets/maps-and-flags.svg';
 import worldWideIcon from '../assets/worldwide.svg';
 // import dashboardIcon from '../assets/dashboard.svg';
+import Button from './button';
 
 const SideBar = ({ user, login, logout, stops, totalCost }) => {
 	return (
@@ -24,9 +25,9 @@ const SideBar = ({ user, login, logout, stops, totalCost }) => {
 							</div>
 							<p className={sideBar.userName}>{user.displayName}</p>
 							<Link to="/" className={sideBar.logoutLink}>
-								<button className={sideBar.logout} onClick={logout}>
+								<Button styleType="logout" listener={logout}>
 									Log Out
-								</button>
+								</Button>
 							</Link>
 						</div>
 					) : (

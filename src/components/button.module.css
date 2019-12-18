@@ -1,13 +1,16 @@
-/* FOR LOGIN COMPONENT */
+/* FOR LOGIN AND FORM COMPONENTS */
+
+button {
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	transition: 0.3s all;
+}
 
 .bigBlue {
 	background: #273e47;
-	color: white;
 	padding: 21px 41px;
-	font-weight: bold;
 	margin-top: 20px;
-	transition: 0.3s all;
-	border-radius: 5px;
 }
 
 .bigBlue:hover {
@@ -16,27 +19,6 @@
 	color: #273e47;
 	border: 2px solid #273e47;
 }
-
-/* FOR FORM COMPONENT */
-
-.submit {
-	background: #273e47;
-	color: white;
-	padding: 21px 41px;
-	font-weight: bold;
-	margin-top: 20px;
-	transition: 0.3s all;
-	border-radius: 5px;
-}
-
-.submit:hover {
-	padding: 20px 40px;
-	background: white;
-	color: #273e47;
-	border: 2px solid #273e47;
-}
-
-/* login and submit are the same styles, pick one name and use it throughout */
 
 /* FOR SIDEBAR COMPONENT */
 
@@ -64,11 +46,7 @@
 
 .removeButton {
 	background: #a4243b;
-	color: white;
 	padding: 7px 22px;
-	font-weight: bold;
-	transition: 0.3s all;
-	border-radius: 5px;
 	font-size: 1.6rem;
 }
 

@@ -78,26 +78,6 @@ a.navItem:hover {
 	border-bottom: 3px solid #f0a202;
 }
 
-.logout {
-	padding: 0;
-	background: none;
-	border: none;
-	font-size: 1.2rem;
-	display: block;
-	color: #f0a202;
-}
-
-.logout:hover {
-	color: #a3b18a;
-}
-
-.logoutLink {
-	padding-bottom: 0px;
-}
-.logoutLink {
-	border-bottom: none;
-}
-
 .container h2 {
 	position: relative;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import stopCard from './stopCard.module.css';
+import Button from './button';
 
 const StopCard = ({ stop, removeStop }) => {
 	return (
@@ -18,9 +19,9 @@ const StopCard = ({ stop, removeStop }) => {
 					${stop.cost}
 				</span>
 			</p>
-			<button className={stopCard.removeButton} onClick={() => removeStop(stop.key)}>
+			<Button styleType="removeButton" listener={() => removeStop(stop.key)}>
 				Delete
-			</button>
+			</Button>
 		</div>
 	);
 };
