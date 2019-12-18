@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import firebase from './firebase';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import HomePage from './components/homePage';
+import Login from './components/login';
 import Footer from './components/footer';
 import SideBar from './components/sideBar';
 import MainContent from './components/mainContent';
@@ -78,9 +78,6 @@ class App extends Component {
 				}, 0) * 100,
 			) / 100
 		).toFixed(2);
-		// return this.state.stops.reduce((total, stop) => {
-		// 	return stop.cost !== undefined ? total + parseFloat(stop.cost) : total;
-		// }, 0);
 	};
 
 	login = () => {
@@ -101,6 +98,7 @@ class App extends Component {
 		return (
 			<Router>
 				<div className="wrapper">
+					{/* If the application is still loading and hasn't determined if a user is logged in yet, render a loading ring. Otherwise, take the user to the appropriate page (either login page or main page*/}
 					{this.state.loading ? (
 						<div className="lds-ring">
 							<div></div>
@@ -123,7 +121,7 @@ class App extends Component {
 						</div>
 					) : (
 						<div>
-							<Route path="/" render={() => <HomePage login={this.login} />} />
+							<Route path="/" render={() => <Login login={this.login} />} />
 						</div>
 					)}
 

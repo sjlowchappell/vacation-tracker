@@ -17,11 +17,11 @@
 	margin: 10px 0px;
 }
 
-.iconContainer {
+.icon {
 	width: 50px;
 	filter: invert(70%) sepia(24%) saturate(7235%) hue-rotate(8deg) brightness(104%) contrast(98%);
 }
-.iconBox {
+.iconContainer {
 	display: flex;
 	width: 70%;
 	margin: 40px auto;

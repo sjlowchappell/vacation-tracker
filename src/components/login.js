@@ -1,29 +1,30 @@
 import React from 'react';
-import homePage from './homePage.module.css';
+import loginStyles from './login.module.css';
 import airplane from '../assets/airplane.svg';
 import cocktail from '../assets/cocktail.svg';
 import hotel from '../assets/hotel.svg';
 import passport from '../assets/passport.svg';
 import moneybag from '../assets/money-bag.svg';
+import Button from './button';
 
-const HomePage = ({ login }) => {
+const Login = ({ login }) => {
 	return (
-		<div className={homePage.container}>
+		<div className={loginStyles.container}>
 			<h1>Vacay Tracker!</h1>
-			<div className={homePage.iconBox}>
-				<div className={homePage.iconContainer}>
+			<div className={loginStyles.iconContainer}>
+				<div className={loginStyles.icon}>
 					<img src={airplane} alt="SVG of an airplane" />
 				</div>
-				<div className={homePage.iconContainer}>
+				<div className={loginStyles.icon}>
 					<img src={cocktail} alt="SVG of an cocktail" />
 				</div>
-				<div className={homePage.iconContainer}>
+				<div className={loginStyles.icon}>
 					<img src={moneybag} alt="SVG of an money bag" />
 				</div>
-				<div className={homePage.iconContainer}>
+				<div className={loginStyles.icon}>
 					<img src={hotel} alt="SVG of an hotel" />
 				</div>
-				<div className={homePage.iconContainer}>
+				<div className={loginStyles.icon}>
 					<img src={passport} alt="SVG of an passport" />
 				</div>
 			</div>
@@ -36,11 +37,11 @@ const HomePage = ({ login }) => {
 				Once stops have been added, add your expenses to each stop to make sure you're staying on track. Safe
 				travels!
 			</p>
-			<button className={homePage.submit} onClick={login}>
-				Log in With Google
-			</button>
+			<Button styleType="login" listener={login}>
+				Log in with Google
+			</Button>
 		</div>
 	);
 };
 
-export default HomePage;
+export default Login;
