@@ -3,6 +3,7 @@ import stopsList from './stopsList.module.css';
 import firebase from '../firebase';
 import Form from './form';
 import StopCard from './stopCard';
+import uuidv4 from 'uuid/v4';
 
 class StopsList extends Component {
 	constructor() {
@@ -43,7 +44,7 @@ class StopsList extends Component {
 					<>
 						<div className={stopsList.allStops}>
 							{stops.map(stop => {
-								return <StopCard stop={stop} uid={uid} />;
+								return <StopCard key={uuidv4()} stop={stop} uid={uid} />;
 							})}
 						</div>
 						<Form

@@ -40,14 +40,14 @@
 }
 
 @media (max-width: 800px) {
-	.stop {
+	.container {
 		flex: 1 0 45%;
 		max-width: 45%;
 	}
 }
 
 @media (max-width: 550px) {
-	.stop {
+	.container {
 		flex: 1 0 100%;
 		max-width: 100%;
 	}
