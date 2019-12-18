@@ -21,6 +21,7 @@
 	width: 50px;
 	filter: invert(70%) sepia(24%) saturate(7235%) hue-rotate(8deg) brightness(104%) contrast(98%);
 }
+
 .iconContainer {
 	display: flex;
 	width: 70%;
@@ -35,10 +36,10 @@
 }
 
 @media (max-width: 500px) {
-	.iconBox {
+	.iconContainer {
 		width: 100%;
 	}
-	.iconContainer {
+	.icon {
 		width: 40px;
 	}
 }

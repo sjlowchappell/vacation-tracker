@@ -1,11 +1,11 @@
 import React from 'react';
+import Button from './button';
 import loginStyles from './login.module.css';
 import airplane from '../assets/airplane.svg';
 import cocktail from '../assets/cocktail.svg';
 import hotel from '../assets/hotel.svg';
 import passport from '../assets/passport.svg';
 import moneybag from '../assets/money-bag.svg';
-import Button from './button';
 
 const Login = ({ login }) => {
 	return (
