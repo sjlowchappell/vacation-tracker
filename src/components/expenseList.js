@@ -122,19 +122,20 @@ class ExpenseList extends Component {
 		const sortType = e.target.value;
 		const { sortDirection, expenses } = this.state;
 		let newState;
-
+		let newDirection;
 		// check if sort direction is ascending or descending
 		// Sort expenses based on sortType
 		if (sortDirection === 'des') {
 			newState = expenses.sort((a, b) => (a[sortType] > b[sortType] ? 1 : -1));
-			this.setState({ sortDirection: 'asc' });
+			newDirection = 'asc';
 		} else {
 			newState = expenses.sort((a, b) => (a[sortType] < b[sortType] ? 1 : -1));
-			this.setState({ sortDirection: 'des' });
+			newDirection = 'des';
 		}
 		// Update expenses after they've been sorted
 		this.setState({
 			expenses: newState,
+			sortDirection: newDirection,
 		});
 	};
 
