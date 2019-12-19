@@ -82,7 +82,6 @@ class App extends Component {
 		providerType === 'google'
 			? (provider = new firebase.auth.GoogleAuthProvider())
 			: (provider = new firebase.auth.FacebookAuthProvider());
-		console.log(provider);
 		auth.signInWithPopup(provider).then(result => {
 			const user = result.user;
 			this.setState({
