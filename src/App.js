@@ -7,7 +7,8 @@ import Footer from './components/footer';
 import SideBar from './components/sideBar';
 import MainContent from './components/mainContent';
 
-const provider = new firebase.auth.GoogleAuthProvider();
+// const googleProvider = new firebase.auth.GoogleAuthProvider();
+// const facebookProvider = new firebase.auth.FacebookAuthProvider();
 const auth = firebase.auth();
 
 class App extends Component {
@@ -75,7 +76,13 @@ class App extends Component {
 	};
 
 	//Login and logout related methods
-	login = () => {
+	login = providerType => {
+		let provider;
+
+		providerType === 'google'
+			? (provider = new firebase.auth.GoogleAuthProvider())
+			: (provider = new firebase.auth.FacebookAuthProvider());
+		console.log(provider);
 		auth.signInWithPopup(provider).then(result => {
 			const user = result.user;
 			this.setState({

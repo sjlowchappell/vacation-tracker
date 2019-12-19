@@ -29,9 +29,21 @@
 	justify-content: space-between;
 }
 
+.buttonContainer {
+	display: flex;
+	justify-content: space-around;
+}
+
 @media (max-width: 800px) {
 	.container {
 		padding-bottom: 50px;
+	}
+}
+
+@media (max-width: 700px) {
+	.buttonContainer {
+		display: inline-flex;
+		flex-direction: column;
 	}
 }
 

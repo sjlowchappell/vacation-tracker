@@ -37,9 +37,14 @@ const Login = ({ login }) => {
 				Once stops have been added, add your expenses to each stop to make sure you're staying on track. Safe
 				travels!
 			</p>
-			<Button styleType="blue" listener={login}>
-				Log in with Google
-			</Button>
+			<div className={loginStyles.buttonContainer}>
+				<Button styleType="blue" listener={() => login('google')}>
+					Log in with Google
+				</Button>
+				<Button styleType="blue" listener={() => login('facebook')}>
+					Log in with Facebook
+				</Button>
+			</div>
 		</div>
 	);
 };
