@@ -8,6 +8,15 @@
 	color: black;
 }
 
+.arrow {
+	width: 20px;
+	padding-left: 5px;
+	filter: invert(20%) sepia(12%) saturate(1521%) hue-rotate(152deg) brightness(92%) contrast(88%);
+}
+.rotated {
+	transform: rotate(180deg);
+}
+
 table {
 	letter-spacing: 1px;
 	font-size: 1.6rem;
@@ -31,4 +40,8 @@ th {
 	background: none;
 	border: none;
 	color: #273e47;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 }

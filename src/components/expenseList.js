@@ -6,23 +6,12 @@ import Table from './table';
 import inputList from '../utils/expenseInputs';
 
 class ExpenseList extends Component {
-	constructor() {
-		super();
-		this.state = {
-			expenses: [],
-			expenseName: '',
-			expenseValue: '',
-			expenseDate: '',
-			expenseCategory: 'Food',
-			sortDirection: 'des',
-		};
-	}
-
-	componentDidMount() {
-		const { items } = this.props;
-		const newState = [];
+	constructor(props) {
+		super(props);
+		const { items } = props;
+		let expenseList = [];
 		for (let key in items) {
-			newState.push({
+			expenseList.push({
 				key: key,
 				name: items[key].name,
 				value: items[key].value,
@@ -30,9 +19,19 @@ class ExpenseList extends Component {
 				category: items[key].category,
 			});
 		}
-		this.setState({
-			expenses: newState,
-		});
+		this.state = {
+			expenses: expenseList,
+			expenseName: '',
+			expenseValue: '',
+			expenseDate: '',
+			expenseCategory: 'Food',
+			sortDirection: 'des',
+			sortType: 'date',
+		};
+	}
+	componentDidMount() {
+		// initially sort items by date
+		this.sortItems();
 	}
 
 	// FORM RELATED FUNCTIONS:
@@ -109,8 +108,12 @@ class ExpenseList extends Component {
 		dbRef.child(itemId).remove();
 	};
 	sortItems = e => {
-		// get sort type from value (date, name, or value)
-		const sortType = e.target.value;
+		// if there is an event, make sortType = e.target.dataset.type
+		// Otherwise, pull it from state (in the case of initial load)
+		let sortType;
+		e !== undefined ? (sortType = e.target.dataset.type) : (sortType = this.state.sortType);
+
+		// destructure variables from state
 		const { sortDirection, expenses } = this.state;
 		let newExpenses;
 		let newDirection;
@@ -131,11 +134,13 @@ class ExpenseList extends Component {
 		this.setState({
 			expenses: newExpenses,
 			sortDirection: newDirection,
+			sortType: sortType,
 		});
 	};
 
 	render() {
 		const { cost, budget } = this.props;
+		const { expenses, sortDirection, sortType } = this.state;
 		return (
 			<div className={expenseList.container}>
 				<div className={expenseList.inputContainer}>
@@ -144,7 +149,13 @@ class ExpenseList extends Component {
 						<span className={parseFloat(cost) > budget ? expenseList.red : expenseList.green}>${cost}</span>
 					</h2>
 				</div>
-				<Table sortItems={this.sortItems} expenses={this.state.expenses} removeItem={this.removeItem} />
+				<Table
+					sortItems={this.sortItems}
+					expenses={expenses}
+					removeItem={this.removeItem}
+					sortDirection={sortDirection}
+					sortType={sortType}
+				/>
 				<Form
 					formText="Add a new Expense to your trip:"
 					inputs={inputList}
