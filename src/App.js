@@ -7,8 +7,6 @@ import Footer from './components/footer';
 import SideBar from './components/sideBar';
 import MainContent from './components/mainContent';
 
-// const googleProvider = new firebase.auth.GoogleAuthProvider();
-// const facebookProvider = new firebase.auth.FacebookAuthProvider();
 const auth = firebase.auth();
 
 class App extends Component {
