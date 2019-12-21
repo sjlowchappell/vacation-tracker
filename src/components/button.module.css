@@ -37,10 +37,10 @@ button {
 /* YELLOW BUTTON FOR SIDEBAR COMPONENT */
 
 .yellow {
-	padding: 7px 12px;
+	padding: 5px 10px;
 	font-size: 1.2rem;
 	background: #f0a202;
-	border: none;
+	border: 2px solid #f0a202;
 }
 
 .yellow:hover {
