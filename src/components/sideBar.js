@@ -15,7 +15,7 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 			<div className={sideBar.content}>
 				<header>
 					<Link to="/">
-						<h1>Vacay Tracker!</h1>
+						<h1>Pack-Track!</h1>
 					</Link>
 					<div className={sideBar.profile}>
 						<div className={sideBar.profileImageContainer}>

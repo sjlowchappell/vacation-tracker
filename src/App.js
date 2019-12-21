@@ -76,7 +76,6 @@ class App extends Component {
 	//Login and logout related methods
 	login = providerType => {
 		let provider;
-
 		providerType === 'google'
 			? (provider = new firebase.auth.GoogleAuthProvider())
 			: (provider = new firebase.auth.FacebookAuthProvider());

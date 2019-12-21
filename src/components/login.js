@@ -10,7 +10,7 @@ import moneybag from '../assets/money-bag.svg';
 const Login = ({ login }) => {
 	return (
 		<div className={loginStyles.container}>
-			<h1>Vacay Tracker!</h1>
+			<h1>Pack-Track!</h1>
 			<div className={loginStyles.iconContainer}>
 				<div className={loginStyles.icon}>
 					<img src={airplane} alt="SVG of an airplane" />

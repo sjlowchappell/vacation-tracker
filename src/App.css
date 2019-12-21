@@ -207,10 +207,12 @@ body {
 }
 
 header h1 {
-	font-size: 2.5rem;
+	font-size: 4rem;
+	color: #f0a202;
+	text-shadow: 0px 0px 4px #dad7cd;
 	padding: 0;
 	margin: 0;
-	color: #dad7cd;
+	/* color: #dad7cd; */
 }
 
 h1 {
