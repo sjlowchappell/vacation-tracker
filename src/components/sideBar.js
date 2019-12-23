@@ -19,7 +19,11 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 					</Link>
 					<div className={styles.profile}>
 						<div className={styles.profileImageContainer}>
-							<img src={user.photoURL} alt={`Profile pic for ${user.displayName}`} />
+							<img
+								className={styles.profileImage}
+								src={user.photoURL}
+								alt={`Profile pic for ${user.displayName}`}
+							/>
 						</div>
 						<p className={styles.userName}>{user.displayName}</p>
 						<Button styleType="yellow" listener={logout}>

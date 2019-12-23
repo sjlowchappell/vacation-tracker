@@ -43,7 +43,7 @@
 	background-color: var(--accent);
 	border-radius: 100%;
 }
-.profileImageContainer img {
+.profileImage {
 	border-radius: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -59,7 +59,6 @@
 .icon {
 	width: 20px;
 	margin-right: 5px;
-	text-align: center;
 	filter: invert(70%) sepia(24%) saturate(7235%) hue-rotate(8deg) brightness(104%) contrast(98%);
 }
 
@@ -78,13 +77,41 @@
 	border-bottom: 3px solid var(--accent);
 }
 
-/* Hamburger (hidden at full width) */
-.hamburger {
+/* Styling from hamburger menu taken from https://codepen.io/Joanc/pen/XYYZdE and modified to fit this project */
+.hamburgerInput {
 	display: none;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	height: 25px;
+	width: 33px;
+	cursor: pointer;
+	z-index: 111;
+	opacity: 0;
+}
+
+.hamburgerLine {
+	display: none;
+	position: relative;
+	top: 20px;
+	left: 20px;
+	height: 4px;
+	width: 33px;
+	margin-bottom: 5px;
+	border-radius: 3px;
+	z-index: 11;
+	background: var(--primary);
+	transform-origin: 4px 0px;
+	transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+		opacity 0.3s ease;
+}
+
+.hamburgerLine:nth-child(4) {
+	transform-origin: 0% 100%;
 }
 
 @media (max-width: 1050px) {
-	/* Styling all related to hamburger menu when screen size becomes small enough. Taken from https://codepen.io/Joanc/pen/XYYZdE and modified to fit this project */
+	/* Styling from hamburger menu taken from https://codepen.io/Joanc/pen/XYYZdE and modified to fit this project */
 	.content {
 		position: absolute;
 		height: auto;
@@ -95,68 +122,28 @@
 		background: linear-gradient(180deg, rgba(39, 62, 71, 1), rgba(39, 62, 71, 0.9));
 	}
 
-	.hamburgerInput {
-		position: absolute;
-		display: block;
-		top: 20px;
-		left: 20px;
-		height: 25px;
-		width: 33px;
-		cursor: pointer;
-		z-index: 1111;
-		opacity: 0;
-	}
-
+	.hamburgerInput,
 	.hamburgerLine {
 		display: block;
-		width: 33px;
-		height: 4px;
-		margin-bottom: 5px;
-		position: relative;
-		top: 20px;
-		left: 20px;
-		background: var(--primary);
-		border-radius: 3px;
-		z-index: 1000;
-		transform-origin: 4px 0px;
-		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
-			opacity 0.8s ease;
-	}
-
-	/* Transform on click  */
-
-	.hamburgerLine:first-child {
-		transform-origin: 0% 0%;
-	}
-
-	.hamburgerLine:nth-last-child(2) {
-		transform-origin: 0% 100%;
-	}
-
-	.hamburgerInput:checked ~ .hamburgerLine {
-		opacity: 1;
-		transform: rotate(45deg) translate(-2px, -1px);
-		background: #232323;
-	}
-
-	.hamburgerInput:checked ~ .hamburgerLine:nth-last-child(3) {
-		opacity: 0;
-		transform: rotate(0deg) scale(0.2, 0.2);
-	}
-
-	.hamburgerInput:checked ~ .hamburgerLine:nth-last-child(2) {
-		opacity: 1;
-		transform: rotate(-45deg) translate(0, -1px);
 	}
 
 	.hamburgerInput:checked ~ .content {
 		left: 0px;
 	}
+
 	.hamburgerInput:checked ~ .hamburgerLine {
 		background: var(--navTextColor);
+		transform: rotate(45deg) translate(-2px, -1px);
 	}
 
-	/* End transform on click  */
+	.hamburgerInput:checked ~ .hamburgerLine:nth-child(3) {
+		opacity: 0;
+		transform: rotate(0deg) scale(0);
+	}
+
+	.hamburgerInput:checked ~ .hamburgerLine:nth-child(4) {
+		transform: rotate(-45deg) translate(0, -1px);
+	}
 
 	/* End styling from https://codepen.io/Joanc/pen/XYYZdE */
 }
