@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import stopCard from './stopCard.module.css';
+import styles from './stopCard.module.css';
 import Button from './button';
 import firebase from '../firebase';
 
@@ -13,19 +13,17 @@ const StopCard = ({ stop, uid }) => {
 		dbRef.child(stopId).remove();
 	};
 	return (
-		<section className={stopCard.container}>
-			<Link to={`/${stop.name}/`} className={stopCard.stopLink}>
+		<section className={styles.container}>
+			<Link to={`/${stop.name}/`} className={styles.stopLink}>
 				{stop.name}
 			</Link>
-			<p className={stopCard.date}>
+			<p className={styles.date}>
 				{stop.arrival} - {stop.departure}
 			</p>
 			<p>Budgeted: ${stop.budget}</p>
 			<p>
 				Spent:{' '}
-				<span className={parseFloat(stop.cost) > stop.budget ? stopCard.red : stopCard.green}>
-					${stop.cost}
-				</span>
+				<span className={parseFloat(stop.cost) > stop.budget ? styles.red : styles.green}>${stop.cost}</span>
 			</p>
 			<Button styleType="red" listener={() => removeStop(stop.key)}>
 				Delete

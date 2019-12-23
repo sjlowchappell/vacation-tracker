@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Stop from './stop';
-import mainContent from './mainContent.module.css';
+import styles from './mainContent.module.css';
 import StopsList from './stopsList';
 import uuidv4 from 'uuid/v4';
 import inputList from '../utils/stopInputs';
 
 const MainContent = ({ stops, uid }) => {
 	return (
-		<main className={mainContent.container}>
+		<main className={styles.container}>
 			{/* Set up all routes. Need to check if the Router should go here instead of on the App component */}
 			{/* Route for StopsList */}
 			<Route

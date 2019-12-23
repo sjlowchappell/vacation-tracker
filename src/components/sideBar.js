@@ -1,27 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import sideBar from './sideBar.module.css';
+import styles from './sideBar.module.css';
 import locationIcon from '../assets/maps-and-flags.svg';
 import worldWideIcon from '../assets/worldwide.svg';
 import Button from './button';
 
 const SideBar = ({ user, logout, stops, totalCost }) => {
 	return (
-		<section className={sideBar.container}>
-			<input type="checkbox" id="hamburger" className={sideBar.hamburger} />
+		<section className={styles.container}>
+			<input type="checkbox" id="hamburger" className={styles.hamburger} />
 			<span></span>
 			<span></span>
 			<span></span>
-			<div className={sideBar.content}>
-				<header className={sideBar.header}>
+			<div className={styles.content}>
+				<header className={styles.header}>
 					<Link to="/">
 						<h1>Pack-Track!</h1>
 					</Link>
-					<div className={sideBar.profile}>
-						<div className={sideBar.profileImageContainer}>
+					<div className={styles.profile}>
+						<div className={styles.profileImageContainer}>
 							<img src={user.photoURL} alt={`Profile pic for ${user.displayName}`} />
 						</div>
-						<p className={sideBar.userName}>{user.displayName}</p>
+						<p className={styles.userName}>{user.displayName}</p>
 						<Button styleType="yellow" listener={logout}>
 							Log Out
 						</Button>
@@ -30,8 +30,8 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 				<nav>
 					<ul>
 						<li>
-							<Link to="/" className={sideBar.navLink}>
-								<div className={sideBar.icon}>
+							<Link to="/" className={styles.navLink}>
+								<div className={styles.icon}>
 									<img src={worldWideIcon} alt="" />
 								</div>
 								Stops
@@ -39,9 +39,9 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 						</li>
 						{stops.map(stop => {
 							return (
-								<li key={stop.key} className={sideBar.stopItem}>
-									<Link to={`/${stop.name}/`} className={sideBar.navLink}>
-										<div className={sideBar.icon}>
+								<li key={stop.key} className={styles.stopItem}>
+									<Link to={`/${stop.name}/`} className={styles.navLink}>
+										<div className={styles.icon}>
 											<img src={locationIcon} alt="" />
 										</div>
 										{stop.name}
@@ -51,7 +51,7 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 						})}
 					</ul>
 				</nav>
-				{stops.length !== 0 ? <h2 className={sideBar.tripCost}>Total Trip Cost: ${totalCost}</h2> : null}
+				{stops.length !== 0 ? <h2 className={styles.tripCost}>Total Trip Cost: ${totalCost}</h2> : null}
 			</div>
 		</section>
 	);

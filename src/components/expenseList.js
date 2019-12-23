@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../firebase';
-import expenseList from './expenseList.module.css';
+import styles from './expenseList.module.css';
 import Form from './form';
 import Table from './table';
 import inputList from '../utils/expenseInputs';
@@ -142,11 +142,11 @@ class ExpenseList extends Component {
 		const { cost, budget } = this.props;
 		const { expenses, sortDirection, sortType } = this.state;
 		return (
-			<div className={expenseList.container}>
-				<div className={expenseList.inputContainer}>
+			<div className={styles.container}>
+				<div className={styles.inputContainer}>
 					<h3>
 						Total Spent:{' '}
-						<span className={parseFloat(cost) > budget ? expenseList.red : expenseList.green}>${cost}</span>
+						<span className={parseFloat(cost) > budget ? styles.red : styles.green}>${cost}</span>
 					</h3>
 				</div>
 				<Table

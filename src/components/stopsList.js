@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import stopsList from './stopsList.module.css';
+import styles from './stopsList.module.css';
 import firebase from '../firebase';
 import Form from './form';
 import StopCard from './stopCard';
@@ -38,11 +38,11 @@ class StopsList extends Component {
 	render() {
 		const { inputList, stops, uid } = this.props;
 		return (
-			<section className={stopsList.container}>
+			<section className={styles.container}>
 				<h2>Stops on your journey:</h2>
 				{stops.length !== 0 ? (
 					<>
-						<div className={stopsList.allStops}>
+						<div className={styles.allStops}>
 							{stops.map(stop => {
 								return <StopCard key={uuidv4()} stop={stop} uid={uid} />;
 							})}

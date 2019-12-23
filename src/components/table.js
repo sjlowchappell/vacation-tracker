@@ -1,22 +1,22 @@
 import React from 'react';
-import table from './table.module.css';
+import styles from './table.module.css';
 import Button from './button';
 import arrow from '../assets/drop-down-arrow.svg';
 
 const Table = ({ sortItems, expenses, removeItem, sortType, sortDirection }) => {
 	return (
-		<table className={table.container}>
+		<table className={styles.container}>
 			<thead>
 				<tr>
 					<th>
-						<button className={table.sort} onClick={sortItems} data-type="date">
+						<button className={styles.sort} onClick={sortItems} data-type="date">
 							Date
-							<div className={table.arrow}>
+							<div className={styles.arrow}>
 								{sortType !== 'date' ? null : sortDirection === 'asc' ? (
 									<img src={arrow} alt="arrow indicating descending sorting" data-type="date" />
 								) : (
 									<img
-										className={table.rotated}
+										className={styles.rotated}
 										src={arrow}
 										alt="arrow indicating ascending sorting"
 										data-type="date"
@@ -26,14 +26,14 @@ const Table = ({ sortItems, expenses, removeItem, sortType, sortDirection }) => 
 						</button>
 					</th>
 					<th>
-						<button className={table.sort} onClick={sortItems} data-type="name">
+						<button className={styles.sort} onClick={sortItems} data-type="name">
 							Name
-							<div className={table.arrow}>
+							<div className={styles.arrow}>
 								{sortType !== 'name' ? null : sortDirection === 'asc' ? (
 									<img src={arrow} alt="arrow indicating descending sorting" data-type="name" />
 								) : (
 									<img
-										className={table.rotated}
+										className={styles.rotated}
 										src={arrow}
 										alt="arrow indicating ascending sorting"
 										data-type="name"
@@ -43,14 +43,14 @@ const Table = ({ sortItems, expenses, removeItem, sortType, sortDirection }) => 
 						</button>
 					</th>
 					<th>
-						<button className={table.sort} onClick={sortItems} data-type="value">
+						<button className={styles.sort} onClick={sortItems} data-type="value">
 							Value
-							<div className={table.arrow}>
+							<div className={styles.arrow}>
 								{sortType !== 'value' ? null : sortDirection === 'asc' ? (
 									<img src={arrow} alt="arrow indicating descending sorting" data-type="value" />
 								) : (
 									<img
-										className={table.rotated}
+										className={styles.rotated}
 										src={arrow}
 										alt="arrow indicating ascending sorting"
 										data-type="value"
@@ -60,14 +60,14 @@ const Table = ({ sortItems, expenses, removeItem, sortType, sortDirection }) => 
 						</button>
 					</th>
 					<th>
-						<button className={table.sort} onClick={sortItems} data-type="category">
+						<button className={styles.sort} onClick={sortItems} data-type="category">
 							Items
-							<div className={table.arrow}>
+							<div className={styles.arrow}>
 								{sortType !== 'category' ? null : sortDirection === 'asc' ? (
 									<img src={arrow} alt="arrow indicating descending sorting" data-type="category" />
 								) : (
 									<img
-										className={table.rotated}
+										className={styles.rotated}
 										src={arrow}
 										alt="arrow indicating ascending sorting"
 										data-type="category"
@@ -82,7 +82,7 @@ const Table = ({ sortItems, expenses, removeItem, sortType, sortDirection }) => 
 			<tbody>
 				{expenses.map(expense => {
 					return (
-						<tr key={expense.key} className={table.expenseItem}>
+						<tr key={expense.key} className={styles.expenseItem}>
 							<td>{expense.date}</td>
 							<td>{expense.name}</td>
 							<td>${expense.value}</td>
