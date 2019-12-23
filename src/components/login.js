@@ -16,16 +16,16 @@ const Login = ({ login }) => {
 					<img src={airplane} alt="SVG of an airplane" />
 				</div>
 				<div className={styles.icon}>
-					<img src={cocktail} alt="SVG of an cocktail" />
+					<img src={cocktail} alt="SVG of a cocktail" />
 				</div>
 				<div className={styles.icon}>
-					<img src={moneybag} alt="SVG of an money bag" />
+					<img src={moneybag} alt="SVG of a money bag" />
 				</div>
 				<div className={styles.icon}>
-					<img src={hotel} alt="SVG of an hotel" />
+					<img src={hotel} alt="SVG of a hotel" />
 				</div>
 				<div className={styles.icon}>
-					<img src={passport} alt="SVG of an passport" />
+					<img src={passport} alt="SVG of a passport" />
 				</div>
 			</div>
 			<p>Welcome to Vacay Tracker, the best way to track your vacation expenses.</p>
