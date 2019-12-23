@@ -1,23 +1,5 @@
 .container {
 	overflow-x: auto;
-}
-
-.expenseItem {
-	margin: 10px 0px;
-	padding-bottom: 10px;
-	color: black;
-}
-
-.arrow {
-	width: 20px;
-	padding-left: 5px;
-	filter: invert(20%) sepia(12%) saturate(1521%) hue-rotate(152deg) brightness(92%) contrast(88%);
-}
-.rotated {
-	transform: rotate(180deg);
-}
-
-table {
 	letter-spacing: 1px;
 	font-size: 1.6rem;
 	width: 100%;
@@ -34,6 +16,22 @@ th {
 td,
 th {
 	padding: 10px 0px;
+}
+
+.expenseItem {
+	margin: 10px 0px;
+	padding-bottom: 10px;
+	color: black;
+}
+
+.arrow {
+	width: 20px;
+	padding-left: 5px;
+	filter: invert(20%) sepia(12%) saturate(1521%) hue-rotate(152deg) brightness(92%) contrast(88%);
+}
+
+.rotated {
+	transform: rotate(180deg);
 }
 
 .sort {
