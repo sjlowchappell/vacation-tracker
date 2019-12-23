@@ -1,5 +1,5 @@
 .container {
-	box-shadow: 0px 0px 4px #273e47;
+	box-shadow: 0px 0px 4px var(--primary);
 	padding: 20px;
 	border-radius: 5px;
 	text-align: center;
@@ -17,13 +17,13 @@
 .stopLink {
 	font-family: 'Alata', sans-serif;
 	font-size: 3rem;
-	color: #273e47;
+	color: var(--primary);
 	padding-bottom: 5px;
 	transition: 0.3s all;
 }
 .stopLink:hover {
-	color: #f0a202;
-	border-bottom: 5px solid #f0a202;
+	color: var(--accent);
+	border-bottom: 5px solid var(--accent);
 	padding-bottom: 0px;
 }
 

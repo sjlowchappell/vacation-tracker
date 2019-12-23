@@ -26,8 +26,8 @@ table {
 
 th {
 	border: 1px solid white;
-	background: #f0a202;
-	color: #273e47;
+	background: var(--accent);
+	color: var(--primary);
 	font-size: 1.8rem;
 }
 
@@ -39,7 +39,7 @@ th {
 .sort {
 	background: none;
 	border: none;
-	color: #273e47;
+	color: var(--primary);
 	display: flex;
 	align-items: center;
 	justify-content: center;

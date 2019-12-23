@@ -7,7 +7,7 @@ button {
 
 /* BLUE BUTTON FOR LOGIN AND FORM COMPONENTS */
 .blue {
-	background: #273e47;
+	background: var(--primary);
 	padding: 21px 41px;
 	margin-top: 20px;
 }
@@ -15,14 +15,14 @@ button {
 .blue:hover {
 	padding: 20px 40px;
 	background: white;
-	color: #273e47;
-	border: 2px solid #273e47;
+	color: var(--primary);
+	border: 2px solid var(--primary);
 }
 
 /* RED BUTTON FOR STOPCARD AND TABLE COMPONENTS */
 
 .red {
-	background: #a4243b;
+	background: var(--warningRed);
 	padding: 6px 21px;
 	font-size: 1.6rem;
 }
@@ -30,8 +30,8 @@ button {
 .red:hover {
 	padding: 5px 20px;
 	background: white;
-	color: #a4243b;
-	border: 2px solid #a4243b;
+	color: var(--warningRed);
+	border: 2px solid var(--warningRed);
 }
 
 /* YELLOW BUTTON FOR SIDEBAR COMPONENT */
@@ -39,13 +39,13 @@ button {
 .yellow {
 	padding: 5px 10px;
 	font-size: 1.2rem;
-	background: #f0a202;
-	border: 2px solid #f0a202;
+	background: var(--accent);
+	border: 2px solid var(--accent);
 }
 
 .yellow:hover {
 	padding: 5px 10px;
-	color: #f0a202;
-	background: #273e47;
-	border: 2px solid #f0a202;
+	color: var(--accent);
+	background: var(--primary);
+	border: 2px solid var(--accent);
 }

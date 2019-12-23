@@ -23,7 +23,7 @@
 .inputItem input {
 	padding: 5px;
 	border: none;
-	border-bottom: 1px solid #f0a202;
+	border-bottom: 1px solid var(--accent);
 	background: none;
 }
 

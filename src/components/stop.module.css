@@ -15,7 +15,7 @@
 }
 
 .budget {
-	color: #273e47;
+	color: var(--primary);
 	font-size: 4rem;
 	font-family: 'Alata', sans-serif;
 	font-weight: bold;
@@ -28,7 +28,7 @@
 	top: 65px;
 	left: 0;
 	content: '';
-	background: #f0a202;
+	background: var(--accent);
 	width: 60px;
 	height: 5px;
 }

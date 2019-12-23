@@ -195,6 +195,13 @@ light green: A3B18A
 orange: F0A202
 */
 
+:root {
+	--primary: #273e47;
+	--accent: #f0a202;
+	--navTextColor: #dad7cd;
+	--warningRed: #a4243b;
+}
+
 html {
 	font-size: 62.5%;
 	line-height: 1.8;
@@ -208,15 +215,15 @@ body {
 
 header h1 {
 	font-size: 4rem;
-	color: #f0a202;
-	text-shadow: 0px 0px 4px #dad7cd;
+	color: var(--accent);
+	text-shadow: 0px 0px 4px var(--navTextColor);
 	padding: 0;
 	margin: 0;
 }
 
 h1 {
 	font-family: 'Alata', sans-serif;
-	color: #273e47;
+	color: var(--primary);
 }
 
 p {
@@ -227,7 +234,7 @@ a {
 	text-decoration: none;
 }
 a:hover {
-	color: #273e47;
+	color: var(--primary);
 }
 
 /* End Typography */
@@ -258,8 +265,8 @@ ul {
 footer {
 	text-align: center;
 	padding: 10px 0px;
-	background: #f0a202;
-	color: #273e47;
+	background: var(--accent);
+	color: var(--primary);
 	height: 10vh;
 }
 
@@ -282,10 +289,10 @@ footer {
 	margin-left: -35px;
 	width: 150px;
 	height: 150px;
-	border: 12px solid #273e47;
+	border: 12px solid var(--primary);
 	border-radius: 50%;
 	animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-	border-color: #273e47 transparent transparent transparent;
+	border-color: var(--primary) transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
 	animation-delay: -0.45s;

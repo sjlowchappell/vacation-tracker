@@ -11,9 +11,9 @@ header {
 .content {
 	width: 300px;
 	height: 100%;
-	background: #273e47;
+	background: var(--primary);
 	padding: 20px;
-	color: #dad7cd;
+	color: var(--navTextColor);
 }
 
 .container h2 {
@@ -25,7 +25,7 @@ header {
 	top: 55px;
 	left: 0;
 	content: '';
-	background: #f0a202;
+	background: var(--accent);
 	width: 60px;
 	height: 5px;
 }
@@ -49,7 +49,7 @@ header {
 	height: 130px;
 	margin: 10px 0px;
 	padding: 2px;
-	background-color: #f0a202;
+	background-color: var(--accent);
 	border-radius: 100%;
 }
 .profileImageContainer img {
@@ -79,14 +79,14 @@ header {
 }
 
 a.navLink {
-	color: #dad7cd;
+	color: var(--navTextColor);
 	padding-bottom: 3px;
 	transition: 0.3s all;
 }
 a.navLink:hover {
-	color: #f0a202;
+	color: var(--accent);
 	padding-bottom: 0px;
-	border-bottom: 3px solid #f0a202;
+	border-bottom: 3px solid var(--accent);
 }
 
 @media (max-width: 1050px) {
@@ -109,7 +109,7 @@ a.navLink:hover {
 		position: relative;
 		top: 20px;
 		left: 20px;
-		background: #273e47;
+		background: var(--primary);
 		border-radius: 3px;
 		z-index: 1000;
 		transform-origin: 4px 0px;
@@ -157,6 +157,6 @@ a.navLink:hover {
 		left: 0px;
 	}
 	.container input:checked ~ span {
-		background: #dad7cd;
+		background: var(--navTextColor);
 	}
 }
