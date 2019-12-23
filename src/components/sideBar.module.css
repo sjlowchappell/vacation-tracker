@@ -1,4 +1,4 @@
-header {
+.header {
 	text-align: center;
 }
 
@@ -16,13 +16,13 @@ header {
 	color: var(--navTextColor);
 }
 
-.container h2 {
+.tripCost {
 	font-family: var(--bodyFont);
 	color: var(--sidebarText);
 	font-size: 3rem;
 }
 
-.container h2:after {
+.tripCost:after {
 	top: 55px;
 }
 

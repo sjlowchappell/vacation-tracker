@@ -13,7 +13,7 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 			<span></span>
 			<span></span>
 			<div className={sideBar.content}>
-				<header>
+				<header className={sideBar.header}>
 					<Link to="/">
 						<h1>Pack-Track!</h1>
 					</Link>
@@ -51,7 +51,7 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 						})}
 					</ul>
 				</nav>
-				{stops.length !== 0 ? <h2>Total Trip Cost: ${totalCost}</h2> : null}
+				{stops.length !== 0 ? <h2 className={sideBar.tripCost}>Total Trip Cost: ${totalCost}</h2> : null}
 			</div>
 		</section>
 	);
