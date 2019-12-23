@@ -7,7 +7,7 @@ import Button from './button';
 
 const SideBar = ({ user, logout, stops, totalCost }) => {
 	return (
-		<section className={styles.container}>
+		<section>
 			<input type="checkbox" id="hamburger" className={styles.hamburgerInput} />
 			<span className={styles.hamburgerLine}></span>
 			<span className={styles.hamburgerLine}></span>
