@@ -95,34 +95,30 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<div>
-					{/* If the application is still loading and hasn't determined if a user is logged in yet, render a loading ring. Otherwise, take the user to the appropriate page (either login page or main page*/}
-					{this.state.loading ? (
-						<div className="lds-ring">
-							<div className="loaderDiv"></div>
-							<div className="loaderDiv"></div>
-							<div className="loaderDiv"></div>
-							<div className="loaderDiv"></div>
-						</div>
-					) : this.state.user ? (
-						<div className="contentContainer">
-							<SideBar
-								user={this.state.user}
-								logout={this.logout}
-								stops={this.state.stops}
-								totalCost={this.allStopsCost()}
-							/>
+				{/* If the application is still loading and hasn't determined if a user is logged in yet, render a loading ring. Otherwise, take the user to the appropriate page (either login page or main page*/}
+				{this.state.loading ? (
+					<div className="lds-ring">
+						<div className="loaderDiv"></div>
+						<div className="loaderDiv"></div>
+						<div className="loaderDiv"></div>
+						<div className="loaderDiv"></div>
+					</div>
+				) : this.state.user ? (
+					<div className="contentContainer">
+						<SideBar
+							user={this.state.user}
+							logout={this.logout}
+							stops={this.state.stops}
+							totalCost={this.allStopsCost()}
+						/>
 
-							<MainContent stops={this.state.stops} uid={this.state.uid} />
-						</div>
-					) : (
-						<div>
-							<Route path="/" render={() => <Login login={this.login} />} />
-						</div>
-					)}
+						<MainContent stops={this.state.stops} uid={this.state.uid} />
+					</div>
+				) : (
+					<Route path="/" render={() => <Login login={this.login} />} />
+				)}
 
-					<Footer />
-				</div>
+				<Footer />
 			</Router>
 		);
 	}
