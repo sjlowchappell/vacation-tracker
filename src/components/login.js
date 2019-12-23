@@ -28,7 +28,7 @@ const Login = ({ login }) => {
 					<img src={passport} alt="SVG of a passport" />
 				</div>
 			</div>
-			<p>Welcome to Vacay Tracker, the best way to track your vacation expenses.</p>
+			<p>Welcome to Pack-Track, the best way to track your vacation expenses.</p>
 			<p>
 				Add new locations to your journey on our Stops page with a budget total, arrival date, and departure
 				date.
