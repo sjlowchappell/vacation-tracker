@@ -7,7 +7,7 @@ import Button from './button';
 
 const SideBar = ({ user, logout, stops, totalCost }) => {
 	return (
-		<div className={sideBar.container}>
+		<section className={sideBar.container}>
 			<input type="checkbox" id="hamburger" className={sideBar.hamburger} />
 			<span></span>
 			<span></span>
@@ -53,7 +53,7 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 				</nav>
 				{stops.length !== 0 ? <h2>Total Trip Cost: ${totalCost}</h2> : null}
 			</div>
-		</div>
+		</section>
 	);
 };
 

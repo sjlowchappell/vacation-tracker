@@ -13,7 +13,7 @@ const StopCard = ({ stop, uid }) => {
 		dbRef.child(stopId).remove();
 	};
 	return (
-		<div className={stopCard.container}>
+		<section className={stopCard.container}>
 			<Link to={`/${stop.name}/`} className={stopCard.stopLink}>
 				{stop.name}
 			</Link>
@@ -30,7 +30,7 @@ const StopCard = ({ stop, uid }) => {
 			<Button styleType="red" listener={() => removeStop(stop.key)}>
 				Delete
 			</Button>
-		</div>
+		</section>
 	);
 };
 

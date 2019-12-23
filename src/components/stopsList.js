@@ -38,7 +38,7 @@ class StopsList extends Component {
 	render() {
 		const { inputList, stops, uid } = this.props;
 		return (
-			<div className={stopsList.container}>
+			<section className={stopsList.container}>
 				<h2>Stops on your journey:</h2>
 				{stops.length !== 0 ? (
 					<>
@@ -64,7 +64,7 @@ class StopsList extends Component {
 						submitText={'Add Stop'}
 					/>
 				)}
-			</div>
+			</section>
 		);
 	}
 }

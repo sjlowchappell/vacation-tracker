@@ -6,7 +6,7 @@ import stopStyles from './stop.module.css';
 const Stop = ({ stop, uid }) => {
 	const { name, budget, expenses, key, cost } = stop;
 	return (
-		<div className={stopStyles.container}>
+		<section className={stopStyles.container}>
 			<div className={stopStyles.heading}>
 				<h2>{name}</h2>
 				<h2 className={stopStyles.budget}>Budget: ${budget}</h2>
@@ -14,7 +14,7 @@ const Stop = ({ stop, uid }) => {
 			<div className={stopStyles.expenseContainer}>
 				<ExpenseList key={uuidv4()} items={expenses} stopId={key} cost={cost} budget={budget} uid={uid} />
 			</div>
-		</div>
+		</section>
 	);
 };
 
