@@ -7,9 +7,9 @@ const Stop = ({ stop, uid }) => {
 	const { name, budget, expenses, key, cost } = stop;
 	return (
 		<div className={stopStyles.container}>
-			<div className={stopStyles.header}>
-				<h1>{name}</h1>
-				<p className={stopStyles.budget}>Budget: ${budget}</p>
+			<div className={stopStyles.heading}>
+				<h2>{name}</h2>
+				<h2 className={stopStyles.budget}>Budget: ${budget}</h2>
 			</div>
 			<div className={stopStyles.expenseContainer}>
 				<ExpenseList key={uuidv4()} items={expenses} stopId={key} cost={cost} budget={budget} uid={uid} />

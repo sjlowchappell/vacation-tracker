@@ -15,7 +15,7 @@
 }
 
 .stopLink {
-	font-family: 'Alata', sans-serif;
+	font-family: var(--headingFont);
 	font-size: 3rem;
 	color: var(--primary);
 	padding-bottom: 5px;

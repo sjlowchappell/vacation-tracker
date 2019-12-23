@@ -144,10 +144,10 @@ class ExpenseList extends Component {
 		return (
 			<div className={expenseList.container}>
 				<div className={expenseList.inputContainer}>
-					<h2>
+					<h3>
 						Total Spent:{' '}
 						<span className={parseFloat(cost) > budget ? expenseList.red : expenseList.green}>${cost}</span>
-					</h2>
+					</h3>
 				</div>
 				<Table
 					sortItems={this.sortItems}

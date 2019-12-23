@@ -39,7 +39,7 @@ class StopsList extends Component {
 		const { inputList, stops, uid } = this.props;
 		return (
 			<div className={stopsList.container}>
-				<h1>Stops on your journey:</h1>
+				<h2>Stops on your journey:</h2>
 				{stops.length !== 0 ? (
 					<>
 						<div className={stopsList.allStops}>

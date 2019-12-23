@@ -17,17 +17,13 @@ header {
 }
 
 .container h2 {
-	position: relative;
+	font-family: var(--bodyFont);
+	color: var(--sidebarText);
+	font-size: 3rem;
 }
 
 .container h2:after {
-	position: absolute;
 	top: 55px;
-	left: 0;
-	content: '';
-	background: var(--accent);
-	width: 60px;
-	height: 5px;
 }
 
 /* Profile styling */
@@ -41,7 +37,7 @@ header {
 
 .userName {
 	font-size: 2.2rem;
-	font-family: 'Alata', sans-serif;
+	font-family: var(--headingFont);
 }
 
 .profileImageContainer {
@@ -73,7 +69,7 @@ header {
 }
 
 .navLink {
-	font-family: 'Alata', sans-serif;
+	font-family: var(--headingFont);
 	display: inline-flex;
 	align-items: center;
 }

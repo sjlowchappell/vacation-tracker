@@ -2,35 +2,11 @@
 	padding-bottom: 50px;
 }
 
-.header {
+.heading {
 	margin: 0px 10px 0px 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-}
-
-.header h1 {
-	padding-bottom: 0;
-	position: relative;
-}
-
-.budget {
-	color: var(--primary);
-	font-size: 4rem;
-	font-family: 'Alata', sans-serif;
-	font-weight: bold;
-	position: relative;
-}
-
-.header h1:after,
-.budget:after {
-	position: absolute;
-	top: 65px;
-	left: 0;
-	content: '';
-	background: var(--accent);
-	width: 60px;
-	height: 5px;
 }
 
 .budget:after {
