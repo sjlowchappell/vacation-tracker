@@ -95,7 +95,7 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<div className="wrapper">
+				<div>
 					{/* If the application is still loading and hasn't determined if a user is logged in yet, render a loading ring. Otherwise, take the user to the appropriate page (either login page or main page*/}
 					{this.state.loading ? (
 						<div className="lds-ring">
