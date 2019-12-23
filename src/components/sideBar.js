@@ -8,14 +8,14 @@ import Button from './button';
 const SideBar = ({ user, logout, stops, totalCost }) => {
 	return (
 		<section className={styles.container}>
-			<input type="checkbox" id="hamburger" className={styles.hamburger} />
-			<span></span>
-			<span></span>
-			<span></span>
+			<input type="checkbox" id="hamburger" className={styles.hamburgerInput} />
+			<span className={styles.hamburgerLine}></span>
+			<span className={styles.hamburgerLine}></span>
+			<span className={styles.hamburgerLine}></span>
 			<div className={styles.content}>
-				<header className={styles.header}>
+				<header>
 					<Link to="/">
-						<h1>Pack-Track!</h1>
+						<h1 className={styles.heading}>Pack-Track!</h1>
 					</Link>
 					<div className={styles.profile}>
 						<div className={styles.profileImageContainer}>

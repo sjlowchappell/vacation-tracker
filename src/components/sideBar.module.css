@@ -1,12 +1,3 @@
-.header {
-	text-align: center;
-}
-
-/* Hamburger (hidden at full width) */
-.hamburger {
-	display: none;
-}
-
 /* Styling of sidebar content container */
 .content {
 	width: 300px;
@@ -14,6 +5,10 @@
 	background: var(--primary);
 	padding: 20px;
 	color: var(--navTextColor);
+}
+
+.heading {
+	text-align: center;
 }
 
 .tripCost {
@@ -72,17 +67,20 @@
 	font-family: var(--headingFont);
 	display: inline-flex;
 	align-items: center;
-}
-
-a.navLink {
 	color: var(--navTextColor);
 	padding-bottom: 3px;
 	transition: 0.3s all;
 }
-a.navLink:hover {
+
+.navLink:hover {
 	color: var(--accent);
 	padding-bottom: 0px;
 	border-bottom: 3px solid var(--accent);
+}
+
+/* Hamburger (hidden at full width) */
+.hamburger {
+	display: none;
 }
 
 @media (max-width: 1050px) {
@@ -90,14 +88,26 @@ a.navLink:hover {
 	.content {
 		position: absolute;
 		height: auto;
-		top: 0;
+		top: 0px;
 		left: -320px;
 		z-index: 1;
 		transition: 0.5s all;
 		background: linear-gradient(180deg, rgba(39, 62, 71, 1), rgba(39, 62, 71, 0.9));
 	}
 
-	.container span {
+	.hamburgerInput {
+		position: absolute;
+		display: block;
+		top: 20px;
+		left: 20px;
+		height: 25px;
+		width: 33px;
+		cursor: pointer;
+		z-index: 1111;
+		opacity: 0;
+	}
+
+	.hamburgerLine {
 		display: block;
 		width: 33px;
 		height: 4px;
@@ -113,46 +123,40 @@ a.navLink:hover {
 			opacity 0.8s ease;
 	}
 
-	.container span:first-child {
+	/* Transform on click  */
+
+	.hamburgerLine:first-child {
 		transform-origin: 0% 0%;
 	}
 
-	.container span:nth-last-child(2) {
+	.hamburgerLine:nth-last-child(2) {
 		transform-origin: 0% 100%;
 	}
 
-	.container input:checked ~ span {
+	.hamburgerInput:checked ~ .hamburgerLine {
 		opacity: 1;
 		transform: rotate(45deg) translate(-2px, -1px);
 		background: #232323;
 	}
 
-	.container input:checked ~ span:nth-last-child(3) {
+	.hamburgerInput:checked ~ .hamburgerLine:nth-last-child(3) {
 		opacity: 0;
 		transform: rotate(0deg) scale(0.2, 0.2);
 	}
 
-	.container input:checked ~ span:nth-last-child(2) {
+	.hamburgerInput:checked ~ .hamburgerLine:nth-last-child(2) {
 		opacity: 1;
 		transform: rotate(-45deg) translate(0, -1px);
 	}
 
-	.hamburger {
-		z-index: 10000;
-		position: absolute;
-		top: 0;
-		display: block;
-		width: 40px;
-		height: 32px;
-		top: 20px;
-		left: 20px;
-		cursor: pointer;
-		opacity: 0;
-	}
-	.container input:checked ~ .content {
+	.hamburgerInput:checked ~ .content {
 		left: 0px;
 	}
-	.container input:checked ~ span {
+	.hamburgerInput:checked ~ .hamburgerLine {
 		background: var(--navTextColor);
 	}
+
+	/* End transform on click  */
+
+	/* End styling from https://codepen.io/Joanc/pen/XYYZdE */
 }
