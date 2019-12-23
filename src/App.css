@@ -243,6 +243,7 @@ p {
 a {
 	text-decoration: none;
 }
+
 a:hover {
 	color: var(--primary);
 }
@@ -280,8 +281,6 @@ footer {
 
 /* Css Loader styles taken directly from https://loading.io/css/ */
 .lds-ring {
-	display: block;
-	position: relative;
 	width: 80px;
 	height: 90vh;
 	margin: 0 auto;
@@ -291,8 +290,6 @@ footer {
 	background-position: center;
 }
 .lds-ring div {
-	box-sizing: border-box;
-	display: block;
 	position: absolute;
 	margin-left: -35px;
 	width: 150px;
