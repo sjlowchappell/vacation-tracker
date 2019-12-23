@@ -11,23 +11,23 @@
 	flex-wrap: wrap;
 }
 
-.inputItem {
+.formInput {
 	display: flex;
 	flex-direction: column;
 	text-align: left;
 	margin: 10px 0px;
-	flex: 1 0 40%;
+	flex: 1 0 45%;
 	max-width: 45%;
 }
 
-.inputItem input {
+.inputItem {
 	padding: 5px;
 	border: none;
 	border-bottom: 1px solid var(--accent);
 	background: none;
 }
 
-.inputItem select {
+.inputSelect {
 	margin: 6px 0px;
 }
 
@@ -41,7 +41,7 @@
 	.inputContainer {
 		flex-direction: column;
 	}
-	.inputItem {
+	.formInput {
 		flex: 1 0 80%;
 		width: 80%;
 		max-width: 80%;
