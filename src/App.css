@@ -289,7 +289,7 @@ footer {
 	background-repeat: no-repeat;
 	background-position: center;
 }
-.lds-ring div {
+.loaderDiv {
 	position: absolute;
 	margin-left: -35px;
 	width: 150px;
@@ -299,13 +299,13 @@ footer {
 	animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 	border-color: var(--primary) transparent transparent transparent;
 }
-.lds-ring div:nth-child(1) {
+.loaderDiv:nth-child(1) {
 	animation-delay: -0.45s;
 }
-.lds-ring div:nth-child(2) {
+.loaderDiv:nth-child(2) {
 	animation-delay: -0.3s;
 }
-.lds-ring div:nth-child(3) {
+.loaderDiv:nth-child(3) {
 	animation-delay: -0.15s;
 }
 @keyframes lds-ring {
