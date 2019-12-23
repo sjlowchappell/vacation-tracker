@@ -6,7 +6,7 @@
 	min-height: 90vh;
 }
 
-.container h1 {
+.heading {
 	margin-top: 0px;
 	padding-top: 40px;
 	font-size: 6rem;
@@ -19,16 +19,16 @@
 	margin: 10px 0px;
 }
 
-.icon {
-	width: 50px;
-	filter: invert(70%) sepia(24%) saturate(7235%) hue-rotate(8deg) brightness(104%) contrast(98%);
-}
-
 .iconContainer {
 	display: flex;
 	width: 70%;
 	margin: 40px auto;
 	justify-content: space-between;
+}
+
+.icon {
+	width: 50px;
+	filter: invert(70%) sepia(24%) saturate(7235%) hue-rotate(8deg) brightness(104%) contrast(98%);
 }
 
 .buttonContainer {

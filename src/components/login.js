@@ -10,7 +10,7 @@ import moneybag from '../assets/money-bag.svg';
 const Login = ({ login }) => {
 	return (
 		<div className={styles.container}>
-			<h1>Pack-Track!</h1>
+			<h1 className={styles.heading}>Pack-Track!</h1>
 			<div className={styles.iconContainer}>
 				<div className={styles.icon}>
 					<img src={airplane} alt="SVG of an airplane" />
