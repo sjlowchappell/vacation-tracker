@@ -11,9 +11,7 @@ const Stop = ({ stop, uid }) => {
 				<h2>{name}</h2>
 				<h2 className={stopStyles.budget}>Budget: ${budget}</h2>
 			</div>
-			<div className={stopStyles.expenseContainer}>
-				<ExpenseList key={uuidv4()} items={expenses} stopId={key} cost={cost} budget={budget} uid={uid} />
-			</div>
+			<ExpenseList key={uuidv4()} items={expenses} stopId={key} cost={cost} budget={budget} uid={uid} />
 		</section>
 	);
 };
