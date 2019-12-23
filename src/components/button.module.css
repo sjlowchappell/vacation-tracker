@@ -5,7 +5,7 @@ button {
 	transition: 0.3s all;
 }
 
-/* BLUE BUTTON FOR LOGIN AND FORM COMPONENTS */
+/* blue button (login and form components) */
 .blue {
 	background: var(--primary);
 	padding: 21px 41px;
@@ -19,7 +19,7 @@ button {
 	border: 2px solid var(--primary);
 }
 
-/* RED BUTTON FOR STOPCARD AND TABLE COMPONENTS */
+/* red button (stopcard and table components) */
 
 .red {
 	background: var(--warningRed);
@@ -34,7 +34,7 @@ button {
 	border: 2px solid var(--warningRed);
 }
 
-/* YELLOW BUTTON FOR SIDEBAR COMPONENT */
+/* yellow button (sidebar component) */
 
 .yellow {
 	padding: 5px 10px;
