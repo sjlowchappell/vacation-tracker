@@ -9,7 +9,7 @@ import moneybag from '../assets/money-bag.svg';
 
 const Login = ({ login }) => {
 	return (
-		<div className={styles.container}>
+		<section className={styles.container}>
 			<h1 className={styles.heading}>Pack-Track!</h1>
 			<div className={styles.iconContainer}>
 				<div className={styles.icon}>
@@ -45,7 +45,7 @@ const Login = ({ login }) => {
 					Log in with Facebook
 				</Button>
 			</div>
-		</div>
+		</section>
 	);
 };
 
