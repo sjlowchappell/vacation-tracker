@@ -114,7 +114,7 @@
 	.content {
 		position: absolute;
 		height: auto;
-		padding-bottom: 50px;
+		padding: 50px 20px;
 		top: 0px;
 		left: -320px;
 		z-index: 1;
