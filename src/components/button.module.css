@@ -8,30 +8,28 @@ button {
 /* blue button (login and form components) */
 .blue {
 	background: var(--primary);
-	padding: 21px 41px;
+	padding: 20px 40px;
 	margin-top: 20px;
+	border: 2px solid var(--primary);
 }
 
 .blue:hover {
-	padding: 20px 40px;
 	background: white;
 	color: var(--primary);
-	border: 2px solid var(--primary);
 }
 
 /* red button (stopcard and table components) */
 
 .red {
 	background: var(--warningRed);
-	padding: 6px 21px;
+	padding: 5px 20px;
 	font-size: 1.6rem;
+	border: 2px solid var(--warningRed);
 }
 
 .red:hover {
-	padding: 5px 20px;
 	background: white;
 	color: var(--warningRed);
-	border: 2px solid var(--warningRed);
 }
 
 /* yellow button (sidebar component) */
@@ -44,8 +42,6 @@ button {
 }
 
 .yellow:hover {
-	padding: 5px 10px;
 	color: var(--accent);
 	background: var(--primary);
-	border: 2px solid var(--accent);
 }
