@@ -1,10 +1,16 @@
 import React from 'react';
+import styles from './footer.module.css';
 
 const Footer = () => {
 	return (
-		<footer>
+		<footer className={styles.footer}>
 			<div>
-				<p>© {new Date().getFullYear()} Built by Sam Low-Chappell</p>
+				<p>
+					© {new Date().getFullYear()} designed and built by{' '}
+					<a href="https://samlow-chappell.com" className={styles.portfolioLink}>
+						Sam Low-Chappell
+					</a>
+				</p>
 			</div>
 		</footer>
 	);

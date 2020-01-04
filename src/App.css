@@ -269,14 +269,6 @@ ul {
 	display: flex;
 }
 
-footer {
-	text-align: center;
-	padding: 10px 0px;
-	background: var(--accent);
-	color: var(--primary);
-	height: 10vh;
-}
-
 /* End General Styles */
 
 /* Css Loader styles taken directly from https://loading.io/css/ */

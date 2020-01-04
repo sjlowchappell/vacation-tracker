@@ -1,0 +1,15 @@
+.footer {
+	text-align: center;
+	padding: 10px 0px;
+	background: var(--accent);
+	color: var(--primary);
+	height: 10vh;
+}
+
+.portfolioLink {
+	color: var(--primary);
+}
+
+.portfolioLink:hover {
+	color: var(--warningRed);
+}
