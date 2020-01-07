@@ -40,30 +40,20 @@ class StopsList extends Component {
 		return (
 			<section className={styles.container}>
 				<h2>Stops on your journey:</h2>
-				{stops.length !== 0 ? (
-					<>
-						<div className={styles.allStops}>
-							{stops.map(stop => {
-								return <StopCard key={uuidv4()} stop={stop} uid={uid} />;
-							})}
-						</div>
-						<Form
-							formText="Add a new stop to your trip:"
-							inputs={inputList}
-							handleChange={this.handleChange}
-							handleSubmit={this.handleSubmit}
-							submitText={'Add Stop'}
-						/>
-					</>
-				) : (
-					<Form
-						formText="Add a new stop to your trip:"
-						inputs={inputList}
-						handleChange={this.handleChange}
-						handleSubmit={this.handleSubmit}
-						submitText={'Add Stop'}
-					/>
+				{stops.length > 0 && (
+					<div className={styles.allStops}>
+						{stops.map(stop => {
+							return <StopCard key={uuidv4()} stop={stop} uid={uid} />;
+						})}
+					</div>
 				)}
+				<Form
+					formText="Add a new stop to your trip:"
+					inputs={inputList}
+					handleChange={this.handleChange}
+					handleSubmit={this.handleSubmit}
+					submitText={'Add Stop'}
+				/>
 			</section>
 		);
 	}
