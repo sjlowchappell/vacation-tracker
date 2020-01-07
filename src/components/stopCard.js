@@ -5,6 +5,7 @@ import Button from './button';
 import firebase from '../firebase';
 
 const StopCard = ({ stop, uid }) => {
+	const { name, budget, arrival, departure, cost, key } = stop;
 	// Method to remove stop from database
 	const removeStop = stopId => {
 		// get reference to users stops
@@ -14,18 +15,17 @@ const StopCard = ({ stop, uid }) => {
 	};
 	return (
 		<section className={styles.container}>
-			<Link to={`/${stop.name}/`} className={styles.stopLink}>
-				{stop.name}
+			<Link to={`/${name}/`} className={styles.stopLink}>
+				{name}
 			</Link>
 			<p className={styles.date}>
-				{stop.arrival} - {stop.departure}
+				{arrival} - {departure}
 			</p>
-			<p>Budgeted: ${stop.budget}</p>
+			<p>Budgeted: ${budget}</p>
 			<p>
-				Spent:{' '}
-				<span className={parseFloat(stop.cost) > stop.budget ? styles.red : styles.green}>${stop.cost}</span>
+				Spent: <span className={parseFloat(cost) > budget ? styles.red : styles.green}>${cost}</span>
 			</p>
-			<Button styleType="red" listener={() => removeStop(stop.key)}>
+			<Button styleType="red" listener={() => removeStop(key)}>
 				Delete
 			</Button>
 		</section>
