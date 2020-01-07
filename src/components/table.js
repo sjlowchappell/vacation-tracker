@@ -42,14 +42,15 @@ const Table = ({ sortItems, expenses, removeItem, sortType, sortDirection }) => 
 			</thead>
 			<tbody>
 				{expenses.map(expense => {
+					const { key, date, name, value, category } = expense;
 					return (
-						<tr key={expense.key} className={styles.expenseItem}>
-							<td>{expense.date}</td>
-							<td>{expense.name}</td>
-							<td>${expense.value}</td>
-							<td>{expense.category}</td>
+						<tr key={key} className={styles.expenseItem}>
+							<td>{date}</td>
+							<td>{name}</td>
+							<td>${value}</td>
+							<td>{category}</td>
 							<td>
-								<Button styleType="red" listener={() => removeItem(expense.key)}>
+								<Button styleType="red" listener={() => removeItem(key)}>
 									Delete
 								</Button>
 							</td>

@@ -6,6 +6,7 @@ import worldWideIcon from '../assets/worldwide.svg';
 import Button from './button';
 
 const SideBar = ({ user, logout, stops, totalCost }) => {
+	const { photoURL, displayName } = user;
 	return (
 		<section>
 			<input type="checkbox" id="hamburger" className={styles.hamburgerInput} />
@@ -21,11 +22,11 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 						<div className={styles.profileImageContainer}>
 							<img
 								className={styles.profileImage}
-								src={user.photoURL}
-								alt={`Profile pic for ${user.displayName}`}
+								src={photoURL}
+								alt={`Profile pic for ${displayName}`}
 							/>
 						</div>
-						<p className={styles.userName}>{user.displayName}</p>
+						<p className={styles.userName}>{displayName}</p>
 						<Button styleType="yellow" listener={logout}>
 							Log Out
 						</Button>
@@ -42,13 +43,14 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 							</Link>
 						</li>
 						{stops.map(stop => {
+							const { key, name } = stop;
 							return (
-								<li key={stop.key} className={styles.stopItem}>
-									<Link to={`/${stop.name}/`} className={styles.navLink}>
+								<li key={key} className={styles.stopItem}>
+									<Link to={`/${name}/`} className={styles.navLink}>
 										<div className={styles.icon}>
 											<img src={locationIcon} alt="" />
 										</div>
-										{stop.name}
+										{name}
 									</Link>
 								</li>
 							);
