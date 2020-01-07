@@ -6,6 +6,8 @@ import Login from './components/login';
 import Footer from './components/footer';
 import SideBar from './components/sideBar';
 import MainContent from './components/mainContent';
+import LoadingCircle from './components/loadingCircle';
+import { calculateAllCosts } from './utils/calculateAllCosts';
 
 const auth = firebase.auth();
 
@@ -29,22 +31,23 @@ class App extends Component {
 				const dbRef = firebase.database().ref('/users/' + this.state.uid + '/stops/');
 				// Get all stops from that user's info, along with stop data
 				dbRef.on('value', response => {
-					const newState = [];
+					const stops = [];
 					const data = response.val();
 					for (let key in data) {
-						newState.push({
-							key: key,
-							name: data[key].name,
-							expenses: data[key].expenses,
-							cost: data[key].cost,
-							budget: data[key].budget,
-							arrival: data[key].arrival,
-							departure: data[key].departure,
+						const stop = data[key];
+						stops.push({
+							key,
+							name: stop.name,
+							expenses: stop.expenses,
+							cost: stop.cost,
+							budget: stop.budget,
+							arrival: stop.arrival,
+							departure: stop.departure,
 						});
 					}
 					// Update state of the application based on user's info
 					this.setState({
-						stops: newState,
+						stops,
 						userInput: '',
 					});
 				});
@@ -60,17 +63,8 @@ class App extends Component {
 
 	// Method to determine the total cost of all the stops of a given trip
 	allStopsCost = () => {
-		return (
-			// rounds the returned number to 2 decimal places
-			(
-				Math.round(
-					// reduce function used to total up all of the stop costs
-					this.state.stops.reduce((total, stop) => {
-						return stop.cost !== undefined ? total + parseFloat(stop.cost) : total;
-					}, 0) * 100,
-				) / 100
-			).toFixed(2)
-		);
+		// adds up all the costs and rounds the returned number to 2 decimal places
+		return calculateAllCosts(this.state.stops);
 	};
 
 	//Login and logout related methods
@@ -97,12 +91,7 @@ class App extends Component {
 			<Router>
 				{/* If the application is still loading and hasn't determined if a user is logged in yet, render a loading ring. Otherwise, take the user to the appropriate page (either login page or main page*/}
 				{this.state.loading ? (
-					<div className="lds-ring">
-						<div className="loaderDiv"></div>
-						<div className="loaderDiv"></div>
-						<div className="loaderDiv"></div>
-						<div className="loaderDiv"></div>
-					</div>
+					<LoadingCircle />
 				) : this.state.user ? (
 					<div className="contentContainer">
 						<SideBar
