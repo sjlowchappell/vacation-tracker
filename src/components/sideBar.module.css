@@ -57,7 +57,7 @@
 }
 
 .icon {
-	width: 20px;
+	min-width: 20px;
 	margin-right: 5px;
 	filter: invert(70%) sepia(24%) saturate(7235%) hue-rotate(8deg) brightness(104%) contrast(98%);
 }
@@ -68,7 +68,6 @@
 	align-items: center;
 	color: var(--navTextColor);
 	padding-bottom: 3px;
-	transition: 0.3s all;
 }
 
 .navLink:hover {
