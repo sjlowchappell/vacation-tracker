@@ -10,10 +10,6 @@
 	background: white;
 }
 
-.container:hover {
-	transform: scale(1.1);
-}
-
 .stopLink {
 	font-family: var(--headingFont);
 	font-size: 3rem;
