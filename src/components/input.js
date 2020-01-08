@@ -4,8 +4,7 @@ import styles from './input.module.css';
 const Input = ({ input, handleChange }) => {
 	const { id, type, text } = input;
 	return (
-		// Tried using uuidv4 for creating unique keys but it broke the handleChange function
-		<div key={`${id}Container`} className={styles.formInput}>
+		<div className={styles.formInput}>
 			<label htmlFor={id}>{text}: </label>
 			<input
 				type={type}
