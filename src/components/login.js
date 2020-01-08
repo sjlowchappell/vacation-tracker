@@ -6,6 +6,7 @@ import cocktail from '../assets/cocktail.svg';
 import hotel from '../assets/hotel.svg';
 import passport from '../assets/passport.svg';
 import moneybag from '../assets/money-bag.svg';
+import PropTypes from 'prop-types';
 
 const Login = ({ login }) => {
 	return (
@@ -47,6 +48,10 @@ const Login = ({ login }) => {
 			</div>
 		</section>
 	);
+};
+
+Login.propTypes = {
+	login: PropTypes.func,
 };
 
 export default Login;

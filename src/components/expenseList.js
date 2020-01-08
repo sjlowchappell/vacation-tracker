@@ -6,6 +6,7 @@ import Table from './table';
 import inputList from '../utils/expenseInputs';
 import { itemSort } from '../utils/itemSort';
 import { decimalPlace } from '../utils/decimalPlace';
+import PropTypes from 'prop-types';
 
 class ExpenseList extends Component {
 	constructor(props) {
@@ -152,5 +153,13 @@ class ExpenseList extends Component {
 		);
 	}
 }
+
+ExpenseList.propTypes = {
+	cost: PropTypes.string,
+	budget: PropTypes.string,
+	uid: PropTypes.string,
+	stopId: PropTypes.string,
+	items: PropTypes.object,
+};
 
 export default ExpenseList;

@@ -3,6 +3,7 @@ import styles from './table.module.css';
 import Button from './button';
 import arrow from '../assets/drop-down-arrow.svg';
 import uuidv4 from 'uuid/v4';
+import PropTypes from 'prop-types';
 
 const Table = ({ sortItems, expenses, removeItem, sortType, sortDirection }) => {
 	const headings = ['date', 'name', 'value', 'category'];
@@ -60,6 +61,14 @@ const Table = ({ sortItems, expenses, removeItem, sortType, sortDirection }) => 
 			</tbody>
 		</table>
 	);
+};
+
+Table.propTypes = {
+	sortItems: PropTypes.func,
+	expenses: PropTypes.array,
+	removeItem: PropTypes.func,
+	sortType: PropTypes.string,
+	sortDirection: PropTypes.string,
 };
 
 export default Table;

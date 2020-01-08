@@ -3,6 +3,7 @@ import styles from './form.module.css';
 import Button from './button';
 import Input from './input';
 import Select from './select';
+import PropTypes from 'prop-types';
 
 const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 	return (
@@ -20,6 +21,14 @@ const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 			<Button styleType="blue">{submitText}</Button>
 		</form>
 	);
+};
+
+Form.propTypes = {
+	formText: PropTypes.string,
+	inputs: PropTypes.array,
+	handleChange: PropTypes.func,
+	handleSubmit: PropTypes.func,
+	submitText: PropTypes.string,
 };
 
 export default Form;

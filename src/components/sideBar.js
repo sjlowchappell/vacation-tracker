@@ -4,6 +4,7 @@ import styles from './sideBar.module.css';
 import locationIcon from '../assets/maps-and-flags.svg';
 import worldWideIcon from '../assets/worldwide.svg';
 import Button from './button';
+import PropTypes from 'prop-types';
 
 const SideBar = ({ user, logout, stops, totalCost }) => {
 	const { photoURL, displayName } = user;
@@ -61,6 +62,13 @@ const SideBar = ({ user, logout, stops, totalCost }) => {
 			</div>
 		</section>
 	);
+};
+
+SideBar.propTypes = {
+	user: PropTypes.object,
+	logout: PropTypes.func,
+	stops: PropTypes.array,
+	totalCost: PropTypes.string,
 };
 
 export default SideBar;

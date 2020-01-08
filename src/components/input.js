@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './input.module.css';
+import PropTypes from 'prop-types';
 
 const Input = ({ input, handleChange }) => {
 	const { id, type, text } = input;
@@ -17,6 +18,11 @@ const Input = ({ input, handleChange }) => {
 			/>
 		</div>
 	);
+};
+
+Input.propTypes = {
+	input: PropTypes.object,
+	handleChange: PropTypes.func,
 };
 
 export default Input;

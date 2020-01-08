@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './stopCard.module.css';
 import Button from './button';
 import firebase from '../firebase';
+import PropTypes from 'prop-types';
 
 const StopCard = ({ stop, uid }) => {
 	const { name, budget, arrival, departure, cost, key } = stop;
@@ -30,6 +31,11 @@ const StopCard = ({ stop, uid }) => {
 			</Button>
 		</section>
 	);
+};
+
+StopCard.propTypes = {
+	stop: PropTypes.object,
+	uid: PropTypes.string,
 };
 
 export default StopCard;

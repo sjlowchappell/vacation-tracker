@@ -5,6 +5,7 @@ import styles from './mainContent.module.css';
 import StopsList from './stopsList';
 import uuidv4 from 'uuid/v4';
 import inputList from '../utils/stopInputs';
+import PropTypes from 'prop-types';
 
 const MainContent = ({ stops, uid }) => {
 	return (
@@ -36,6 +37,11 @@ const MainContent = ({ stops, uid }) => {
 			) : null}
 		</main>
 	);
+};
+
+MainContent.propTypes = {
+	stops: PropTypes.array,
+	uid: PropTypes.string,
 };
 
 export default MainContent;

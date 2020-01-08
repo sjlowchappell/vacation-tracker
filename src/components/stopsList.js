@@ -4,6 +4,7 @@ import firebase from '../firebase';
 import Form from './form';
 import StopCard from './stopCard';
 import uuidv4 from 'uuid/v4';
+import PropTypes from 'prop-types';
 
 class StopsList extends Component {
 	constructor() {
@@ -58,5 +59,11 @@ class StopsList extends Component {
 		);
 	}
 }
+
+StopsList.propTypes = {
+	inputList: PropTypes.array,
+	stops: PropTypes.array,
+	uid: PropTypes.string,
+};
 
 export default StopsList;

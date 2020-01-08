@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './input.module.css';
+import PropTypes from 'prop-types';
 
 const Select = ({ handleChange }) => {
 	return (
@@ -15,6 +16,10 @@ const Select = ({ handleChange }) => {
 			</select>
 		</div>
 	);
+};
+
+Select.propTypes = {
+	handleChange: PropTypes.func,
 };
 
 export default Select;
