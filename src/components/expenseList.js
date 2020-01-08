@@ -127,6 +127,12 @@ class ExpenseList extends Component {
 	render() {
 		const { cost, budget } = this.props;
 		const { expenses, sortDirection, sortType } = this.state;
+		const inputValues = {
+			expenseName: this.state.expenseName,
+			expenseValue: this.state.expenseValue,
+			expenseDate: this.state.expenseDate,
+			expenseCategory: this.state.expenseCategory,
+		};
 		return (
 			<div className={styles.container}>
 				<div className={styles.inputContainer}>
@@ -145,6 +151,7 @@ class ExpenseList extends Component {
 				<Form
 					formText="Add a new Expense to your trip:"
 					inputs={inputList}
+					inputValues={inputValues}
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
 					submitText={'Submit Expense'}
