@@ -4,7 +4,6 @@ import Stop from './stop';
 import styles from './mainContent.module.css';
 import StopsList from './stopsList';
 import uuidv4 from 'uuid/v4';
-import inputList from '../utils/stopInputs';
 import PropTypes from 'prop-types';
 
 const MainContent = ({ stops, uid }) => {
@@ -16,7 +15,7 @@ const MainContent = ({ stops, uid }) => {
 				exact
 				path={'/'}
 				render={() => {
-					return <StopsList stops={stops} uid={uid} inputList={inputList} />;
+					return <StopsList stops={stops} uid={uid} />;
 				}}
 			/>
 			{stops.length !== 0 ? (

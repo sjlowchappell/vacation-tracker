@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './input.module.css';
 import PropTypes from 'prop-types';
 
-const Input = ({ input, handleChange }) => {
+const Input = ({ input, handleChange, inputValue }) => {
 	const { id, type, text } = input;
 	return (
 		<div className={styles.formInput}>
@@ -10,6 +10,7 @@ const Input = ({ input, handleChange }) => {
 			<input
 				type={type}
 				id={id}
+				value={inputValue}
 				className={styles.inputItem}
 				onChange={handleChange}
 				step={id === 'expenseValue' ? '0.01' : null}
@@ -23,6 +24,7 @@ const Input = ({ input, handleChange }) => {
 Input.propTypes = {
 	input: PropTypes.object,
 	handleChange: PropTypes.func,
+	inputValue: PropTypes.string,
 };
 
 export default Input;

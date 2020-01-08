@@ -5,11 +5,17 @@ import Form from './form';
 import StopCard from './stopCard';
 import uuidv4 from 'uuid/v4';
 import PropTypes from 'prop-types';
+import inputList from '../utils/stopInputs';
 
 class StopsList extends Component {
 	constructor() {
 		super();
-		this.state = {};
+		this.state = {
+			location: '',
+			budget: '',
+			arrival: '',
+			departure: '',
+		};
 	}
 	// Method for handling form input -> sets state based on user input
 	handleChange = e => {
@@ -34,10 +40,10 @@ class StopsList extends Component {
 		// Push the new stop to the database
 		dbRef.push(stop);
 		// Update state to clear out the user input
-		this.setState({ location: '', budget: 0, arrival: '', departure: '' });
+		this.setState({ location: '', budget: '', arrival: '', departure: '' });
 	};
 	render() {
-		const { inputList, stops, uid } = this.props;
+		const { stops, uid } = this.props;
 		return (
 			<section className={styles.container}>
 				<h2>Stops on your journey:</h2>
@@ -51,6 +57,7 @@ class StopsList extends Component {
 				<Form
 					formText="Add a new stop to your trip:"
 					inputs={inputList}
+					inputValues={this.state}
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
 					submitText={'Add Stop'}
@@ -61,7 +68,6 @@ class StopsList extends Component {
 }
 
 StopsList.propTypes = {
-	inputList: PropTypes.array,
 	stops: PropTypes.array,
 	uid: PropTypes.string,
 };

@@ -5,7 +5,7 @@ import Input from './input';
 import Select from './select';
 import PropTypes from 'prop-types';
 
-const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
+const Form = ({ formText, inputs, handleChange, handleSubmit, submitText, inputValues }) => {
 	return (
 		<form onSubmit={handleSubmit} className={styles.container}>
 			<p>{formText}</p>
@@ -14,7 +14,12 @@ const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 					return input.type === 'select' ? (
 						<Select key={`${input.id}Container`} handleChange={handleChange} />
 					) : (
-						<Input key={`${input.id}Container`} input={input} handleChange={handleChange} />
+						<Input
+							key={`${input.id}Container`}
+							input={input}
+							handleChange={handleChange}
+							inputValue={inputValues[input.id]}
+						/>
 					);
 				})}
 			</div>
@@ -29,6 +34,7 @@ Form.propTypes = {
 	handleChange: PropTypes.func,
 	handleSubmit: PropTypes.func,
 	submitText: PropTypes.string,
+	inputValues: PropTypes.object,
 };
 
 export default Form;
