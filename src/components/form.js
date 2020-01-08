@@ -11,7 +11,7 @@ const Form = ({ formText, inputs, handleChange, handleSubmit, submitText }) => {
 			<div className={styles.inputContainer}>
 				{inputs.map(input => {
 					return input.type === 'select' ? (
-						<Select handleChange={handleChange} />
+						<Select key={`${input.id}Container`} handleChange={handleChange} />
 					) : (
 						<Input key={`${input.id}Container`} input={input} handleChange={handleChange} />
 					);

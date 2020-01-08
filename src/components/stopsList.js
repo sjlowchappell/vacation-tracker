@@ -20,7 +20,7 @@ class StopsList extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		// Get database reference for user and stops
-		const dbRef = firebase.database().ref('/users/' + this.props.uid + '/stops/');
+		const dbRef = firebase.database().ref(`/users/${this.props.uid}/stops/`);
 		// Create a new stop object with it's name, budget, arrival, departure, expenses, and cost
 		const stop = {
 			name: this.state.location,

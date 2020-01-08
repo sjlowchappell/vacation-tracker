@@ -9,7 +9,7 @@ const StopCard = ({ stop, uid }) => {
 	// Method to remove stop from database
 	const removeStop = stopId => {
 		// get reference to users stops
-		const dbRef = firebase.database().ref('/users/' + uid + '/stops/');
+		const dbRef = firebase.database().ref(`/users/${uid}/stops/`);
 		// use child() and remove() methods to get the stop and remove it
 		dbRef.child(stopId).remove();
 	};

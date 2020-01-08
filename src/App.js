@@ -28,7 +28,7 @@ class App extends Component {
 			if (user) {
 				this.setState({ user, uid: user.uid, loading: false });
 				// Get a database reference to that user's info
-				const dbRef = firebase.database().ref('/users/' + this.state.uid + '/stops/');
+				const dbRef = firebase.database().ref(`/users/${this.state.uid}/stops/`);
 				// Get all stops from that user's info, along with stop data
 				dbRef.on('value', response => {
 					const stops = [];

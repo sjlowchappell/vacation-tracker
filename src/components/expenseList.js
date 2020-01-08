@@ -41,7 +41,7 @@ class ExpenseList extends Component {
 		e.preventDefault();
 		const { uid, stopId } = this.props;
 		// get dbRef to expenses for particular stop
-		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
+		const dbRef = firebase.database().ref(`/users/${uid}/stops/${stopId}/expenses/`);
 		// add a new expense with name, value, date, and category taken from user input
 		dbRef.push({
 			name: this.state.expenseName,
@@ -72,7 +72,7 @@ class ExpenseList extends Component {
 		let newCost;
 		const { uid, stopId } = this.props;
 		// Gets a dbref to the current cost of the stop
-		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId);
+		const dbRef = firebase.database().ref(`/users/${uid}/stops/${stopId}`);
 		dbRef.once('value', response => {
 			const data = response.val();
 			const currentCost = parseFloat(data.cost);
@@ -90,7 +90,7 @@ class ExpenseList extends Component {
 		// First, need to update the cost of the stop with the removed item's value
 		let itemCost;
 		// Get a reference to the cost of the individual item
-		const itemCostRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/' + itemId);
+		const itemCostRef = firebase.database().ref(`/users/${uid}/stops/${stopId}/expenses/${itemId}`);
 		// On reference value, save reference in a variable
 		itemCostRef.once('value', response => {
 			itemCost = response.val().value;
@@ -100,7 +100,7 @@ class ExpenseList extends Component {
 
 		// Second, need to remove the item from the database
 		// Get a database reference to the expenses list
-		const dbRef = firebase.database().ref('/users/' + uid + '/stops/' + stopId + '/expenses/');
+		const dbRef = firebase.database().ref(`/users/${uid}/stops/${stopId}/expenses/`);
 
 		// use child() and remove() methods to get the item and remove it
 		dbRef.child(itemId).remove();
