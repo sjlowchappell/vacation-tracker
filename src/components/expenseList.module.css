@@ -14,3 +14,7 @@
 .green {
 	color: green;
 }
+
+.tableContainer {
+	overflow-x: auto;
+}

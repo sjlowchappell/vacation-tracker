@@ -141,13 +141,15 @@ class ExpenseList extends Component {
 						<span className={parseFloat(cost) > budget ? styles.red : styles.green}>${cost}</span>
 					</h3>
 				</div>
-				<Table
-					sortItems={this.sortItems}
-					expenses={expenses}
-					removeItem={this.removeItem}
-					sortDirection={sortDirection}
-					sortType={sortType}
-				/>
+				<div className={styles.tableContainer}>
+					<Table
+						sortItems={this.sortItems}
+						expenses={expenses}
+						removeItem={this.removeItem}
+						sortDirection={sortDirection}
+						sortType={sortType}
+					/>
+				</div>
 				<Form
 					formText="Add a new Expense to your trip:"
 					inputs={inputList}
