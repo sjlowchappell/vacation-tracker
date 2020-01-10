@@ -18,3 +18,11 @@
 .inputSelect {
 	margin: 6px 0px;
 }
+
+@media (max-width: 550px) {
+	.formInput {
+		flex: 1 0 80%;
+		width: 80%;
+		max-width: 80%;
+	}
+}

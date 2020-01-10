@@ -18,3 +18,10 @@
 .tableContainer {
 	overflow-x: auto;
 }
+
+@media (max-width: 570px) {
+	.tableContainer {
+		border: 2px solid var(--accent);
+		padding: 5px;
+	}
+}

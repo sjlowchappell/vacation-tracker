@@ -13,3 +13,9 @@
 .portfolioLink:hover {
 	color: var(--warningRed);
 }
+
+@media (max-width: 800px) {
+	.footer {
+		height: 100%;
+	}
+}

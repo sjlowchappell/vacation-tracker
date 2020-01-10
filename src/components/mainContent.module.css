@@ -2,6 +2,7 @@
 	padding: 15px;
 	flex: 1 0 70%;
 	min-height: 90vh;
+	overflow-x: auto;
 }
 
 @media (max-width: 1050px) {
