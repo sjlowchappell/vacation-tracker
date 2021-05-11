@@ -6,7 +6,7 @@ const Footer = () => {
 		<footer className={styles.footer}>
 			<div>
 				<p>
-					© {new Date().getFullYear()} designed and built by{' '}
+					© {new Date().getFullYear()}{' '}
 					<a href="https://samlow-chappell.com" className={styles.portfolioLink}>
 						Sam Low-Chappell
 					</a>
